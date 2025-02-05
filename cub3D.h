@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/05 13:53:00 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/05 16:22:24 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include <stdlib.h>
 # include <libft.h>
+# include <math.h>
+# include <mlx.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 typedef struct s_map
 {
@@ -36,8 +40,8 @@ typedef struct s_img
 
 typedef struct s_point
 {
-	int	x;
-	int	y;
+	float	x;
+	float	y;
 }	t_point;
 
 typedef enum e_keycode
@@ -58,12 +62,19 @@ typedef enum e_direction
 	D_DOWN = 3
 }	t_direction;
 
+typedef struct s_player
+{
+	t_point	pos;
+	float	angle;
+}	t_player;
+
 typedef struct s_vars
 {
 	void		*mlx;
 	void		*mlx_win;
+	t_player	*player;
 	t_map		*map;
-	t_img		*buffer[2];
+	t_img		*buffer;
 }	t_vars;
 
 void	put_pixel(t_img *img, int x, int y, int color);
@@ -74,5 +85,10 @@ void	clear_array_img(t_vars *vars, t_img **imgs);
 t_img	*new_image(void *mlx, int width, int height);
 t_img	*load_img(t_vars *vars, char *path);
 t_img	**load_sprites(t_vars *vars, char *path, unsigned int count);
+
+int	key_down_hook(int k, t_vars *vars);
+int	key_up_hook(int k, t_vars *vars);
+int	close_window(t_vars *vars);
+int	game_loop(t_vars *vars);
 
 #endif

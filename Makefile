@@ -10,11 +10,14 @@ MLX_FOLDER = minilibx-linux
 MLX = $(MLX_FOLDER)/libmlx.a
 
 FLAGS = -Wall -Wextra -Werror -g
-INC = -I./$(MLX_FOLDER) -I.
+INC = -I./$(MLX_FOLDER) -I./libft -I.
 LIB = -L./$(MLX_FOLDER) -lmlx -lXext -lX11 -lm -lz -L./libft/ -lft
 
 SOURCES = \
-        main.c
+        main.c \
+		img_utils.c \
+		img_utils2.c \
+		event_hooks.c
 
 OBJDIR = obj
 OBJS = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
