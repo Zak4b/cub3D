@@ -6,15 +6,15 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/05 12:16:06 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/05 13:53:00 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#include <stdlib.h>
-
+# include <stdlib.h>
+# include <libft.h>
 
 typedef struct s_map
 {
@@ -66,5 +66,13 @@ typedef struct s_vars
 	t_img		*buffer[2];
 }	t_vars;
 
+void	put_pixel(t_img *img, int x, int y, int color);
+void	put_image(t_img *dest, t_img *img, int x0, int y0);
+
+void	free_image(t_vars *vars, t_img *img);
+void	clear_array_img(t_vars *vars, t_img **imgs);
+t_img	*new_image(void *mlx, int width, int height);
+t_img	*load_img(t_vars *vars, char *path);
+t_img	**load_sprites(t_vars *vars, char *path, unsigned int count);
 
 #endif

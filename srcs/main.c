@@ -6,11 +6,10 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/02/05 11:47:49 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/05 13:53:40 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	
 }
