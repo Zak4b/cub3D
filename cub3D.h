@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/05 16:22:24 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/10 12:56:33 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <mlx.h>
 #include <fcntl.h>
 #include <unistd.h>
+
+# define CELL_SIZE 4
 
 typedef struct s_map
 {
@@ -40,8 +42,8 @@ typedef struct s_img
 
 typedef struct s_point
 {
-	float	x;
-	float	y;
+	int	x;
+	int	y;
 }	t_point;
 
 typedef enum e_keycode
