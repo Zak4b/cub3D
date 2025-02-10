@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/02/10 15:24:44 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/10 17:07:12 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	init_game(t_vars *vars)
 	vars->player = malloc(sizeof(t_player));
 	vars->player->angle = 3.14 / 4;
 	vars->player->pos = (t_dpoint){64 * 7, 64 * 7};
+	ft_bzero(vars->inputs, sizeof(vars->inputs));
 	mlx_hook(vars->mlx_win, 17, 0, close_window, vars);
 	mlx_hook(vars->mlx_win, 2, 1L << 0, key_down_hook, vars);
 	mlx_hook(vars->mlx_win, 3, 1L << 1, key_up_hook, vars);
@@ -65,7 +66,5 @@ int	main(int argc, char *argv[])
 		"1000000001",
 		"1111111111",
 	}};
-	draw_walls(&vars);
-	mlx_put_image_to_window(vars.mlx, vars.mlx_win, vars.buffer->img, 0, 0);
 	mlx_loop(vars.mlx);
 }

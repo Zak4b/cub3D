@@ -6,16 +6,15 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:10:42 by asene             #+#    #+#             */
-/*   Updated: 2025/02/10 15:41:28 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/10 16:24:09 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
-#include <stdio.h>
 
 double	segmentSize(int distance)
 {
-	return ((double)CELL_SIZE / (double)distance) * (double)W_WIDTH;// / (2 * tan(1.309 / 2));
+	return ((double)CELL_SIZE / (double)distance) * (double)W_WIDTH / (2 * tan(1.309 / 2));
 }
 
 int	correctedDistance(t_vars *vars, t_dpoint point, double rayAngle)
@@ -42,4 +41,25 @@ void draw_walls(t_vars *vars)
 		draw_vline(vars->buffer, (t_point){i, (W_HEIGHT - size) / 2}, size, 0xFFFFF);
 		i++;
 	}
+}
+
+void	draw_background(t_vars *vars)
+{
+	int	i;
+
+	i = 0;
+	while (i < W_WIDTH)
+	{
+		draw_vline(vars->buffer, (t_point){i, 0}, W_HEIGHT /2, 0x1b237a);
+		draw_vline(vars->buffer, (t_point){i, W_HEIGHT /2}, W_HEIGHT /2, 0x555555);
+		i++;
+	}
+}
+
+void	render(t_vars *vars)
+{
+	draw_background(vars);
+	draw_walls(vars);
+	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->buffer->img, 0, 0);
+	mlx_do_sync(vars->mlx);
 }

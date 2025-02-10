@@ -6,23 +6,41 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:31:59 by asene             #+#    #+#             */
-/*   Updated: 2025/02/05 15:59:28 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/10 17:07:51 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 
+void	set_input(t_vars *vars, int key, int value)
+{
+	int	*target;
+
+	if (key == KEY_D)
+		target = &vars->inputs[ROTATE_R];
+	else if (key == KEY_A)
+		target = &vars->inputs[ROTATE_L];
+	else if (key == KEY_W)
+		target = &vars->inputs[MOVE_F];
+	else if (key == KEY_S)
+		target = &vars->inputs[MOVE_B];
+	else
+		return ;
+	*target = value;
+}
+
 int	key_down_hook(int k, t_vars *vars)
 {
 	if (k == KEY_ESC)
 		close_window(vars);
+	else
+		set_input(vars, k, 1);
 	return (0);
 }
 
 int	key_up_hook(int k, t_vars *vars)
 {
-	(void)k;
-	(void)vars;
+	set_input(vars, k, 0);
 	return (0);
 }
 
@@ -32,15 +50,27 @@ int	close_window(t_vars *vars)
 	mlx_destroy_window(vars->mlx, vars->mlx_win);
 	mlx_destroy_display(vars->mlx);
 	free(vars->mlx);
+	free(vars->player);
 	exit(EXIT_SUCCESS);
 	return (0);
 }
 
+void	move(t_vars *vars)
+{
+	if (vars->inputs[MOVE_F])
+		vars->player->pos.x += 1;
+	else if (vars->inputs[MOVE_B])
+		vars->player->pos.x -= 1;
+	if (vars->inputs[ROTATE_L])
+		vars->player->angle -= 0.01;
+	if (vars->inputs[ROTATE_R])
+		vars->player->angle += 0.01;
+}
+
 int	game_loop(t_vars *vars)
 {
-	(void)vars;
-	sleep(1);
-	//mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->buffer, 0, 0);
-	//mlx_do_sync(vars->mlx);
+	move(vars);
+	render(vars);
+	usleep(100);
 	return (1);
 }

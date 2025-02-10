@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/10 15:30:55 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/10 17:00:21 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # define CELL_SIZE 64
 # define W_WIDTH 960
 # define W_HEIGHT 480
-
 
 typedef struct s_map
 {
@@ -65,6 +64,14 @@ typedef enum e_keycode
 	KEY_D = 100
 }	t_keycode;
 
+typedef enum e_input
+{
+	MOVE_F,
+	MOVE_B,
+	ROTATE_L,
+	ROTATE_R,
+}	t_input;
+
 typedef enum e_direction
 {
 	D_LEFT = 0,
@@ -86,25 +93,26 @@ typedef struct s_vars
 	t_player	*player;
 	t_map		*map;
 	t_img		*buffer;
+	int			inputs[20];
 }	t_vars;
 
-void	put_pixel(t_img *img, int x, int y, int color);
-void	put_image(t_img *dest, t_img *img, int x0, int y0);
-void	draw_vline(t_img *dest, t_point p, int h, int color);
+void		put_pixel(t_img *img, int x, int y, int color);
+void		put_image(t_img *dest, t_img *img, int x0, int y0);
+void		draw_vline(t_img *dest, t_point p, int h, int color);
 
-void	free_image(t_vars *vars, t_img *img);
-void	clear_array_img(t_vars *vars, t_img **imgs);
-t_img	*new_image(void *mlx, int width, int height);
-t_img	*load_img(t_vars *vars, char *path);
-t_img	**load_sprites(t_vars *vars, char *path, unsigned int count);
+void		free_image(t_vars *vars, t_img *img);
+void		clear_array_img(t_vars *vars, t_img **imgs);
+t_img		*new_image(void *mlx, int width, int height);
+t_img		*load_img(t_vars *vars, char *path);
+t_img		**load_sprites(t_vars *vars, char *path, unsigned int count);
 
-int	key_down_hook(int k, t_vars *vars);
-int	key_up_hook(int k, t_vars *vars);
-int	close_window(t_vars *vars);
-int	game_loop(t_vars *vars);
+int			key_down_hook(int k, t_vars *vars);
+int			key_up_hook(int k, t_vars *vars);
+int			close_window(t_vars *vars);
+int			game_loop(t_vars *vars);
 
 t_dpoint	cast_ray(t_map *map, t_dpoint start, double angle);
 
-void	draw_walls(t_vars *vars);
+void		render(t_vars *vars);
 
 #endif
