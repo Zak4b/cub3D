@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/05 16:22:24 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/10 13:44:36 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@
 # include <libft.h>
 # include <math.h>
 # include <mlx.h>
-#include <fcntl.h>
-#include <unistd.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <limits.h>
 
 typedef struct s_map
 {
 	int		width;
 	int		height;
 	char	**data;
+	char	**style;
 }	t_map;
 
 typedef struct s_img
