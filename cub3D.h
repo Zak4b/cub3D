@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/10 13:44:36 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:45:50 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ int	key_down_hook(int k, t_vars *vars);
 int	key_up_hook(int k, t_vars *vars);
 int	close_window(t_vars *vars);
 int	game_loop(t_vars *vars);
+int	ft_strchrs(char *str, char *chrs);
 
 #endif

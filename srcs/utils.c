@@ -6,9 +6,11 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:39:25 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/10 15:41:19 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:46:39 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "cub3D.h"
 
 int	ft_strchrs(char *str, char *chrs)
 {
@@ -16,11 +18,19 @@ int	ft_strchrs(char *str, char *chrs)
 	int	j;
 
 	i = 0;
-	while (str[i])
+	if (str != NULL)
 	{
-		while (chrs[j])
-		
-		i++;
+		while (str[i])
+		{
+			j = 0;
+			while (chrs[j])
+			{
+				if (str[i] == chrs[j])
+					return (1);
+				j++;
+			}
+			i++;
+		}
 	}
 	return (0);
 }
