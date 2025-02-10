@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:35:22 by asene             #+#    #+#             */
-/*   Updated: 2025/02/05 16:09:52 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/10 14:10:47 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	put_pixel(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
+	if (x < 0 || y < 0 || x >= img->width || y >= img->height)
+		return ;
 	dst = img->addr
 		+ (y * img->line_length + x * (img->bpp / 8));
 	*(int *)dst = color;

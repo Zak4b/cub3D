@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/10 12:56:33 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/10 15:30:55 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-# define CELL_SIZE 4
+# define CELL_SIZE 64
+# define W_WIDTH 960
+# define W_HEIGHT 480
+
 
 typedef struct s_map
 {
@@ -46,6 +49,12 @@ typedef struct s_point
 	int	y;
 }	t_point;
 
+typedef struct s_dpoint
+{
+	double	x;
+	double	y;
+}	t_dpoint;
+
 typedef enum e_keycode
 {
 	KEY_SPACE = 32,
@@ -66,7 +75,7 @@ typedef enum e_direction
 
 typedef struct s_player
 {
-	t_point	pos;
+	t_dpoint	pos;
 	float	angle;
 }	t_player;
 
@@ -81,6 +90,7 @@ typedef struct s_vars
 
 void	put_pixel(t_img *img, int x, int y, int color);
 void	put_image(t_img *dest, t_img *img, int x0, int y0);
+void	draw_vline(t_img *dest, t_point p, int h, int color);
 
 void	free_image(t_vars *vars, t_img *img);
 void	clear_array_img(t_vars *vars, t_img **imgs);
@@ -92,5 +102,9 @@ int	key_down_hook(int k, t_vars *vars);
 int	key_up_hook(int k, t_vars *vars);
 int	close_window(t_vars *vars);
 int	game_loop(t_vars *vars);
+
+t_dpoint	cast_ray(t_map *map, t_dpoint start, double angle);
+
+void	draw_walls(t_vars *vars);
 
 #endif
