@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:35:22 by asene             #+#    #+#             */
-/*   Updated: 2025/02/05 13:53:54 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/05 16:09:52 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,13 @@ void	put_image(t_img *dest, t_img *img, int x0, int y0)
 		}
 		y++;
 	}
+}
+
+void	draw_vline(t_img *dest, t_point p, int h, int color)
+{
+	int	i;
+
+	i = 0;
+	while (i < h)
+		put_pixel(dest, p.x, p.y + i++, color);
 }
