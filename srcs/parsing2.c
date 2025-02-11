@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:24:13 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/11 16:11:16 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/12 00:10:55 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,18 @@ int	add_style(t_map *map, char *line)
 
 void	check_block(char **map, t_point cur, int *count, t_map *tmap)
 {
-	if (map[cur.y][cur.x] == ' ' || map[cur.y][cur.x] == '2')
+	if (map[cur.y][cur.x] == ' ' || map[cur.y][cur.x] == '2' || *count == -1)
 		return ;
-	if (map[cur.y][cur.x])
-		*count = *count - 1;
+	if (map[cur.y][cur.x] == '0' && (!(cur.x - 1 >= 0
+		|| cur.x + 1 < tmap->width || cur.y - 1 >= 0
+		|| cur.y + 1 < tmap->height) || (map[cur.y][cur.x - 1] == ' '
+		|| map[cur.y][cur.x + 1] == ' ' || map[cur.y - 1][cur.x] == ' '
+		|| map[cur.y + 1][cur.x] == ' ')))
+	{
+		*count = -1;
+		return ;
+	}
+	*count = *count - 1;
 	map[cur.y][cur.x] = '2';
 	if (cur.x - 1 >= 0)
 		check_block(map, (t_point){cur.x - 1, cur.y}, count, tmap);
