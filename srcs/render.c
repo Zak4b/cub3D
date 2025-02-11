@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:10:42 by asene             #+#    #+#             */
-/*   Updated: 2025/02/11 16:39:05 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/11 23:53:14 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	clamp_int(int n, int min, int max)
 void	draw_walls(t_vars *vars)
 {
 	int			i;
-	double		ang;
+	double		camera_x;
 	double		ray_angle;
 	t_dpoint	p;
 	double		distance;
@@ -42,11 +42,11 @@ void	draw_walls(t_vars *vars)
 	double		shadowing;
 	int			color;
 
-	ang = (75 * PI / 180) / (W_WIDTH - 1);
 	i = 0;
 	while (i < W_WIDTH)
 	{
-		ray_angle = vars->player->angle - (75 * PI / 180) / 2 + ang * i;
+		camera_x = (2.0 * i / (W_WIDTH - 1)) - 1.0;
+		ray_angle = vars->player->angle + atan(camera_x * tan((75 * PI / 180) / 2));
 		p = cast_ray(vars->map, vars->player->pos, ray_angle);
 		distance = sqrt(pow(vars->player->pos.x - p.x, 2) + pow(vars->player->pos.y - p.y, 2));
 		size = segment_size(corrected_distance(vars, distance, ray_angle));
