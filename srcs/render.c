@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:10:42 by asene             #+#    #+#             */
-/*   Updated: 2025/02/11 11:17:26 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/11 13:52:23 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ double	correctedDistance(t_vars *vars, t_dpoint point, double rayAngle)
 	distance = sqrt(pow(vars->player->pos.x - point.x, 2) + pow(vars->player->pos.y - point.y, 2));
 	return (distance * cos(rayAngle - vars->player->angle));
 }
+int	clamp_int(int n, int min, int max)
+{
+	if (n > max)
+		n = max;
+	if (n < min)
+		n = min;
+	return (n);
+}
 
 void draw_walls(t_vars *vars)
 {
@@ -38,7 +46,9 @@ void draw_walls(t_vars *vars)
 		t_dpoint p = cast_ray(vars->map, vars->player->pos, ray_angle);
 		double	distance = correctedDistance(vars, p, ray_angle);
 		int size = segmentSize(distance);
-		draw_vline(vars->buffer, (t_point){i, (W_HEIGHT - size) / 2}, size, 0xFFFFF);
+		double shadowing = 1 - (distance / (CELL_SIZE)) * 0.15;
+		int a = clamp_int((int)(0x0F * shadowing), 0 , 256)  << 16 | clamp_int((int)(0xFF * shadowing), 0, 256)  << 8 | clamp_int((int)(0xFF * shadowing), 0, 256);
+		draw_vline(vars->buffer, (t_point){i, (W_HEIGHT - size) / 2}, size, a);
 		i++;
 	}
 }
