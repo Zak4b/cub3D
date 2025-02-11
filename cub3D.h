@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/11 14:46:18 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:09:00 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ typedef struct s_img
 
 typedef struct s_point
 {
-	float	x;
-	float	y;
+	int	x;
+	int	y;
 }	t_point;
 
 typedef enum e_keycode
@@ -92,9 +92,21 @@ int		key_down_hook(int k, t_vars *vars);
 int		key_up_hook(int k, t_vars *vars);
 int		close_window(t_vars *vars);
 int		game_loop(t_vars *vars);
+
+
+
+
+
+
+
+
+
+
 int		ft_strchrs(char *str, char *chrs);
 int		init_map(t_map *map, int fd);
 int		add_style(t_map *map, char *line);
 char	*line_dup(const char *src, int len);
+t_point	find_player(char **map);
+int		checker(char **map, t_map *tmap);
 
 #endif

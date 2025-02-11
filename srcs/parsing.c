@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:27:44 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/11 15:08:06 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:08:44 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	init_map(t_map *map, int fd)
 		ft_printf("%s\n", map->data[i]);
 		i++;
 	}
+	checker(create_map(lmap, map->height, map->width), map);
 	ft_lstclear(&lmap, free);
 	return (1);
 }

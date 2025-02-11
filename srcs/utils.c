@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:39:25 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/11 15:09:57 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:56:38 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,26 @@ int	ft_strchrs(char *str, char *chrs)
 	return (0);
 }
 
-t_point	*find_player(char **map)
+t_point	find_player(char **map)
 {
-	int	x;
-	int	y;
+	t_point	player;
 
-	x = 0;
-	while (map[x])
+	player.y = 0;
+	while (map[player.y])
 	{
-		y = 0;
-		while (map[x][y])
+		player.x = 0;
+		while (map[player.y][player.x])
 		{
-			if (ft_strchrs(&map[x][y], "NSEW"))
-				return (NULL);
-			y++;
+			if (map[player.y][player.x] == 'N' || map[player.y][player.x] == 'S'
+				|| map[player.y][player.x] == 'E' || map[player.y][player.x] == 'W')
+				return (player);
+			player.x++;
 		}
-		x++;
+		player.y++;
 	}
-	return (NULL);
+	player.x = -1;
+	player.y = -1;
+	return (player);
 }
 
 char	*line_dup(const char *src, int len)
