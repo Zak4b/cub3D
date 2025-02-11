@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:24:19 by asene             #+#    #+#             */
-/*   Updated: 2025/02/10 15:39:16 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/11 10:34:29 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	calc_steps(double angle, double *step_x, double *step_y)
 
 int	check_collide(t_map *map, int x, int y)
 {
-	return (! in_map(map, x, y) || map->data[y][x] == 1);
+	return (! in_map(map, x, y) || map->data[y][x] == '1');
 }
 
 t_dpoint	cast_ray(t_map *map, t_dpoint start, double angle)
