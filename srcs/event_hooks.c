@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:31:59 by asene             #+#    #+#             */
-/*   Updated: 2025/02/11 12:59:45 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/11 16:52:17 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	move(t_vars *vars)
 {
 	t_dpoint	p;
 	double		ang;
-	
+
 	p = (t_dpoint){0, 0};
 	if (vars->inputs[ROTATE_L])
 		vars->player->angle -= 0.01;
@@ -79,6 +79,8 @@ void	move(t_vars *vars)
 			p.y--;
 		if (vars->inputs[MOVE_R])
 			p.y++;
+		if (p.x == 0 && p.y == 0)
+			return ;
 		ang = atan2(p.y, p.x);
 		vars->player->pos.x += cos(vars->player->angle + ang);
 		vars->player->pos.y += sin(vars->player->angle + ang);
