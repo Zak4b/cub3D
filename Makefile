@@ -9,7 +9,7 @@ LIBFT = libft/libft.a
 MLX_FOLDER = minilibx-linux
 MLX = $(MLX_FOLDER)/libmlx.a
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -g -O3
 INC = -I./$(MLX_FOLDER) -I./libft -I.
 LIB = -L./$(MLX_FOLDER) -lmlx -lXext -lX11 -lm -lz -L./libft/ -lft
 

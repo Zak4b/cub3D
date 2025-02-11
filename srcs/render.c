@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:10:42 by asene             #+#    #+#             */
-/*   Updated: 2025/02/11 13:52:23 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/11 14:50:11 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,8 @@ double	segmentSize(double distance)
 	return ((double)CELL_SIZE / (double)distance) * (double)W_WIDTH / (2 * tan(1.309 / 2));
 }
 
-double	correctedDistance(t_vars *vars, t_dpoint point, double rayAngle)
+double	correctedDistance(t_vars *vars, double distance, double rayAngle)
 {
-	double distance;
-
-	distance = sqrt(pow(vars->player->pos.x - point.x, 2) + pow(vars->player->pos.y - point.y, 2));
 	return (distance * cos(rayAngle - vars->player->angle));
 }
 int	clamp_int(int n, int min, int max)
@@ -44,10 +41,10 @@ void draw_walls(t_vars *vars)
 	{
 		ray_angle = vars->player->angle - (75 * PI / 180) / 2 + ang * i;
 		t_dpoint p = cast_ray(vars->map, vars->player->pos, ray_angle);
-		double	distance = correctedDistance(vars, p, ray_angle);
-		int size = segmentSize(distance);
+		double	distance = sqrt(pow(vars->player->pos.x - p.x, 2) + pow(vars->player->pos.y - p.y, 2));;
+		int size = segmentSize(correctedDistance(vars, distance, ray_angle));
 		double shadowing = 1 - (distance / (CELL_SIZE)) * 0.15;
-		int a = clamp_int((int)(0x0F * shadowing), 0 , 256)  << 16 | clamp_int((int)(0xFF * shadowing), 0, 256)  << 8 | clamp_int((int)(0xFF * shadowing), 0, 256);
+		int a = clamp_int((int)(0x0F * shadowing), 0 , 255)  << 16 | clamp_int((int)(0xFF * shadowing), 0, 255)  << 8 | clamp_int((int)(0xFF * shadowing), 0, 255);
 		draw_vline(vars->buffer, (t_point){i, (W_HEIGHT - size) / 2}, size, a);
 		i++;
 	}
