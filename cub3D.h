@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/10 15:45:50 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/11 14:46:18 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,13 @@ t_img	*new_image(void *mlx, int width, int height);
 t_img	*load_img(t_vars *vars, char *path);
 t_img	**load_sprites(t_vars *vars, char *path, unsigned int count);
 
-int	key_down_hook(int k, t_vars *vars);
-int	key_up_hook(int k, t_vars *vars);
-int	close_window(t_vars *vars);
-int	game_loop(t_vars *vars);
-int	ft_strchrs(char *str, char *chrs);
+int		key_down_hook(int k, t_vars *vars);
+int		key_up_hook(int k, t_vars *vars);
+int		close_window(t_vars *vars);
+int		game_loop(t_vars *vars);
+int		ft_strchrs(char *str, char *chrs);
+int		init_map(t_map *map, int fd);
+int		add_style(t_map *map, char *line);
+char	*line_dup(const char *src, int len);
 
 #endif

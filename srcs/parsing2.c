@@ -6,33 +6,27 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:24:13 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/10 16:06:09 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:08:58 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	line_checker(char *line)
+int	add_style(t_map *map, char *line)
 {
-	int	i;
-
-	i = 0;
-	if (ft_strchr(line, '1') == NULL)
-		return (-1);
-	while (line[i])
-	{
-		while (line[i] == ' ')
-			i++;
-		if (line[i] != '1')
-			return (0);
-		while (line[i] == '1')
-			i++;
-		if (line[i] == '\n')
-			return (2);
-		while (ft_strchrs(line, "10NSEW"))
-			i++;
-		if (line[igit])
-	}
-
-	return (1);
+	if (ft_strnstr(line, "NO", INT_MAX))
+		map->style[0] = ft_strdup(line + 3);
+	else if (ft_strnstr(line, "SO", INT_MAX))
+		map->style[1] = ft_strdup(line + 3);
+	else if (ft_strnstr(line, "WE", INT_MAX))
+		map->style[2] = ft_strdup(line + 3);
+	else if (ft_strnstr(line, "EA", INT_MAX))
+		map->style[3] = ft_strdup(line + 3);
+	else if (ft_strchr(line, 'F'))
+		map->style[4] = ft_strdup(line + 2);
+	else if (ft_strchr(line, 'C'))
+		map->style[5] = ft_strdup(line + 2);	
+	else
+		return (1);
+	return (0);
 }

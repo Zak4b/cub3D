@@ -17,6 +17,9 @@ SOURCES = \
         main.c \
 		img_utils.c \
 		img_utils2.c \
+		parsing.c \
+		parsing2.c \
+		utils.c \
 		event_hooks.c
 
 OBJDIR = obj
