@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/11 11:24:59 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/11 13:01:28 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <libft.h>
 # include <math.h>
 # include <mlx.h>
-#include <fcntl.h>
-#include <unistd.h>
+# include <fcntl.h>
+# include <unistd.h>
 
 # define CELL_SIZE 64
 # define W_WIDTH 960
@@ -64,13 +64,17 @@ typedef enum e_keycode
 	KEY_W = 119,
 	KEY_A = 97,
 	KEY_S = 115,
-	KEY_D = 100
+	KEY_D = 100,
+	KEY_A_LEFT = 65361,
+	KEY_A_RIGHT = 65363,
 }	t_keycode;
 
 typedef enum e_input
 {
 	MOVE_F,
 	MOVE_B,
+	MOVE_L,
+	MOVE_R,
 	ROTATE_L,
 	ROTATE_R,
 }	t_input;

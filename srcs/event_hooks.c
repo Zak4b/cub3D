@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:31:59 by asene             #+#    #+#             */
-/*   Updated: 2025/02/10 17:07:51 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/11 12:59:45 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,17 @@ void	set_input(t_vars *vars, int key, int value)
 	int	*target;
 
 	if (key == KEY_D)
-		target = &vars->inputs[ROTATE_R];
+		target = &vars->inputs[MOVE_R];
 	else if (key == KEY_A)
-		target = &vars->inputs[ROTATE_L];
+		target = &vars->inputs[MOVE_L];
 	else if (key == KEY_W)
 		target = &vars->inputs[MOVE_F];
 	else if (key == KEY_S)
 		target = &vars->inputs[MOVE_B];
+	else if (key == KEY_A_LEFT)
+		target = &vars->inputs[ROTATE_L];
+	else if (key == KEY_A_RIGHT)
+		target = &vars->inputs[ROTATE_R];
 	else
 		return ;
 	*target = value;
@@ -57,20 +61,33 @@ int	close_window(t_vars *vars)
 
 void	move(t_vars *vars)
 {
-	if (vars->inputs[MOVE_F])
-		vars->player->pos.x += 1;
-	else if (vars->inputs[MOVE_B])
-		vars->player->pos.x -= 1;
+	t_dpoint	p;
+	double	ang;
+	
+	p = (t_dpoint){0, 0};
 	if (vars->inputs[ROTATE_L])
 		vars->player->angle -= 0.01;
 	if (vars->inputs[ROTATE_R])
 		vars->player->angle += 0.01;
+	if (vars->inputs[MOVE_F] || vars->inputs[MOVE_B] || vars->inputs[MOVE_L] || vars->inputs[MOVE_R])
+	{
+		if (vars->inputs[MOVE_F])
+			p.x++;
+		if (vars->inputs[MOVE_B])
+			p.x--;
+		if (vars->inputs[MOVE_L])
+			p.y--;
+		if (vars->inputs[MOVE_R])
+			p.y++;
+		ang = atan2(p.y, p.x);
+		vars->player->pos.x += cos(vars->player->angle + ang);
+		vars->player->pos.y += sin(vars->player->angle + ang);
+	}
 }
 
 int	game_loop(t_vars *vars)
 {
 	move(vars);
 	render(vars);
-	usleep(100);
 	return (1);
 }
