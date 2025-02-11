@@ -19,6 +19,7 @@ SOURCES = \
 		img_utils2.c \
 		event_hooks.c \
 		raycasting.c \
+		raycasting_utils.c \
 		render.c
 
 OBJDIR = obj

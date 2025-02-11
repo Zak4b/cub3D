@@ -6,65 +6,65 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:24:19 by asene             #+#    #+#             */
-/*   Updated: 2025/02/11 10:34:29 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/11 16:21:03 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
+#include "raycasting.h"
 
-int	in_map(t_map *map, int x, int y)
+int	check_vertical_hit(t_map *map, t_cast_data *data)
 {
-	return (x >= 0 && y >= 0 && x < map->width && y < map->height);
+	t_point	cell;
+
+	cell = (t_point){floor(data->v_hit.x / CELL_SIZE),
+		floor(data->v_hit.y / CELL_SIZE)};
+	if (data->step.x < 0)
+		cell.x--;
+	if (check_collide(map, cell.x, cell.y))
+		return (1);
+	data->v_hit.x += data->step.x;
+	data->v_hit.y += data->step.x * data->tan_angle;
+	return (0);
 }
 
-void	calc_steps(double angle, double *step_x, double *step_y)
+int	check_horizontal_hit(t_map *map, t_cast_data *data)
 {
-	if (cos(angle) > 0)
-		*step_x = CELL_SIZE;
-	else
-		*step_x = -CELL_SIZE;
-	if (sin(angle) > 0)
-		*step_y = CELL_SIZE;
-	else
-		*step_y = -CELL_SIZE;
+	t_point	cell;
+
+	cell = (t_point){floor(data->h_hit.x / CELL_SIZE),
+		floor(data->h_hit.y / CELL_SIZE)};
+	if (data->step.y < 0)
+		cell.y--;
+	if (check_collide(map, cell.x, cell.y))
+		return (1);
+	data->h_hit.x += data->step.y / data->tan_angle;
+	data->h_hit.y += data->step.y;
+	return (0);
 }
 
-int	check_collide(t_map *map, int x, int y)
+t_dpoint	find_hit(t_map *map, t_cast_data data)
 {
-	return (! in_map(map, x, y) || map->data[y][x] == '1');
+	while (1)
+	{
+		if (fabs(data.v_hit.x - data.start.x)
+			< fabs(data.h_hit.x - data.start.x))
+		{
+			if (check_vertical_hit(map, &data))
+				return (data.v_hit);
+		}
+		else
+		{
+			if (check_horizontal_hit(map, &data))
+				return (data.h_hit);
+		}
+	}
 }
 
 t_dpoint	cast_ray(t_map *map, t_dpoint start, double angle)
 {
-	const double	tan_angle = tan(angle);
-	double			step_x;
-	double			step_y;
-	t_point 		current_cell;
+	t_dpoint		hit;
 
-	calc_steps(angle, &step_x, &step_y);
-	double nextVerticalX = floor(start.x / CELL_SIZE) * CELL_SIZE + (step_x > 0 ? CELL_SIZE : 0);
-	double nextVerticalY = start.y + (nextVerticalX - start.x) * tan_angle;
-	double nextHorizontalY = floor(start.y / CELL_SIZE) * CELL_SIZE + (step_y > 0 ? CELL_SIZE : 0);
-	double nextHorizontalX = start.x + (nextHorizontalY - start.y) / tan_angle;
-
-	while (1)
-	{
-		if (fabs(nextVerticalX - start.x) < fabs(nextHorizontalX - start.x))
-		{
-			current_cell.x = floor(nextVerticalX / CELL_SIZE) + (step_x < 0 ? -1 : 0);
-			current_cell.y = floor(nextVerticalY / CELL_SIZE);
-			if (check_collide(map, current_cell.x, current_cell.y))
-				return ((t_dpoint){nextVerticalX, nextVerticalY});
-			nextVerticalX += step_x;
-			nextVerticalY += step_x * tan_angle;
-		} else {
-			current_cell.x = floor(nextHorizontalX / CELL_SIZE);
-			current_cell.y = floor(nextHorizontalY / CELL_SIZE) + (step_y < 0 ? -1 : 0);
-			if (check_collide(map, current_cell.x, current_cell.y))
-				return ((t_dpoint){nextHorizontalX, nextHorizontalY});
-			nextHorizontalX += step_y / tan_angle;
-			nextHorizontalY += step_y;
-		}
-	}
-	return ((t_dpoint){-1, -1});
+	hit = find_hit(map, calc_cast(start, angle));
+	return (hit);
 }

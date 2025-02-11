@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/11 14:48:02 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/11 16:26:43 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef enum e_direction
 typedef struct s_player
 {
 	t_dpoint	pos;
-	float	angle;
+	float		angle;
 }	t_player;
 
 typedef struct s_vars

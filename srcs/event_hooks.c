@@ -62,7 +62,7 @@ int	close_window(t_vars *vars)
 void	move(t_vars *vars)
 {
 	t_dpoint	p;
-	double	ang;
+	double		ang;
 	
 	p = (t_dpoint){0, 0};
 	if (vars->inputs[ROTATE_L])
