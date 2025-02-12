@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:27:44 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/11 16:08:44 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/12 09:45:48 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	create_list_map(int fd, t_list **lmap, t_map *map)
 
 	line = get_next_line(fd);
 	map->style = malloc(sizeof(char*) * 6);
+	len = 0;
 	while (line)
 	{
 		if (add_style(map, line))

@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:24:13 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/12 00:23:37 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/12 09:41:42 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	checker(char **map, t_map *tmap)
 	t_point	player;
 
 	count = elem_count(map);
+	ft_printf("%d\n", tmap->width);
 	ft_printf("%d\n", count);
 	if (count == -1)
 		return (1);
