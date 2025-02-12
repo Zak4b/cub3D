@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/12 14:16:21 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/13 00:33:59 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@
 # include <limits.h>
 
 # define CELL_SIZE 64
+# define MCELL_SIZE 10
 # define FOV 75
-# define W_WIDTH 1920
-# define W_HEIGHT 1080
+# define W_WIDTH 1080
+# define W_HEIGHT 540
 # ifndef PI
 #  define PI 3.14159265359
 # endif
@@ -134,5 +135,6 @@ int			checker(char **map, t_map *tmap);
 int			invalid_style(char *style);
 int			ft_puterror(char *str, int type);
 void		mouse_movement(t_vars *vars);
+void		print_minimap(t_vars *vars);
 
 #endif
