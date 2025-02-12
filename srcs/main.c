@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/02/12 14:10:35 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/12 19:05:36 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	init_game(t_vars *vars)
 	vars->player->angle = PI * 1.5;
 	player_cell = find_player(vars->map->data);
 	vars->player->pos = (t_dpoint){CELL_SIZE * (player_cell.x + .5), CELL_SIZE * (player_cell.y + .5)};
+	vars->wall = load_img(vars, "./wall.xpm");
 	ft_bzero(vars->inputs, sizeof(vars->inputs));
 	mlx_hook(vars->mlx_win, 17, 0, close_window, vars);
 	mlx_hook(vars->mlx_win, 2, 1L << 0, key_down_hook, vars);

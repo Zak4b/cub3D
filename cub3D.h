@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/12 16:22:21 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/12 19:29:34 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,12 +107,14 @@ typedef struct s_vars
 	t_map		*map;
 	t_img		*buffer;
 	int			inputs[20];
+	t_img		*wall;
 }	t_vars;
 
 void		put_pixel(t_img *img, int x, int y, int color);
 void		put_image(t_img *dest, t_img *img, int x0, int y0);
 void		draw_vline(t_img *dest, t_point p, int h, int color);
 void		draw_hline(t_img *dest, t_point p, int l, int color);
+int			get_img_pixel(t_img *img, int col_index, int row_index, int total_size);
 
 void		free_image(t_vars *vars, t_img *img);
 void		clear_array_img(t_vars *vars, t_img **imgs);

@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:10:42 by asene             #+#    #+#             */
-/*   Updated: 2025/02/12 16:22:04 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/12 20:35:30 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,16 @@ void	draw_walls(t_vars *vars)
 		p = cast_ray(vars->map, vars->player->pos, ray_angle);
 		distance = sqrt(pow(vars->player->pos.x - p.x, 2) + pow(vars->player->pos.y - p.y, 2));
 		size = segment_size(distance * cos(ray_angle - vars->player->angle));
-		color = color_shadowing(0x00FFA0, distance);
-		draw_vline(vars->buffer, (t_point){i, (W_HEIGHT - size) / 2}, size, color);
+		int j = 0;
+		while (j < size)	
+		{
+			if ((int)p.x % CELL_SIZE == 0)
+				color = get_img_pixel(vars->wall, (int)p.y % CELL_SIZE, j, size);
+			else
+				color = get_img_pixel(vars->wall, (int)p.x % CELL_SIZE, j, size);
+			put_pixel(vars->buffer, i, j + (W_HEIGHT - size) / 2, color_shadowing(color, distance));
+			j++;
+		}
 		i++;
 	}
 }
