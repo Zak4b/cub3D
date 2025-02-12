@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/02/12 12:52:10 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/12 14:10:35 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	init_game(t_vars *vars)
 {
-	int	win_width;
-	int	win_height;
+	int		win_width;
+	int		win_height;
+	t_point	player_cell;
 
 	win_width = W_WIDTH;
 	win_height = W_HEIGHT;
@@ -24,7 +25,8 @@ void	init_game(t_vars *vars)
 	vars->buffer = new_image(vars->mlx, win_width, win_height);
 	vars->player = malloc(sizeof(t_player));
 	vars->player->angle = PI * 1.5;
-	vars->player->pos = (t_dpoint){64 * 7, 64 * 7};
+	player_cell = find_player(vars->map->data);
+	vars->player->pos = (t_dpoint){CELL_SIZE * (player_cell.x + .5), CELL_SIZE * (player_cell.y + .5)};
 	ft_bzero(vars->inputs, sizeof(vars->inputs));
 	mlx_hook(vars->mlx_win, 17, 0, close_window, vars);
 	mlx_hook(vars->mlx_win, 2, 1L << 0, key_down_hook, vars);
