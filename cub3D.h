@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/12 11:17:31 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/12 12:25:47 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <limits.h>
 
 # define CELL_SIZE 64
 # define FOV 75
@@ -33,6 +34,7 @@ typedef struct s_map
 	int		width;
 	int		height;
 	char	**data;
+	char	**style;
 }	t_map;
 
 typedef struct s_img
@@ -122,5 +124,14 @@ int			game_loop(t_vars *vars);
 t_dpoint	cast_ray(t_map *map, t_dpoint start, double angle);
 
 void		render(t_vars *vars);
+
+int			ft_strchrs(char *str, char *chrs);
+int			init_map(t_map *map, int fd);
+int			add_style(t_map *map, char *line);
+char		*line_dup(const char *src, int len);
+t_point		find_player(char **map);
+int			checker(char **map, t_map *tmap);
+int			invalid_style(char *style);
+int			ft_puterror(char *str, int type);
 
 #endif

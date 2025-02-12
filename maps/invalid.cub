@@ -1,0 +1,21 @@
+NO ./path_to_the_north_texture
+SO ./path_to_the_south_texture
+WE ./path_to_the_west_texture
+EA ./path_to_the_east_texture
+F 220,100,0
+C 225,30,0
+
+        aaaaaaaaaaaaaaaaaaaaaaaaa
+        a000000000aa000000000000a
+        a0aa00000aaa000000000000a
+        a00a00000000000000000000a
+aaaaaaaaa0aa00000aaa00000000000aa
+a000000000aa00000aaa0aaaaaaaaaaaa
+aaaa0aaaaaaaaa0aaa000000a000a
+aaaa0aaaaaaaaa0aaa0a0a00a000a
+aa000000aa0a0a0aaa000000a000a
+a000000000000000aa000000aS00a
+a000000000000000aa0a0a000000a                 
+aa00000aaa0a0a0aaaaa0a000000a      
+aaaa0aaa aaa0a0a a0aaaa0a000a
+aaaaaaaa aaaaaaa aaaaaaaaaaaa

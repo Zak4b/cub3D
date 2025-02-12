@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/02/12 11:11:06 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/12 12:52:10 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	init_game(t_vars *vars)
 	mlx_do_key_autorepeatoff(vars->mlx);
 }
 
-int	read_map(char *path)
+int	read_map(char *path, t_map *map)
 {
 	int	index;
 	int	fd;
@@ -42,7 +42,7 @@ int	read_map(char *path)
 	if (index < 0 || ft_strcmp(path + index, ".cub"))
 		return (0);
 	fd = open(path, O_RDONLY);
-	return (1);
+	return (!init_map(map, fd));
 }
 
 int	main(int argc, char *argv[])
@@ -51,20 +51,9 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 		return (ft_fprintf(2, "USAGE"), 2);
-	read_map(argv[1]);
-	init_game(&vars);
 	vars.map = malloc(sizeof(t_map));
-	*vars.map = (t_map){10, 10, (char *[]){
-		"1111111111",
-		"1000010101",
-		"1000010101",
-		"1000010001",
-		"1000000001",
-		"1000000001",
-		"1001110001",
-		"1000000001",
-		"1000000001",
-		"1111111111",
-	}};
+	if (!read_map(argv[1], vars.map))
+		return (1);
+	init_game(&vars);
 	mlx_loop(vars.mlx);
 }

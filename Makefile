@@ -20,7 +20,11 @@ SOURCES = \
 		event_hooks.c \
 		raycasting.c \
 		raycasting_utils.c \
-		render.c
+		render.c \
+		parsing.c \
+		parsing2.c \
+		parsing_utils.c \
+		utils.c
 
 OBJDIR = obj
 OBJS = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
