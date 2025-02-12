@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/12 12:25:47 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/12 13:00:32 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef enum e_keycode
 	KEY_D = 100,
 	KEY_A_LEFT = 65361,
 	KEY_A_RIGHT = 65363,
+	KEY_SHIFT = 65505,
 }	t_keycode;
 
 typedef enum e_input
@@ -80,6 +81,7 @@ typedef enum e_input
 	MOVE_R,
 	ROTATE_L,
 	ROTATE_R,
+	RUN,
 }	t_input;
 
 typedef enum e_direction

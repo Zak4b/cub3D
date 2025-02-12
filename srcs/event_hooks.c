@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:31:59 by asene             #+#    #+#             */
-/*   Updated: 2025/02/11 16:52:17 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/12 15:50:28 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	set_input(t_vars *vars, int key, int value)
 		target = &vars->inputs[ROTATE_L];
 	else if (key == KEY_A_RIGHT)
 		target = &vars->inputs[ROTATE_R];
+	else if (key == KEY_SHIFT)
+		target = &vars->inputs[RUN];
 	else
 		return ;
 	*target = value;
@@ -59,6 +61,27 @@ int	close_window(t_vars *vars)
 	return (0);
 }
 
+void	move_player(t_vars *vars, t_dpoint mov)
+{
+	t_point		cell;
+	t_dpoint	dest;
+
+	dest = (t_dpoint){vars->player->pos.x + mov.x, vars->player->pos.y + mov.y};
+	if (mov.x > 0)
+		cell = (t_point){dest.x / CELL_SIZE +.1, vars->player->pos.y / CELL_SIZE};
+	else
+		cell = (t_point){dest.x / CELL_SIZE -.1, vars->player->pos.y / CELL_SIZE};
+	if (vars->map->data[cell.y][cell.x] == '1')
+		dest.x = vars->player->pos.x;
+	if (mov.y > 0)
+		cell = (t_point){vars->player->pos.x / CELL_SIZE, dest.y / CELL_SIZE +.1};
+	else
+		cell = (t_point){vars->player->pos.x / CELL_SIZE, dest.y / CELL_SIZE -.1};
+	if (vars->map->data[cell.y][cell.x] == '1')
+		dest.y = vars->player->pos.y;
+	vars->player->pos = dest;
+}
+
 void	move(t_vars *vars)
 {
 	t_dpoint	p;
@@ -82,8 +105,10 @@ void	move(t_vars *vars)
 		if (p.x == 0 && p.y == 0)
 			return ;
 		ang = atan2(p.y, p.x);
-		vars->player->pos.x += cos(vars->player->angle + ang);
-		vars->player->pos.y += sin(vars->player->angle + ang);
+		p = (t_dpoint){cos(vars->player->angle + ang), sin(vars->player->angle + ang)};
+		if (vars->inputs[RUN])
+			p = (t_dpoint){p.x * 2, p.y * 2};
+		move_player(vars, p);
 	}
 }
 
