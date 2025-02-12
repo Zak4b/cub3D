@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/12 13:00:32 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/12 16:22:21 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <limits.h>
 
 # define CELL_SIZE 64
+# define SHADOWING 0.15
 # define FOV 75
 # define W_WIDTH 1920
 # define W_HEIGHT 1080
@@ -111,6 +112,7 @@ typedef struct s_vars
 void		put_pixel(t_img *img, int x, int y, int color);
 void		put_image(t_img *dest, t_img *img, int x0, int y0);
 void		draw_vline(t_img *dest, t_point p, int h, int color);
+void		draw_hline(t_img *dest, t_point p, int l, int color);
 
 void		free_image(t_vars *vars, t_img *img);
 void		clear_array_img(t_vars *vars, t_img **imgs);

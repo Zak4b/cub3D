@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:10:42 by asene             #+#    #+#             */
-/*   Updated: 2025/02/12 11:49:47 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/12 16:22:04 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	color_shadowing(int color, double distance)
 	unsigned char	green;
 	unsigned char	blue;
 
-	shadowing = 1 - (distance / (CELL_SIZE)) * 0.15;
+	shadowing = 1 - (distance / (CELL_SIZE)) * SHADOWING;
 	red = clamp_int((int)((color >> 16 & 255) * shadowing), 0, 255);
 	green = clamp_int((int)((color >> 8 & 255) * shadowing), 0, 255);
 	blue = clamp_int((int)((color & 255) * shadowing), 0, 255);
@@ -69,10 +69,11 @@ void	draw_background(t_vars *vars)
 	int	i;
 
 	i = 0;
-	while (i < W_WIDTH)
+	while (i < W_HEIGHT /2)
+		draw_hline(vars->buffer, (t_point){0, i++},W_WIDTH, 0x1b237a);
+	while (i < W_HEIGHT)
 	{
-		draw_vline(vars->buffer, (t_point){i, 0}, W_HEIGHT / 2, 0x1b237a);
-		draw_vline(vars->buffer, (t_point){i, W_HEIGHT / 2}, W_HEIGHT / 2, 0x555555);
+		draw_hline(vars->buffer, (t_point){0, i},W_WIDTH, color_shadowing(0x555555, CELL_SIZE / SHADOWING - (i - W_HEIGHT/2)));
 		i++;
 	}
 }
