@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:27:44 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/12 09:45:48 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:17:45 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ void	create_list_map(int fd, t_list **lmap, t_map *map)
 
 	line = get_next_line(fd);
 	map->style = malloc(sizeof(char*) * 6);
+	map->style[0] = NULL;
+	map->style[1] = NULL;
+	map->style[2] = NULL;
+	map->style[3] = NULL;
+	map->style[4] = NULL;
+	map->style[5] = NULL;
 	len = 0;
 	while (line)
 	{
@@ -92,7 +98,7 @@ int	init_map(t_map *map, int fd)
 	lmap = NULL;
 	create_list_map(fd, &lmap, map);
 	if (map->height <= 2)
-		return (0); // incorrect map
+		return (ft_puterror("map too small",1));
 	map->data = create_map(lmap, map->height, map->width);
 	int	i = 0;
 	while (map->data[i])
@@ -102,5 +108,5 @@ int	init_map(t_map *map, int fd)
 	}
 	checker(create_map(lmap, map->height, map->width), map);
 	ft_lstclear(&lmap, free);
-	return (1);
+	return (0);
 }

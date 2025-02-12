@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:39:25 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/11 15:56:38 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:34:07 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,16 @@ char	*line_dup(const char *src, int len)
 	}
 	dup[len] = '\0';
 	return (dup);
+}
+
+int	ft_puterror(char *str, int type)
+{
+	if (type == 0)
+		ft_putstr_fd("\033[1;33mWarning: ", 2);
+	if (type == 1)
+		ft_putstr_fd("\033[1;31mERROR: ", 2);
+
+	ft_putstr_fd(str,2);
+	ft_putstr_fd("\033[0m\n", 2);
+	return (1);
 }

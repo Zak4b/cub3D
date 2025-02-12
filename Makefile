@@ -19,6 +19,7 @@ SOURCES = \
 		img_utils2.c \
 		parsing.c \
 		parsing2.c \
+		parsing_utils.c \
 		utils.c \
 		event_hooks.c
 

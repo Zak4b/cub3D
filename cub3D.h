@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/11 16:09:00 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:28:32 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,7 @@ int		add_style(t_map *map, char *line);
 char	*line_dup(const char *src, int len);
 t_point	find_player(char **map);
 int		checker(char **map, t_map *tmap);
+int		invalid_style(char *style);
+int		ft_puterror(char *str, int type);
 
 #endif

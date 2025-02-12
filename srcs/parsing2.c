@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:24:13 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/12 09:41:42 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:24:28 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,35 @@ int	add_style(t_map *map, char *line)
 		map->style[5] = ft_strdup(line + 2);	
 	else
 		return (1);
+	return (0);
+}
+
+int	check_style(t_map *map)
+{
+	if (map->style[0] == NULL)
+		return (ft_puterror("NO not specified", 1));
+	if (invalid_style(map->style[0]))
+		return (ft_puterror("NO invalid", 1));
+	if (map->style[1] == NULL)
+		return (ft_puterror("SO not specified", 1));
+	if (invalid_style(map->style[1]))
+		return (ft_puterror("SO invalid", 1));
+	if (map->style[2] == NULL)
+		return (ft_puterror("WE not specified", 1));
+	if (invalid_style(map->style[2]))
+		return (ft_puterror("WE invalid", 1));
+	if (map->style[3] == NULL)
+		return (ft_puterror("EA not specified", 1));
+	if (invalid_style(map->style[3]))
+		return (ft_puterror("EA invalid", 1));
+	if (map->style[4] == NULL)
+		return (ft_puterror("F not specified", 1));
+	if (invalid_style(map->style[4]))
+		return (ft_puterror("F invalid", 1));
+	if (map->style[5] == NULL)
+		return (ft_puterror("C not specified", 1));
+	if (invalid_style(map->style[5]))
+		return (ft_puterror("C invalid", 1)); 
 	return (0);
 }
 
@@ -78,7 +107,7 @@ int	elem_count(char **map)
 				|| map[x][y] == 'E' || map[x][y] == 'W')
 				counter[1]++;
 			if (counter[1] > 1)
-				return (-1); // error to many player invalid map
+				return (-1);
 			y++;
 		}
 		x++;
@@ -91,15 +120,18 @@ int	checker(char **map, t_map *tmap)
 	int	count;
 	t_point	player;
 
-	count = elem_count(map);
-	ft_printf("%d\n", tmap->width);
-	ft_printf("%d\n", count);
-	if (count == -1)
+	if (check_style(tmap) == 1)
 		return (1);
+	count = elem_count(map);
+	if (count == -1)
+		return (ft_puterror("too many player", 1));
 	player = find_player(map);
 	if (player.x == -1)
-		return (1); // invalid map no player
+		return (ft_puterror("no player", 1));
 	check_block(map, player, &count, tmap);
-	ft_printf("%d\n", count);
+	if (count == -1)
+		return (ft_puterror("invalid map, floor near void", 1));
+	if (count > 0)
+		return (ft_puterror("invalid map, cutted by void", 1));
 	return (0);
 }
