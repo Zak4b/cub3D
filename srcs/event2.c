@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:12:02 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/13 00:42:32 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/13 00:52:19 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	print_on_minimap(t_vars *vars, t_point map_pos, int color)
 	int		y;
 	int		x;
 
-	p.x = W_WIDTH - vars->map->width * MCELL_SIZE + map_pos.x * MCELL_SIZE;
-	p.y = W_HEIGHT - vars->map->height * MCELL_SIZE + map_pos.y * MCELL_SIZE;
+	p.x = W_WIDTH - (vars->map->width - map_pos.x) * MCELL_SIZE;
+	p.y = W_HEIGHT - (vars->map->height - map_pos.y) * MCELL_SIZE;
 	y = 0;
 	while (y < MCELL_SIZE)
 	{
