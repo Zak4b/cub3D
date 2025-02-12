@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:27:44 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/12 11:17:45 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:20:50 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,26 @@ char	**create_map(t_list *lmap, int size, int width)
 	return (map);
 }
 
-int	map_incorrect(t_list *lmap, t_map *map)
+int	map_incorrect(t_list *lmap)
 {
-	int	i;
 	t_list	*cursor;
+	int		i;
+	char 	*content;
 
 	cursor = lmap;
-	i = 0;
-	while (i < 6)
-	{
-		if (map->style[i] == NULL)
-			return (1); // missing map style
-		i++;
-	}
 	while (cursor)
 	{
+		i = 0;
+		if (cursor->content)
+		{
+			content = (char *) cursor->content;
+			while (content[i])
+			{
+				if (ft_strchr(" 01NSEW\n", content[i]) == NULL)
+					return (ft_puterror("invalid character in map", 1));
+				i++;
+			}
+		}
 		cursor = cursor->next;
 	}
 	return (0);
@@ -97,8 +102,12 @@ int	init_map(t_map *map, int fd)
 
 	lmap = NULL;
 	create_list_map(fd, &lmap, map);
-	if (map->height <= 2)
-		return (ft_puterror("map too small",1));
+	if (map->width == 0)
+		return (ft_puterror("invalid map no floor / wall", 1));
+	if (map->height <= 2 || map->width <= 2)
+		return (ft_puterror("map too small", 1));
+	if (map_incorrect(lmap))
+		return (1);
 	map->data = create_map(lmap, map->height, map->width);
 	int	i = 0;
 	while (map->data[i])
