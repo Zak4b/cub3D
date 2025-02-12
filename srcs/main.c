@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/02/12 12:52:10 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/12 14:50:34 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ int	main(int argc, char *argv[])
 	if (!read_map(argv[1], vars.map))
 		return (1);
 	init_game(&vars);
+	mlx_mouse_move(vars.mlx, vars.mlx_win, W_WIDTH / 2, W_HEIGHT / 2);
 	mlx_loop(vars.mlx);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/12 12:25:47 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/12 14:16:21 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,6 @@ t_point		find_player(char **map);
 int			checker(char **map, t_map *tmap);
 int			invalid_style(char *style);
 int			ft_puterror(char *str, int type);
+void		mouse_movement(t_vars *vars);
 
 #endif
