@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/11 16:26:43 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/12 11:17:31 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <unistd.h>
 
 # define CELL_SIZE 64
+# define FOV 75
 # define W_WIDTH 1920
 # define W_HEIGHT 1080
 # ifndef PI

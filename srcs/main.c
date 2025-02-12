@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/02/11 11:13:50 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/12 11:11:06 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_game(t_vars *vars)
 	vars->mlx_win = mlx_new_window(vars->mlx, win_width, win_height, "cub3D");
 	vars->buffer = new_image(vars->mlx, win_width, win_height);
 	vars->player = malloc(sizeof(t_player));
-	vars->player->angle = PI / 4;
+	vars->player->angle = PI * 1.5;
 	vars->player->pos = (t_dpoint){64 * 7, 64 * 7};
 	ft_bzero(vars->inputs, sizeof(vars->inputs));
 	mlx_hook(vars->mlx_win, 17, 0, close_window, vars);
@@ -56,8 +56,8 @@ int	main(int argc, char *argv[])
 	vars.map = malloc(sizeof(t_map));
 	*vars.map = (t_map){10, 10, (char *[]){
 		"1111111111",
-		"1000010001",
-		"1000010001",
+		"1000010101",
+		"1000010101",
 		"1000010001",
 		"1000000001",
 		"1000000001",
