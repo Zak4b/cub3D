@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/12 19:29:34 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/13 10:49:12 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,20 @@ typedef enum e_input
 
 typedef enum e_direction
 {
-	D_LEFT = 0,
-	D_UP = 1,
-	D_RIGHT = 2,
-	D_DOWN = 3
+	NORTH = 0,
+	EAST = 1,
+	SOUTH = 2,
+	WEST = 3
 }	t_direction;
+
+typedef struct s_hit
+{
+	t_dpoint	pos;
+	double		distance;
+	t_direction	side;
+	int			col_index;
+}	t_hit;
+
 
 typedef struct s_player
 {
@@ -127,7 +136,7 @@ int			key_up_hook(int k, t_vars *vars);
 int			close_window(t_vars *vars);
 int			game_loop(t_vars *vars);
 
-t_dpoint	cast_ray(t_map *map, t_dpoint start, double angle);
+t_hit	cast_ray(t_map *map, t_dpoint start, double angle);
 
 void		render(t_vars *vars);
 
