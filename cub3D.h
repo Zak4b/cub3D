@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/13 11:16:29 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/13 13:45:55 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define SHADOWING 0.15
 # define MCELL_SIZE 10
 # define FOV 75
+# define TAN_HALF_FOV tan((FOV * PI / 180) / 2)
 # define W_WIDTH 1080
 # define W_HEIGHT 540
 # ifndef PI
@@ -118,13 +119,14 @@ typedef struct s_vars
 	t_img		*buffer;
 	int			inputs[20];
 	t_img		*wall;
+	t_img		*grass;
 }	t_vars;
 
 void		put_pixel(t_img *img, int x, int y, int color);
 void		put_image(t_img *dest, t_img *img, int x0, int y0);
 void		draw_vline(t_img *dest, t_point p, int h, int color);
 void		draw_hline(t_img *dest, t_point p, int l, int color);
-int			get_img_pixel(t_img *img, int col_index, int row_index, int total_size);
+int			get_img_pixel(t_img *img, int x, int y);
 
 void		free_image(t_vars *vars, t_img *img);
 void		clear_array_img(t_vars *vars, t_img **imgs);
@@ -137,7 +139,7 @@ int			key_up_hook(int k, t_vars *vars);
 int			close_window(t_vars *vars);
 int			game_loop(t_vars *vars);
 
-t_hit	cast_ray(t_map *map, t_dpoint start, double angle);
+t_hit		cast_ray(t_map *map, t_dpoint start, double angle);
 
 void		render(t_vars *vars);
 

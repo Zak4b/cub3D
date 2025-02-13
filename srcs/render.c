@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:10:42 by asene             #+#    #+#             */
-/*   Updated: 2025/02/13 11:31:12 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/13 13:45:55 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 double	segment_size(double distance)
 {
-	return (((double)CELL_SIZE / (double)distance) * (double)W_WIDTH / (2 * tan((FOV * PI / 180) / 2)));
+	return (((double)CELL_SIZE / (double)distance) * (double)W_WIDTH / (2 * TAN_HALF_FOV));
 }
 
 int	clamp_int(int n, int min, int max)
@@ -54,13 +54,13 @@ void	draw_walls(t_vars *vars)
 	while (i < W_WIDTH)
 	{
 		camera_x = (2.0 * i / (W_WIDTH - 1)) - 1.0;
-		ray_angle = vars->player->angle + atan(camera_x * tan((FOV * PI / 180) / 2));
+		ray_angle = vars->player->angle + atan(camera_x * TAN_HALF_FOV);
 		hit = cast_ray(vars->map, vars->player->pos, ray_angle);
 		size = segment_size(hit.distance * cos(ray_angle - vars->player->angle));
 		j = 0;
 		while (j < size)
 		{
-			color = get_img_pixel(vars->wall, hit.col_index, j, size);
+			color = get_img_pixel(vars->wall, hit.col_index, j * vars->wall->height / size);			
 			put_pixel(vars->buffer, i, j + (W_HEIGHT - size) / 2, color_shadowing(color, hit.distance));
 			j++;
 		}
