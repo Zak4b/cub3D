@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:12:02 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/13 14:31:58 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:51:37 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	print_on_minimap(t_vars *vars, int offx, int offy, int color)
 	int		y;
 	int		x;
 
-	p.x = W_WIDTH - (MMAP_RAY - offx) * MCELL_SIZE;
-	p.y = W_HEIGHT - (MMAP_RAY - offy) * MCELL_SIZE;
+	p.x = W_WIDTH - (MMAP_RAY - offx + 2) * MCELL_SIZE;
+	p.y = W_HEIGHT - (MMAP_RAY - offy + 2) * MCELL_SIZE;
 	y = 0;
 	while (y < MCELL_SIZE)
 	{
@@ -50,6 +50,21 @@ void	print_on_minimap(t_vars *vars, int offx, int offy, int color)
 	}
 }
 
+void	print_border(t_vars *vars)
+{
+	t_point	point;
+	int		limit;
+
+	limit = MMAP_RAY + 1;
+	point.y = -limit - 1;
+	while (++point.y <= limit)
+	{
+		point.x = -limit;
+		while (point.x <= limit)
+			print_on_minimap(vars, point.x++, point.y, 0xAAAAAA);
+	}
+}
+
 void	print_minimap(t_vars *vars)
 {
 	t_point	point;
@@ -58,6 +73,7 @@ void	print_minimap(t_vars *vars)
 
 	player.x = (int) round(vars->player->pos.x) / CELL_SIZE;
 	player.y = (int) round(vars->player->pos.y) / CELL_SIZE;
+	print_border(vars);
 	point.y = -MMAP_RAY - 1;
 	while (++point.y <= MMAP_RAY)
 	{

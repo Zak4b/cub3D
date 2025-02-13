@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/13 14:29:56 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:52:15 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define MCELL_SIZE 15
 # define MMAP_RAY 8 
 # define FOV 75
-# define W_WIDTH 1080
-# define W_HEIGHT 540
+# define W_WIDTH 1920
+# define W_HEIGHT 1080
 # ifndef PI
 #  define PI 3.14159265359
 # endif
