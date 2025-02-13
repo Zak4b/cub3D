@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:39:25 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/12 10:34:07 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/13 11:27:30 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ t_point	find_player(char **map)
 		player.x = 0;
 		while (map[player.y][player.x])
 		{
-			if (map[player.y][player.x] == 'N' || map[player.y][player.x] == 'S'
-				|| map[player.y][player.x] == 'E' || map[player.y][player.x] == 'W')
+			if (ft_strchr("NSEW", map[player.y][player.x]))
 				return (player);
 			player.x++;
 		}
@@ -89,8 +88,7 @@ int	ft_puterror(char *str, int type)
 		ft_putstr_fd("\033[1;33mWarning: ", 2);
 	if (type == 1)
 		ft_putstr_fd("\033[1;31mERROR: ", 2);
-
-	ft_putstr_fd(str,2);
+	ft_putstr_fd(str, 2);
 	ft_putstr_fd("\033[0m\n", 2);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:27:44 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/12 12:51:25 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/13 11:25:16 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	create_list_map(int fd, t_list **lmap, t_map *map)
 	int		len;
 
 	line = get_next_line(fd);
-	map->style = malloc(sizeof(char*) * 6);
+	map->style = malloc(sizeof(char *) * 6);
 	map->style[0] = NULL;
 	map->style[1] = NULL;
 	map->style[2] = NULL;
@@ -57,13 +57,13 @@ char	**create_map(t_list *lmap, int size, int width)
 	char	**map;
 	int		i;
 
-	map = malloc(sizeof(char*) * (size + 1));
+	map = malloc(sizeof(char *) * (size + 1));
 	if (map == NULL)
 		return (NULL);
 	i = 0;
 	while (lmap)
 	{
-		map[i] = line_dup((char*) lmap->content, width);
+		map[i] = line_dup((char *) lmap->content, width);
 		i++;
 		lmap = lmap->next;
 	}
@@ -75,7 +75,7 @@ int	map_incorrect(t_list *lmap)
 {
 	t_list	*cursor;
 	int		i;
-	char 	*content;
+	char	*content;
 
 	cursor = lmap;
 	while (cursor)
@@ -98,6 +98,7 @@ int	map_incorrect(t_list *lmap)
 
 int	init_map(t_map *map, int fd)
 {
+	int		i;
 	t_list	*lmap;
 
 	lmap = NULL;
@@ -109,7 +110,7 @@ int	init_map(t_map *map, int fd)
 	if (map_incorrect(lmap))
 		return (1);
 	map->data = create_map(lmap, map->height, map->width);
-	int	i = 0;
+	i = 0;
 	while (map->data[i])
 	{
 		ft_printf("%s\n", map->data[i]);

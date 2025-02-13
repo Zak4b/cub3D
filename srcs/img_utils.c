@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:35:22 by asene             #+#    #+#             */
-/*   Updated: 2025/02/12 20:21:25 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/13 11:28:21 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ void	draw_hline(t_img *dest, t_point p, int l, int color)
 int	get_img_pixel(t_img *img, int col_index, int row_index, int total_size)
 {
 	const int	*img_data = (int *)img->addr;
-	
-	return img_data[row_index * img->height / total_size * (img->line_length / 4) + col_index];	
+
+	return (img_data[row_index * img->height / total_size * (img->line_length / 4) + col_index]);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:24:13 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/12 11:24:28 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/13 11:26:39 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	add_style(t_map *map, char *line)
 	else if (ft_strchr(line, 'F'))
 		map->style[4] = ft_strdup(line + 2);
 	else if (ft_strchr(line, 'C'))
-		map->style[5] = ft_strdup(line + 2);	
+		map->style[5] = ft_strdup(line + 2);
 	else
 		return (1);
 	return (0);
@@ -56,7 +56,7 @@ int	check_style(t_map *map)
 	if (map->style[5] == NULL)
 		return (ft_puterror("C not specified", 1));
 	if (invalid_style(map->style[5]))
-		return (ft_puterror("C invalid", 1)); 
+		return (ft_puterror("C invalid", 1));
 	return (0);
 }
 
@@ -117,7 +117,7 @@ int	elem_count(char **map)
 
 int	checker(char **map, t_map *tmap)
 {
-	int	count;
+	int		count;
 	t_point	player;
 
 	if (check_style(tmap) == 1)

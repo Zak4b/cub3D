@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/02/12 19:05:36 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/13 11:17:03 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,7 @@ int	main(int argc, char *argv[])
 	if (!read_map(argv[1], vars.map))
 		return (1);
 	init_game(&vars);
+	mlx_mouse_hide(vars.mlx, vars.mlx_win);
+	mlx_mouse_move(vars.mlx, vars.mlx_win, W_WIDTH / 2, W_HEIGHT / 2);
 	mlx_loop(vars.mlx);
 }

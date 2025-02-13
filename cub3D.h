@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/13 10:49:12 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/13 11:16:29 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@
 
 # define CELL_SIZE 64
 # define SHADOWING 0.15
+# define MCELL_SIZE 10
 # define FOV 75
-# define W_WIDTH 1920
-# define W_HEIGHT 1080
+# define W_WIDTH 1080
+# define W_HEIGHT 540
 # ifndef PI
 #  define PI 3.14159265359
 # endif
@@ -148,5 +149,7 @@ t_point		find_player(char **map);
 int			checker(char **map, t_map *tmap);
 int			invalid_style(char *style);
 int			ft_puterror(char *str, int type);
+void		mouse_movement(t_vars *vars);
+void		print_minimap(t_vars *vars);
 
 #endif

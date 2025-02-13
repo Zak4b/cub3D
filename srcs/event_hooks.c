@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:31:59 by asene             #+#    #+#             */
-/*   Updated: 2025/02/12 15:50:28 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/13 11:16:54 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void	move(t_vars *vars)
 int	game_loop(t_vars *vars)
 {
 	move(vars);
+	mouse_movement(vars);
 	render(vars);
 	return (1);
 }
