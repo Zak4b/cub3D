@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_hooks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:31:59 by asene             #+#    #+#             */
-/*   Updated: 2025/02/13 11:16:54 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/13 14:33:13 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	set_input(t_vars *vars, int key, int value)
 		target = &vars->inputs[ROTATE_R];
 	else if (key == KEY_SHIFT)
 		target = &vars->inputs[RUN];
+	else if (key == KEY_ALT)
+		target = &vars->inputs[ALT];
 	else
 		return ;
 	*target = value;
@@ -37,6 +39,8 @@ void	set_input(t_vars *vars, int key, int value)
 
 int	key_down_hook(int k, t_vars *vars)
 {
+	if (k == KEY_ALT)
+		mlx_mouse_show(vars->mlx, vars->mlx_win);
 	if (k == KEY_ESC)
 		close_window(vars);
 	else
@@ -46,6 +50,8 @@ int	key_down_hook(int k, t_vars *vars)
 
 int	key_up_hook(int k, t_vars *vars)
 {
+	if (k == KEY_ALT)
+		mlx_mouse_hide(vars->mlx, vars->mlx_win);
 	set_input(vars, k, 0);
 	return (0);
 }

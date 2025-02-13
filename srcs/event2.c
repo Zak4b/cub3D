@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:12:02 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/13 12:45:00 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:31:58 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	mouse_movement(t_vars *vars)
 	int		y;
 	int		delta_x;
 
+	if (vars->inputs[ALT] == 1)
+		return ;		
 	mlx_mouse_get_pos(vars->mlx, vars->mlx_win, &x, &y);
 	delta_x = x - W_WIDTH / 2;
 	if (delta_x != 0)
