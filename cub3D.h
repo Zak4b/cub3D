@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/13 11:16:29 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/13 12:39:43 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 
 # define CELL_SIZE 64
 # define SHADOWING 0.15
-# define MCELL_SIZE 10
+# define MCELL_SIZE 15
+# define MMAP_RAY 8 
 # define FOV 75
 # define W_WIDTH 1080
 # define W_HEIGHT 540
