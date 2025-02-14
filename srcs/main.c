@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/02/14 18:55:44 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/14 23:36:12 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_game(t_vars *vars)
 	vars->player->pos = (t_dpoint){CELL_SIZE * (player_cell.x + .5), CELL_SIZE * (player_cell.y + .5)};
 	vars->wall = load_img(vars->mlx, "./wall.xpm");
 	ft_bzero(vars->inputs, sizeof(vars->inputs));
-	mlx_hook(vars->mlx->window, 17, 0, close_window, vars);
+	mlx_hook(vars->mlx->window, 17, 0, mlx_loop_end, vars->mlx->instance);
 	mlx_hook(vars->mlx->window, 2, 1L << 0, key_down_hook, vars);
 	mlx_hook(vars->mlx->window, 3, 1L << 1, key_up_hook, vars);
 	mlx_loop_hook(vars->mlx->instance, game_loop, vars);
@@ -49,6 +49,20 @@ int	read_map(char *path, t_map *map)
 	return (!init_map(map, fd));
 }
 
+void	free_map(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->height)
+	{
+		free(map->data[i]);
+		i++;
+	}
+	free(map->data);
+	free(map);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_vars	vars;
@@ -60,4 +74,9 @@ int	main(int argc, char *argv[])
 		return (1);
 	init_game(&vars);
 	mlx_loop(vars.mlx->instance);
+	free(vars.player);
+	free_map(vars.map);
+	mlx_do_key_autorepeaton(vars.mlx->instance);
+	t_mlx_kill(vars.mlx);
+	exit(EXIT_SUCCESS);
 }

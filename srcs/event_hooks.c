@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:31:59 by asene             #+#    #+#             */
-/*   Updated: 2025/02/14 18:59:23 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/14 23:15:14 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	set_input(t_vars *vars, int key, int value)
 int	key_down_hook(int k, t_vars *vars)
 {
 	if (k == KEY_ESC)
-		close_window(vars);
+		mlx_loop_end(vars->mlx->instance);
 	else
 		set_input(vars, k, 1);
 	return (0);
@@ -42,16 +42,6 @@ int	key_down_hook(int k, t_vars *vars)
 int	key_up_hook(int k, t_vars *vars)
 {
 	set_input(vars, k, 0);
-	return (0);
-}
-
-int	close_window(t_vars *vars)
-{
-	free(vars->player);
-	free(vars->map);
-	mlx_do_key_autorepeaton(vars->mlx->instance);
-	t_mlx_kill(vars->mlx);
-	exit(EXIT_SUCCESS);
 	return (0);
 }
 

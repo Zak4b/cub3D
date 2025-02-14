@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/14 18:39:08 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/14 23:15:00 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,6 @@ typedef struct s_vars
 
 int			key_down_hook(int k, t_vars *vars);
 int			key_up_hook(int k, t_vars *vars);
-int			close_window(t_vars *vars);
 int			game_loop(t_vars *vars);
 
 t_hit		cast_ray(t_map *map, t_dpoint start, double angle);
