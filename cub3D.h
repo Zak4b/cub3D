@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/14 02:08:06 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/14 02:36:36 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@
 # ifndef PI
 #  define PI 3.14159265359
 # endif
+
+typedef enum e_error_type
+{
+	ERROR,
+	WARNING,
+}	t_error_type;
 
 typedef struct s_map
 {
@@ -162,7 +168,7 @@ void		print_minimap(t_vars *vars);
 
 int			ft_strchrs(char *str, char *chrs);
 int			clamp_int(int n, int min, int max);
-int			ft_puterror(char *str, int type);
+int			ft_puterror(char *str, t_error_type type);
 char		*line_dup(const char *src, int len);
 t_point		find_player(char **map);
 

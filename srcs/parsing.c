@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:27:44 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/13 11:25:16 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/14 02:37:04 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,7 @@ void	create_list_map(int fd, t_list **lmap, t_map *map)
 	int		len;
 
 	line = get_next_line(fd);
-	map->style = malloc(sizeof(char *) * 6);
-	map->style[0] = NULL;
-	map->style[1] = NULL;
-	map->style[2] = NULL;
-	map->style[3] = NULL;
-	map->style[4] = NULL;
-	map->style[5] = NULL;
+	map->style = ft_calloc(6, sizeof(char *));
 	len = 0;
 	while (line)
 	{
@@ -87,7 +81,7 @@ int	map_incorrect(t_list *lmap)
 			while (content[i])
 			{
 				if (ft_strchr(" 01NSEW\n", content[i]) == NULL)
-					return (ft_puterror("invalid character in map", 1));
+					return (ft_puterror("invalid character in map", ERROR));
 				i++;
 			}
 		}
@@ -104,9 +98,9 @@ int	init_map(t_map *map, int fd)
 	lmap = NULL;
 	create_list_map(fd, &lmap, map);
 	if (map->width == 0)
-		return (ft_puterror("invalid map no floor / wall", 1));
+		return (ft_puterror("invalid map no floor / wall", ERROR));
 	if (map->height <= 2 || map->width <= 2)
-		return (ft_puterror("map too small", 1));
+		return (ft_puterror("map too small", ERROR));
 	if (map_incorrect(lmap))
 		return (1);
 	map->data = create_map(lmap, map->height, map->width);

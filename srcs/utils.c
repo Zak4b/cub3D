@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:39:25 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/14 02:07:30 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/14 02:36:32 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,15 @@ char	*line_dup(const char *src, int len)
 	return (dup);
 }
 
-int	ft_puterror(char *str, int type)
+int	ft_puterror(char *str, t_error_type type)
 {
-	if (type == 0)
-		ft_putstr_fd("\033[1;33mWarning: ", 2);
+	char	*prefix;
+
 	if (type == 1)
-		ft_putstr_fd("\033[1;31mERROR: ", 2);
-	ft_putstr_fd(str, 2);
-	ft_putstr_fd("\033[0m\n", 2);
+		prefix = "\033[1;31mERROR: ";
+	else
+		prefix = "\033[1;33mWarning: ";
+	ft_fprintf(2, "%s%s\033[0m\n", prefix, str);
 	return (1);
 }
 
