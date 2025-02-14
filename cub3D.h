@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/13 13:45:55 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/14 01:35:12 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,12 @@ typedef enum e_input
 	ROTATE_R,
 	RUN,
 }	t_input;
+
+typedef struct s_keymap
+{
+	int		key;
+	t_input	input;
+}	t_keymap;
 
 typedef enum e_direction
 {

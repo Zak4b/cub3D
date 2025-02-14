@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:31:59 by asene             #+#    #+#             */
-/*   Updated: 2025/02/13 11:16:54 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/14 01:42:32 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,20 @@
 
 void	set_input(t_vars *vars, int key, int value)
 {
-	int	*target;
+	unsigned int			i;
+	static const t_keymap	keymap[] = {
+	{KEY_D, MOVE_R}, {KEY_A, MOVE_L},
+	{KEY_W, MOVE_F}, {KEY_S, MOVE_B},
+	{KEY_A_LEFT, ROTATE_L},	{KEY_A_RIGHT, ROTATE_R},
+	{KEY_SHIFT, RUN}};
 
-	if (key == KEY_D)
-		target = &vars->inputs[MOVE_R];
-	else if (key == KEY_A)
-		target = &vars->inputs[MOVE_L];
-	else if (key == KEY_W)
-		target = &vars->inputs[MOVE_F];
-	else if (key == KEY_S)
-		target = &vars->inputs[MOVE_B];
-	else if (key == KEY_A_LEFT)
-		target = &vars->inputs[ROTATE_L];
-	else if (key == KEY_A_RIGHT)
-		target = &vars->inputs[ROTATE_R];
-	else if (key == KEY_SHIFT)
-		target = &vars->inputs[RUN];
-	else
-		return ;
-	*target = value;
+	i = 0;
+	while (i < sizeof(keymap))
+	{
+		if (keymap[i].key == key)
+			return (vars->inputs[keymap[i].input] = value, (void)0);
+		i++;
+	}
 }
 
 int	key_down_hook(int k, t_vars *vars)
