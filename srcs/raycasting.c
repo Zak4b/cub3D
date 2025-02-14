@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:24:19 by asene             #+#    #+#             */
-/*   Updated: 2025/02/13 13:44:36 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/14 01:45:43 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	check_vertical_hit(t_map *map, t_cast_data *data)
 {
 	t_point	cell;
 
-	cell = (t_point){floor(data->v_hit.x / CELL_SIZE),
-		floor(data->v_hit.y / CELL_SIZE)};
+	cell.x = floor(data->v_hit.x / CELL_SIZE);
+	cell.y = floor(data->v_hit.y / CELL_SIZE);
 	if (data->step.x < 0)
 		cell.x--;
 	if (check_collide(map, cell.x, cell.y))
@@ -32,8 +32,8 @@ int	check_horizontal_hit(t_map *map, t_cast_data *data)
 {
 	t_point	cell;
 
-	cell = (t_point){floor(data->h_hit.x / CELL_SIZE),
-		floor(data->h_hit.y / CELL_SIZE)};
+	cell.x = floor(data->h_hit.x / CELL_SIZE);
+	cell.y = floor(data->h_hit.y / CELL_SIZE);
 	if (data->step.y < 0)
 		cell.y--;
 	if (check_collide(map, cell.x, cell.y))
@@ -45,7 +45,7 @@ int	check_horizontal_hit(t_map *map, t_cast_data *data)
 
 t_direction	get_direction(t_dpoint start, t_dpoint hit)
 {
-	if ((int)hit.x % CELL_SIZE == 0)
+	if (fabs(fmod(hit.x, CELL_SIZE)) < 0.00001)
 	{
 		if (hit.x - start.x > 0)
 			return (EAST);

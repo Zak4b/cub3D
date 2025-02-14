@@ -126,7 +126,7 @@ void		put_pixel(t_img *img, int x, int y, int color);
 void		put_image(t_img *dest, t_img *img, int x0, int y0);
 void		draw_vline(t_img *dest, t_point p, int h, int color);
 void		draw_hline(t_img *dest, t_point p, int l, int color);
-int			get_img_pixel(t_img *img, int x, int y);
+int			get_pixel(t_img *img, int x, int y);
 
 void		free_image(t_vars *vars, t_img *img);
 void		clear_array_img(t_vars *vars, t_img **imgs);
