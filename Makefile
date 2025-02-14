@@ -15,12 +15,14 @@ LIB = -L./$(MLX_FOLDER) -lmlx -lXext -lX11 -lm -lz -L./libft/ -lft
 
 SOURCES = \
         main.c \
+		mlx_utils.c \
 		img_utils.c \
 		img_utils2.c \
 		event_hooks.c \
 		raycasting.c \
 		raycasting_utils.c \
 		render.c \
+		lines.c \
 		parsing.c \
 		parsing2.c \
 		events.c \

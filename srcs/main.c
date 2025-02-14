@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/02/13 11:17:03 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/14 18:55:44 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,21 @@ void	init_game(t_vars *vars)
 
 	win_width = W_WIDTH;
 	win_height = W_HEIGHT;
-	vars->mlx = mlx_init();
-	vars->mlx_win = mlx_new_window(vars->mlx, win_width, win_height, "cub3D");
+	vars->mlx = t_mlx_init(win_width, win_height, "cub3D");
 	vars->buffer = new_image(vars->mlx, win_width, win_height);
 	vars->player = malloc(sizeof(t_player));
 	vars->player->angle = PI * 1.5;
 	player_cell = find_player(vars->map->data);
 	vars->player->pos = (t_dpoint){CELL_SIZE * (player_cell.x + .5), CELL_SIZE * (player_cell.y + .5)};
-	vars->wall = load_img(vars, "./wall.xpm");
+	vars->wall = load_img(vars->mlx, "./wall.xpm");
 	ft_bzero(vars->inputs, sizeof(vars->inputs));
-	mlx_hook(vars->mlx_win, 17, 0, close_window, vars);
-	mlx_hook(vars->mlx_win, 2, 1L << 0, key_down_hook, vars);
-	mlx_hook(vars->mlx_win, 3, 1L << 1, key_up_hook, vars);
-	mlx_loop_hook(vars->mlx, game_loop, vars);
-	mlx_do_key_autorepeatoff(vars->mlx);
+	mlx_hook(vars->mlx->window, 17, 0, close_window, vars);
+	mlx_hook(vars->mlx->window, 2, 1L << 0, key_down_hook, vars);
+	mlx_hook(vars->mlx->window, 3, 1L << 1, key_up_hook, vars);
+	mlx_loop_hook(vars->mlx->instance, game_loop, vars);
+	mlx_do_key_autorepeatoff(vars->mlx->instance);
+	mlx_mouse_hide(vars->mlx->instance, vars->mlx->window);
+	mlx_mouse_move(vars->mlx->instance, vars->mlx->window, W_WIDTH / 2, W_HEIGHT / 2);
 }
 
 int	read_map(char *path, t_map *map)
@@ -58,7 +59,5 @@ int	main(int argc, char *argv[])
 	if (!read_map(argv[1], vars.map))
 		return (1);
 	init_game(&vars);
-	mlx_mouse_hide(vars.mlx, vars.mlx_win);
-	mlx_mouse_move(vars.mlx, vars.mlx_win, W_WIDTH / 2, W_HEIGHT / 2);
-	mlx_loop(vars.mlx);
+	mlx_loop(vars.mlx->instance);
 }

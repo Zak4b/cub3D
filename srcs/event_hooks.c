@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:31:59 by asene             #+#    #+#             */
-/*   Updated: 2025/02/14 01:59:39 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/14 18:59:23 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,10 @@ int	key_up_hook(int k, t_vars *vars)
 
 int	close_window(t_vars *vars)
 {
-	mlx_do_key_autorepeaton(vars->mlx);
-	mlx_destroy_window(vars->mlx, vars->mlx_win);
-	mlx_destroy_display(vars->mlx);
-	free(vars->mlx);
 	free(vars->player);
+	free(vars->map);
+	mlx_do_key_autorepeaton(vars->mlx->instance);
+	t_mlx_kill(vars->mlx);
 	exit(EXIT_SUCCESS);
 	return (0);
 }
@@ -63,7 +62,7 @@ int	game_loop(t_vars *vars)
 	draw_background(vars);
 	draw_walls(vars);
 	print_minimap(vars);
-	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->buffer->img, 0, 0);
-	mlx_do_sync(vars->mlx);
+	mlx_put_image_to_window(vars->mlx->instance, vars->mlx->window, vars->buffer->img, 0, 0);
+	mlx_do_sync(vars->mlx->instance);
 	return (1);
 }

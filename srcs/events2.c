@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event2.c                                           :+:      :+:    :+:   */
+/*   events2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:12:02 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/13 11:28:39 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/14 18:48:07 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	mouse_movement(t_vars *vars)
 	int		y;
 	int		delta_x;
 
-	mlx_mouse_get_pos(vars->mlx, vars->mlx_win, &x, &y);
+	mlx_mouse_get_pos(vars->mlx->instance, vars->mlx->window, &x, &y);
 	delta_x = x - W_WIDTH / 2;
 	if (delta_x != 0)
 	{
 		vars->player->angle += delta_x * 0.002;
-		mlx_mouse_move(vars->mlx, vars->mlx_win, W_WIDTH / 2, W_HEIGHT / 2);
+		mlx_mouse_move(vars->mlx->instance, vars->mlx->window, W_WIDTH / 2, W_HEIGHT / 2);
 	}
 }
 
