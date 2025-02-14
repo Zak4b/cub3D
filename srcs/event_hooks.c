@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:31:59 by asene             #+#    #+#             */
-/*   Updated: 2025/02/14 01:42:32 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/14 01:59:39 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,61 +56,14 @@ int	close_window(t_vars *vars)
 	return (0);
 }
 
-void	move_player(t_vars *vars, t_dpoint mov)
-{
-	t_point		cell;
-	t_dpoint	dest;
-
-	dest = (t_dpoint){vars->player->pos.x + mov.x, vars->player->pos.y + mov.y};
-	if (mov.x > 0)
-		cell = (t_point){dest.x / CELL_SIZE +.1, vars->player->pos.y / CELL_SIZE};
-	else
-		cell = (t_point){dest.x / CELL_SIZE -.1, vars->player->pos.y / CELL_SIZE};
-	if (vars->map->data[cell.y][cell.x] == '1')
-		dest.x = vars->player->pos.x;
-	if (mov.y > 0)
-		cell = (t_point){vars->player->pos.x / CELL_SIZE, dest.y / CELL_SIZE +.1};
-	else
-		cell = (t_point){vars->player->pos.x / CELL_SIZE, dest.y / CELL_SIZE -.1};
-	if (vars->map->data[cell.y][cell.x] == '1')
-		dest.y = vars->player->pos.y;
-	vars->player->pos = dest;
-}
-
-void	move(t_vars *vars)
-{
-	t_dpoint	p;
-	double		ang;
-
-	p = (t_dpoint){0, 0};
-	if (vars->inputs[ROTATE_L])
-		vars->player->angle -= 0.01;
-	if (vars->inputs[ROTATE_R])
-		vars->player->angle += 0.01;
-	if (vars->inputs[MOVE_F] || vars->inputs[MOVE_B] || vars->inputs[MOVE_L] || vars->inputs[MOVE_R])
-	{
-		if (vars->inputs[MOVE_F])
-			p.x++;
-		if (vars->inputs[MOVE_B])
-			p.x--;
-		if (vars->inputs[MOVE_L])
-			p.y--;
-		if (vars->inputs[MOVE_R])
-			p.y++;
-		if (p.x == 0 && p.y == 0)
-			return ;
-		ang = atan2(p.y, p.x);
-		p = (t_dpoint){cos(vars->player->angle + ang), sin(vars->player->angle + ang)};
-		if (vars->inputs[RUN])
-			p = (t_dpoint){p.x * 2, p.y * 2};
-		move_player(vars, p);
-	}
-}
-
 int	game_loop(t_vars *vars)
 {
 	move(vars);
 	mouse_movement(vars);
-	render(vars);
+	draw_background(vars);
+	draw_walls(vars);
+	print_minimap(vars);
+	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->buffer->img, 0, 0);
+	mlx_do_sync(vars->mlx);
 	return (1);
 }

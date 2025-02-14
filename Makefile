@@ -23,7 +23,8 @@ SOURCES = \
 		render.c \
 		parsing.c \
 		parsing2.c \
-		event2.c \
+		events.c \
+		events2.c \
 		parsing_utils.c \
 		utils.c
 

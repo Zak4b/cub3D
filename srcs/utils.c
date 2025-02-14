@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:39:25 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/13 11:27:30 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/14 02:07:30 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,13 @@ int	ft_puterror(char *str, int type)
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd("\033[0m\n", 2);
 	return (1);
+}
+
+int	clamp_int(int n, int min, int max)
+{
+	if (n > max)
+		n = max;
+	if (n < min)
+		n = min;
+	return (n);
 }

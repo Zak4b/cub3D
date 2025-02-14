@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/14 01:35:12 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/14 02:08:06 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,17 +147,23 @@ int			game_loop(t_vars *vars);
 
 t_hit		cast_ray(t_map *map, t_dpoint start, double angle);
 
-void		render(t_vars *vars);
+void		move(t_vars *vars);
 
-int			ft_strchrs(char *str, char *chrs);
+void		draw_background(t_vars *vars);
+void		draw_walls(t_vars *vars);
+
+
 int			init_map(t_map *map, int fd);
 int			add_style(t_map *map, char *line);
-char		*line_dup(const char *src, int len);
-t_point		find_player(char **map);
 int			checker(char **map, t_map *tmap);
 int			invalid_style(char *style);
-int			ft_puterror(char *str, int type);
 void		mouse_movement(t_vars *vars);
 void		print_minimap(t_vars *vars);
+
+int			ft_strchrs(char *str, char *chrs);
+int			clamp_int(int n, int min, int max);
+int			ft_puterror(char *str, int type);
+char		*line_dup(const char *src, int len);
+t_point		find_player(char **map);
 
 #endif
