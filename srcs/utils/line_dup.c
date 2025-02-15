@@ -1,39 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   line_dup.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:39:25 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/14 02:36:32 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/15 16:56:36 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-int	ft_strchrs(char *str, char *chrs)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	if (str != NULL)
-	{
-		while (str[i])
-		{
-			j = 0;
-			while (chrs[j])
-			{
-				if (str[i] == chrs[j])
-					return (1);
-				j++;
-			}
-			i++;
-		}
-	}
-	return (0);
-}
 
 t_point	find_player(char **map)
 {
@@ -80,25 +57,4 @@ char	*line_dup(const char *src, int len)
 	}
 	dup[len] = '\0';
 	return (dup);
-}
-
-int	ft_puterror(char *str, t_error_type type)
-{
-	char	*prefix;
-
-	if (type == 1)
-		prefix = "\033[1;31mERROR: ";
-	else
-		prefix = "\033[1;33mWarning: ";
-	ft_fprintf(2, "%s%s\033[0m\n", prefix, str);
-	return (1);
-}
-
-int	clamp_int(int n, int min, int max)
-{
-	if (n > max)
-		n = max;
-	if (n < min)
-		n = min;
-	return (n);
 }

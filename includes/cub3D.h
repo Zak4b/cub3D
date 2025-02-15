@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/14 23:15:00 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/15 16:51:12 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <limits.h>
-# include "srcs/mlx_utils.h"
+# include "mlx_utils.h"
 
 # define CELL_SIZE 64
 # define SHADOWING 0.15
@@ -44,7 +44,7 @@ typedef struct s_map
 	int		width;
 	int		height;
 	char	**data;
-	char	**style;
+	char	*style[6];
 }	t_map;
 
 typedef struct s_point

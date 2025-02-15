@@ -10,12 +10,12 @@ MLX_FOLDER = minilibx-linux
 MLX = $(MLX_FOLDER)/libmlx.a
 
 FLAGS = -Wall -Wextra -Werror -g -O3
-INC = -I./$(MLX_FOLDER) -I./libft -I.
+INC = -I./$(MLX_FOLDER) -I./libft -I./includes
 LIB = -L./$(MLX_FOLDER) -lmlx -lXext -lX11 -lm -lz -L./libft/ -lft
 SRCDIR = srcs
 OBJDIR = obj
 
-SOURCES = ./event_hooks.c ./events.c ./events2.c ./img_utils.c ./img_utils2.c ./lines.c ./main.c ./mlx_utils.c ./parsing.c ./parsing2.c ./parsing_utils.c ./raycasting.c ./raycasting_utils.c ./render.c ./utils.c 
+SOURCES = ./events/events.c ./events/events2.c ./events/hooks.c ./lines.c ./main.c ./mlx_utils/img_utils.c ./mlx_utils/img_utils2.c ./mlx_utils/mlx_utils.c ./parsing/parsing.c ./parsing/parsing2.c ./parsing/parsing_utils.c ./raycasting/raycasting.c ./raycasting/raycasting_utils.c ./render.c ./utils/clamp.c ./utils/ft_puterror.c ./utils/ft_strchrs.c ./utils/line_dup.c 
 	
 OBJS = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
 

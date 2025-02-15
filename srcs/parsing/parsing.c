@@ -29,7 +29,6 @@ void	create_list_map(int fd, t_list **lmap, t_map *map)
 	int		len;
 
 	line = get_next_line(fd);
-	map->style = ft_calloc(6, sizeof(char *));
 	len = 0;
 	while (line)
 	{

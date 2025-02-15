@@ -6,11 +6,11 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:50:08 by asene             #+#    #+#             */
-/*   Updated: 2025/02/11 16:18:44 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/15 16:51:20 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "cub3D.h"
 
 typedef struct s_cast_data
 {
