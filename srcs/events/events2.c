@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:12:02 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/14 18:48:07 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/15 17:04:37 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	mouse_movement(t_vars *vars)
 	}
 }
 
-void	print_on_minimap(t_vars *vars, t_point map_pos, int color)
+void	print_on_minimap(t_vars *vars, int offx, int offy, int color)
 {
 	t_point	p;
 	int		y;
 	int		x;
 
-	p.x = W_WIDTH - (vars->map->width - map_pos.x) * MCELL_SIZE;
-	p.y = W_HEIGHT - (vars->map->height - map_pos.y) * MCELL_SIZE;
+	p.x = W_WIDTH - (MMAP_RAY - offx + 2) * MCELL_SIZE;
+	p.y = W_HEIGHT - (MMAP_RAY - offy + 2) * MCELL_SIZE;
 	y = 0;
 	while (y < MCELL_SIZE)
 	{
@@ -48,25 +48,46 @@ void	print_on_minimap(t_vars *vars, t_point map_pos, int color)
 	}
 }
 
+void	print_border(t_vars *vars)
+{
+	t_point	point;
+	int		limit;
+
+	limit = MMAP_RAY + 1;
+	point.y = -limit - 1;
+	while (++point.y <= limit)
+	{
+		point.x = -limit;
+		while (point.x <= limit)
+			print_on_minimap(vars, point.x++, point.y, 0xAAAAAA);
+	}
+}
+
 void	print_minimap(t_vars *vars)
 {
 	t_point	point;
+	t_point	player;
+	t_point	test;
 
-	point.y = 0;
-	while (vars->map->data[point.y])
+	player.x = (int) round(vars->player->pos.x) / CELL_SIZE;
+	player.y = (int) round(vars->player->pos.y) / CELL_SIZE;
+	print_border(vars);
+	point.y = -MMAP_RAY - 1;
+	while (++point.y <= MMAP_RAY)
 	{
-		point.x = 0;
-		while (vars->map->data[point.y][point.x])
+		point.x = -MMAP_RAY;
+		while (point.x <= MMAP_RAY)
 		{
-			if (vars->map->data[point.y][point.x] != '0')
-				print_on_minimap(vars, point, 0x000000);
+			test.x = player.x + point.x;
+			test.y = player.y + point.y;
+			if (test.x == player.x && test.y == player.y)
+				print_on_minimap(vars, point.x++, point.y, 0xFF0000);
+			else if (test.x >= 0 && test.y >= 0 
+				&& test.x < vars->map->width && test.y < vars->map->height
+				&& ft_strchr("0NSEW",vars->map->data[test.y][test.x]) != NULL)
+				print_on_minimap(vars, point.x++, point.y, 0xFFFFFF);
 			else
-				print_on_minimap(vars, point, 0xFFFFFF);
-			point.x++;
+				print_on_minimap(vars, point.x++, point.y, 0x000000);
 		}
-		point.y++;
 	}
-	point.x = (int) round(vars->player->pos.x) / CELL_SIZE;
-	point.y = (int) round(vars->player->pos.y) / CELL_SIZE;
-	print_on_minimap(vars, point, 0xFF0000);
 }

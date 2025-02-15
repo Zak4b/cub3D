@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/15 16:51:12 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/15 17:04:06 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 
 # define CELL_SIZE 64
 # define SHADOWING 0.15
-# define MCELL_SIZE 10
+# define MCELL_SIZE 15
+# define MMAP_RAY 8 
 # define FOV 75
 # define TAN_HALF_FOV tan((FOV * PI / 180) / 2)
 # define W_WIDTH 1080
@@ -70,6 +71,7 @@ typedef enum e_keycode
 	KEY_A_LEFT = 65361,
 	KEY_A_RIGHT = 65363,
 	KEY_SHIFT = 65505,
+	KEY_ALT = 65513,
 }	t_keycode;
 
 typedef enum e_input
@@ -81,6 +83,7 @@ typedef enum e_input
 	ROTATE_L,
 	ROTATE_R,
 	RUN,
+	ALT,
 }	t_input;
 
 typedef struct s_keymap
