@@ -12,26 +12,14 @@ MLX = $(MLX_FOLDER)/libmlx.a
 FLAGS = -Wall -Wextra -Werror -g -O3
 INC = -I./$(MLX_FOLDER) -I./libft -I.
 LIB = -L./$(MLX_FOLDER) -lmlx -lXext -lX11 -lm -lz -L./libft/ -lft
-
-SOURCES = \
-        main.c \
-		mlx_utils.c \
-		img_utils.c \
-		img_utils2.c \
-		event_hooks.c \
-		raycasting.c \
-		raycasting_utils.c \
-		render.c \
-		lines.c \
-		parsing.c \
-		parsing2.c \
-		events.c \
-		events2.c \
-		parsing_utils.c \
-		utils.c
-
+SRCDIR = srcs
 OBJDIR = obj
+
+SOURCES = ./event_hooks.c ./events.c ./events2.c ./img_utils.c ./img_utils2.c ./lines.c ./main.c ./mlx_utils.c ./parsing.c ./parsing2.c ./parsing_utils.c ./raycasting.c ./raycasting_utils.c ./render.c ./utils.c 
+	
 OBJS = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
+
+all: $(NAME)
 
 $(NAME): $(LIBFT) $(MLX) $(OBJS)
 	@echo "$(GREEN)Compiling $(NAME)...$(RESET)"
@@ -46,12 +34,8 @@ $(MLX):
 	@echo "$(GREEN)Building minilibx...$(RESET)"
 	@make -s -C $(MLX_FOLDER) all
 
-all: $(NAME)
-
-$(OBJDIR):
-	@mkdir -p $(OBJDIR)
-
-$(OBJDIR)/%.o: srcs/%.c | $(OBJDIR)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(dir $@)
 	@cc $(FLAGS) $(INC) -c $< -o $@
 
 norm:
