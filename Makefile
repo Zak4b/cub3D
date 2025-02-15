@@ -15,7 +15,7 @@ LIB = -L./$(MLX_FOLDER) -lmlx -lXext -lX11 -lm -lz -L./libft/ -lft
 SRCDIR = srcs
 OBJDIR = obj
 
-SOURCES = ./events/events.c ./events/events2.c ./events/hooks.c ./lines.c ./main.c ./mlx_utils/img_utils.c ./mlx_utils/img_utils2.c ./mlx_utils/mlx_utils.c ./parsing/parsing.c ./parsing/parsing2.c ./parsing/parsing_utils.c ./raycasting/raycasting.c ./raycasting/raycasting_utils.c ./render.c ./utils/clamp.c ./utils/ft_puterror.c ./utils/ft_strchrs.c ./utils/line_dup.c 
+SOURCES = ./events/events.c ./events/events2.c ./events/hooks.c ./lines.c ./main.c ./mlx_utils/img_utils.c ./mlx_utils/img_utils2.c ./mlx_utils/mlx_utils.c ./parsing/parsing.c ./parsing/parsing2.c ./parsing/parsing_utils.c ./raycasting/raycasting.c ./raycasting/raycasting_utils.c ./render/color.c ./render/render_background.c ./render/render_walls.c ./utils/clamp.c ./utils/ft_puterror.c ./utils/ft_strchrs.c ./utils/line_dup.c 
 	
 OBJS = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
 

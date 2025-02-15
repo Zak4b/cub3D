@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/15 21:04:57 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/15 21:47:11 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ void		draw_vline(t_img *dest, t_point p, int h, int color);
 void		draw_hline(t_img *dest, t_point p, int l, int color);
 void		draw_background(t_vars *vars);
 void		draw_walls(t_vars *vars);
+int			color_shadowing(int color, double distance);
 
 int			init_map(t_map *map, int fd);
 int			add_style(t_map *map, char *line);

@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:24:19 by asene             #+#    #+#             */
-/*   Updated: 2025/02/14 01:45:43 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/15 22:03:38 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,16 @@ t_direction	get_direction(t_dpoint start, t_dpoint hit)
 	if (fabs(fmod(hit.x, CELL_SIZE)) < 0.00001)
 	{
 		if (hit.x - start.x > 0)
-			return (EAST);
+			return (D_EAST);
 		else
-			return (WEST);
+			return (D_WEST);
 	}
 	else
 	{
 		if (hit.y - start.y > 0)
-			return (SOUTH);
+			return (D_SOUTH);
 		else
-			return (NORTH);
+			return (D_NORTH);
 	}
 }
 
@@ -86,7 +86,7 @@ t_hit	cast_ray(t_map *map, t_dpoint start, double angle)
 	hit.pos = find_hit(map, calc_cast(start, angle));
 	hit.distance = sqrt(pow(start.x - hit.pos.x, 2) + pow(start.y - hit.pos.y, 2));
 	hit.side = get_direction(start, hit.pos);
-	if (hit.side == NORTH || hit.side == SOUTH)
+	if (hit.side == D_NORTH || hit.side == D_SOUTH)
 		hit.col_index = (int)hit.pos.x % CELL_SIZE;
 	else
 		hit.col_index = (int)hit.pos.y % CELL_SIZE;
