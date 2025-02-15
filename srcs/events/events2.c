@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:12:02 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/15 17:04:37 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/15 23:13:45 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	mouse_movement(t_vars *vars)
 	int		y;
 	int		delta_x;
 
+	if (vars->inputs[ALT] == 1)
+		return ;
 	mlx_mouse_get_pos(vars->mlx->instance, vars->mlx->window, &x, &y);
 	delta_x = x - W_WIDTH / 2;
 	if (delta_x != 0)
