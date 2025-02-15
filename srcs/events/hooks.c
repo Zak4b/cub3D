@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:31:59 by asene             #+#    #+#             */
-/*   Updated: 2025/02/15 17:07:12 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/15 19:58:51 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	set_input(t_vars *vars, int key, int value)
 int	key_down_hook(int k, t_vars *vars)
 {
 	if (k == KEY_ALT)
-		mlx_mouse_show(vars->mlx, vars->mlx->window);
+		mlx_mouse_show(vars->mlx->instance, vars->mlx->window);
 	if (k == KEY_ESC)
 		mlx_loop_end(vars->mlx->instance);
 	else
@@ -44,7 +44,7 @@ int	key_down_hook(int k, t_vars *vars)
 int	key_up_hook(int k, t_vars *vars)
 {
 	if (k == KEY_ALT)
-		mlx_mouse_hide(vars->mlx, vars->mlx->window);
+		mlx_mouse_hide(vars->mlx->instance, vars->mlx->window);
 	set_input(vars, k, 0);
 	return (0);
 }
