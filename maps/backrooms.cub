@@ -1,7 +1,7 @@
-NO ./assets/brick_wall.xpm
-SO ./assets/brick_wall.xpm
-WE ./assets/brick_wall.xpm
-EA ./assets/brick_wall.xpm
+NO ./assets/backroom_wall.xpm
+SO ./assets/backroom_wall.xpm
+WE ./assets/backroom_wall.xpm
+EA ./assets/backroom_wall.xpm
 F 220,100,0
 C 225,30,0
 

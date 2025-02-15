@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:10:42 by asene             #+#    #+#             */
-/*   Updated: 2025/02/15 20:12:14 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/15 20:50:26 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	draw_walls(t_vars *vars)
 		j = 0;
 		while (j < size)
 		{
-			color = get_pixel(vars->wall, hit.col_index * vars->wall->width / CELL_SIZE, j * vars->wall->height / size);
+			color = get_pixel(vars->textures[NORTH], hit.col_index * vars->textures[NORTH]->width / CELL_SIZE, j * vars->textures[NORTH]->height / size);
 			put_pixel(vars->buffer, i, j + (W_HEIGHT - size) / 2, color_shadowing(color, hit.distance));
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:24:13 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/14 02:38:03 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/15 21:05:18 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,48 +15,57 @@
 int	add_style(t_map *map, char *line)
 {
 	if (ft_strnstr(line, "NO", INT_MAX))
-		map->style[0] = ft_strdup(line + 3);
+		map->style[NORTH] = ft_substr(line + 3, 0, ft_strlen(line + 3) -1);
 	else if (ft_strnstr(line, "SO", INT_MAX))
-		map->style[1] = ft_strdup(line + 3);
+		map->style[SOUTH] = ft_substr(line + 3, 0, ft_strlen(line + 3) -1);
 	else if (ft_strnstr(line, "WE", INT_MAX))
-		map->style[2] = ft_strdup(line + 3);
+		map->style[WEST] = ft_substr(line + 3, 0, ft_strlen(line + 3) -1);
 	else if (ft_strnstr(line, "EA", INT_MAX))
-		map->style[3] = ft_strdup(line + 3);
+		map->style[EAST] = ft_substr(line + 3, 0, ft_strlen(line + 3) -1);
 	else if (ft_strchr(line, 'F'))
-		map->style[4] = ft_strdup(line + 2);
+		map->style[FLOOR] = ft_substr(line + 2, 0, ft_strlen(line + 2) -1);
 	else if (ft_strchr(line, 'C'))
-		map->style[5] = ft_strdup(line + 2);
+		map->style[CEILING] = ft_substr(line + 2, 0, ft_strlen(line + 2) -1);
 	else
 		return (1);
 	return (0);
 }
 
-int	check_style(t_map *map)
+int	check_style(t_map *map, t_style type)
 {
-	if (map->style[0] == NULL)
-		return (ft_puterror("NO not specified", ERROR));
-	if (invalid_style(map->style[0]))
-		return (ft_puterror("NO invalid", ERROR));
-	if (map->style[1] == NULL)
-		return (ft_puterror("SO not specified", ERROR));
-	if (invalid_style(map->style[1]))
-		return (ft_puterror("SO invalid", ERROR));
-	if (map->style[2] == NULL)
-		return (ft_puterror("WE not specified", ERROR));
-	if (invalid_style(map->style[2]))
-		return (ft_puterror("WE invalid", 1));
-	if (map->style[3] == NULL)
-		return (ft_puterror("EA not specified", ERROR));
-	if (invalid_style(map->style[3]))
-		return (ft_puterror("EA invalid", ERROR));
-	if (map->style[4] == NULL)
-		return (ft_puterror("F not specified", ERROR));
-	if (invalid_style(map->style[4]))
-		return (ft_puterror("F invalid", ERROR));
-	if (map->style[5] == NULL)
-		return (ft_puterror("C not specified", ERROR));
-	if (invalid_style(map->style[5]))
-		return (ft_puterror("C invalid", ERROR));
+	char	*type_string;
+	char	*error_msg;
+
+	error_msg = NULL;
+	if (map->style[type] == NULL)
+		error_msg = "not specified";
+	else if (invalid_style(map->style[type]))
+		error_msg = "invalid";
+	if (error_msg)
+	{
+		if (type == NORTH)
+			type_string = "NO";
+		else if (type == SOUTH)
+			type_string = "SO";
+		else if (type == EAST)
+			type_string = "EA";	
+		else if (type == WEST)
+			type_string = "WE";
+		else if (type == CEILING)
+			type_string = "C";
+		else
+			type_string = "F";
+		return (ft_fprintf(2, "%s %s\n", type_string, error_msg), 1);
+	}
+	return (0);
+}
+
+int	check_styles(t_map *map)
+{
+	if (check_style(map, NORTH) || check_style(map, SOUTH)
+		|| check_style(map, EAST) || check_style(map, WEST)
+		|| check_style(map, CEILING) || check_style(map, FLOOR))
+		return (1);
 	return (0);
 }
 
@@ -117,7 +126,7 @@ int	checker(char **map, t_map *tmap)
 	int		count;
 	t_point	player;
 
-	if (check_style(tmap) == 1)
+	if (check_styles(tmap) == 1)
 		return (1);
 	count = elem_count(map);
 	if (count == -1)

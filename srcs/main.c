@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/02/15 20:18:55 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/15 20:39:09 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init_game(t_vars *vars)
 	vars->player->angle = PI * 1.5;
 	player_cell = find_player(vars->map->data);
 	vars->player->pos = (t_dpoint){CELL_SIZE * (player_cell.x + .5), CELL_SIZE * (player_cell.y + .5)};
-	vars->wall = load_img(vars->mlx, "./assets/brick_wall.xpm");
+	vars->textures[NORTH] = load_img(vars->mlx, vars->map->style[NORTH]);
 	ft_bzero(vars->inputs, sizeof(vars->inputs));
 	mlx_hook(vars->mlx->window, 17, 0, mlx_loop_end, vars->mlx->instance);
 	mlx_hook(vars->mlx->window, 2, 1L << 0, key_down_hook, vars);

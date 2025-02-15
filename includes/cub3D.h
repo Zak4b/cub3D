@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/15 17:04:06 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/15 21:04:57 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,21 @@ typedef struct s_keymap
 
 typedef enum e_direction
 {
+	D_NORTH = 0,
+	D_EAST = 1,
+	D_SOUTH = 2,
+	D_WEST = 3
+}	t_direction;
+
+typedef enum e_style
+{
 	NORTH = 0,
 	EAST = 1,
 	SOUTH = 2,
-	WEST = 3
-}	t_direction;
+	WEST = 3,
+	FLOOR = 4,
+	CEILING = 5,
+}	t_style;
 
 typedef struct s_hit
 {
@@ -122,8 +132,7 @@ typedef struct s_vars
 	t_map		*map;
 	t_img		*buffer;
 	int			inputs[20];
-	t_img		*wall;
-	t_img		*grass;
+	t_img		*textures[4];
 }	t_vars;
 
 int			key_down_hook(int k, t_vars *vars);
