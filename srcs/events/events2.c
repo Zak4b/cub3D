@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:12:02 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/15 23:13:45 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/16 17:44:14 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ void	mouse_movement(t_vars *vars)
 	if (delta_x != 0)
 	{
 		vars->player->angle += delta_x * 0.002;
-		mlx_mouse_move(vars->mlx->instance, vars->mlx->window, W_WIDTH / 2, W_HEIGHT / 2);
+		x = W_WIDTH / 2;
+		y = W_HEIGHT / 2;
+		mlx_mouse_move(vars->mlx->instance, vars->mlx->window, x, y);
 	}
 }
 
@@ -84,9 +86,9 @@ void	print_minimap(t_vars *vars)
 			test.y = player.y + point.y;
 			if (test.x == player.x && test.y == player.y)
 				print_on_minimap(vars, point.x++, point.y, 0xFF0000);
-			else if (test.x >= 0 && test.y >= 0 
+			else if (test.x >= 0 && test.y >= 0
 				&& test.x < vars->map->width && test.y < vars->map->height
-				&& ft_strchr("0NSEW",vars->map->data[test.y][test.x]) != NULL)
+				&& ft_strchr("0NSEW", vars->map->data[test.y][test.x]) != NULL)
 				print_on_minimap(vars, point.x++, point.y, 0xFFFFFF);
 			else
 				print_on_minimap(vars, point.x++, point.y, 0x000000);

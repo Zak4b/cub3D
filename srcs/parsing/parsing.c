@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:27:44 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/14 02:37:04 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/16 21:18:27 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,9 @@ int	init_map(t_map *map, int fd)
 	t_list	*lmap;
 
 	lmap = NULL;
+	map->style = malloc(sizeof(char *) * 7);
 	create_list_map(fd, &lmap, map);
+	map->style[6] = NULL;
 	if (map->width == 0)
 		return (ft_puterror("invalid map no floor / wall", ERROR));
 	if (map->height <= 2 || map->width <= 2)

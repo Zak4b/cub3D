@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:24:13 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/15 21:05:18 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/16 21:08:25 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,17 +127,17 @@ int	checker(char **map, t_map *tmap)
 	t_point	player;
 
 	if (check_styles(tmap) == 1)
-		return (1);
+		return (free_split(map), 1);
 	count = elem_count(map);
 	if (count == -1)
-		return (ft_puterror("too many player", ERROR));
+		return (free_split(map), ft_puterror("too many player", ERROR));
 	player = find_player(map);
 	if (player.x == -1)
-		return (ft_puterror("no player", ERROR));
+		return (free_split(map), ft_puterror("no player", ERROR));
 	check_block(map, player, &count, tmap);
 	if (count == -1)
-		return (ft_puterror("invalid map, floor near void", ERROR));
+		return (free_split(map), ft_puterror("invalid map, floor near void", ERROR));
 	if (count > 0)
-		return (ft_puterror("invalid map, cutted by void", ERROR));
-	return (0);
+		return (free_split(map), ft_puterror("invalid map, cutted by void", ERROR));
+	return (free_split(map), 0);
 }

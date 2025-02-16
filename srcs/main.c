@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/02/15 21:31:42 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/16 21:18:57 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,13 @@ void	free_map(t_map *map)
 		i++;
 	}
 	free(map->data);
+	i = 0;
+	while (map->style[i])
+	{
+		free(map->style[i]);
+		i++;
+	}
+	free (map->style);
 	free(map);
 }
 
