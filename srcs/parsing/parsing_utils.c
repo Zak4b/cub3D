@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:00:31 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/16 17:48:57 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/16 21:40:22 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,33 @@ int	invalid_style(char *style)
 	}
 	else
 		return (1);
+}
+
+int	check_style(t_map *map, t_style type)
+{
+	char	*type_string;
+	char	*error_msg;
+
+	error_msg = NULL;
+	if (map->style[type] == NULL)
+		error_msg = "not specified";
+	else if (invalid_style(map->style[type]))
+		error_msg = "invalid";
+	if (error_msg)
+	{
+		if (type == NORTH)
+			type_string = "NO";
+		else if (type == SOUTH)
+			type_string = "SO";
+		else if (type == EAST)
+			type_string = "EA";	
+		else if (type == WEST)
+			type_string = "WE";
+		else if (type == CEILING)
+			type_string = "C";
+		else
+			type_string = "F";
+		return (ft_fprintf(2, "%s %s\n", type_string, error_msg), 1);
+	}
+	return (0);
 }

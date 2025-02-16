@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:24:13 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/16 21:08:25 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/16 21:42:14 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,48 +15,19 @@
 int	add_style(t_map *map, char *line)
 {
 	if (ft_strnstr(line, "NO", INT_MAX))
-		map->style[NORTH] = ft_substr(line + 3, 0, ft_strlen(line + 3) -1);
+		map->style[NORTH] = ft_substr(line + 3, 0, ft_strlen(line + 3) - 1);
 	else if (ft_strnstr(line, "SO", INT_MAX))
-		map->style[SOUTH] = ft_substr(line + 3, 0, ft_strlen(line + 3) -1);
+		map->style[SOUTH] = ft_substr(line + 3, 0, ft_strlen(line + 3) - 1);
 	else if (ft_strnstr(line, "WE", INT_MAX))
-		map->style[WEST] = ft_substr(line + 3, 0, ft_strlen(line + 3) -1);
+		map->style[WEST] = ft_substr(line + 3, 0, ft_strlen(line + 3) - 1);
 	else if (ft_strnstr(line, "EA", INT_MAX))
-		map->style[EAST] = ft_substr(line + 3, 0, ft_strlen(line + 3) -1);
+		map->style[EAST] = ft_substr(line + 3, 0, ft_strlen(line + 3) - 1);
 	else if (ft_strchr(line, 'F'))
-		map->style[FLOOR] = ft_substr(line + 2, 0, ft_strlen(line + 2) -1);
+		map->style[FLOOR] = ft_substr(line + 2, 0, ft_strlen(line + 2) - 1);
 	else if (ft_strchr(line, 'C'))
-		map->style[CEILING] = ft_substr(line + 2, 0, ft_strlen(line + 2) -1);
+		map->style[CEILING] = ft_substr(line + 2, 0, ft_strlen(line + 2) - 1);
 	else
 		return (1);
-	return (0);
-}
-
-int	check_style(t_map *map, t_style type)
-{
-	char	*type_string;
-	char	*error_msg;
-
-	error_msg = NULL;
-	if (map->style[type] == NULL)
-		error_msg = "not specified";
-	else if (invalid_style(map->style[type]))
-		error_msg = "invalid";
-	if (error_msg)
-	{
-		if (type == NORTH)
-			type_string = "NO";
-		else if (type == SOUTH)
-			type_string = "SO";
-		else if (type == EAST)
-			type_string = "EA";	
-		else if (type == WEST)
-			type_string = "WE";
-		else if (type == CEILING)
-			type_string = "C";
-		else
-			type_string = "F";
-		return (ft_fprintf(2, "%s %s\n", type_string, error_msg), 1);
-	}
 	return (0);
 }
 
@@ -136,8 +107,10 @@ int	checker(char **map, t_map *tmap)
 		return (free_split(map), ft_puterror("no player", ERROR));
 	check_block(map, player, &count, tmap);
 	if (count == -1)
-		return (free_split(map), ft_puterror("invalid map, floor near void", ERROR));
+		return (free_split(map),
+			ft_puterror("invalid map, floor near void", ERROR));
 	if (count > 0)
-		return (free_split(map), ft_puterror("invalid map, cutted by void", ERROR));
+		return (free_split(map),
+			ft_puterror("invalid map, cutted by void", ERROR));
 	return (free_split(map), 0);
 }
