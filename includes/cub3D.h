@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/15 21:47:11 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/16 09:56:41 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "mlx_utils.h"
 
 # define CELL_SIZE 64
-# define SHADOWING 0.15
+# define SHADOWING 6.5
 # define MCELL_SIZE 15
 # define MMAP_RAY 8 
 # define FOV 75

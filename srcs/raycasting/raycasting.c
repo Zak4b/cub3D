@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:24:19 by asene             #+#    #+#             */
-/*   Updated: 2025/02/15 22:03:38 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/16 09:51:23 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ t_hit	cast_ray(t_map *map, t_dpoint start, double angle)
 
 	hit.pos = find_hit(map, calc_cast(start, angle));
 	hit.distance = sqrt(pow(start.x - hit.pos.x, 2) + pow(start.y - hit.pos.y, 2));
+	hit.distance /= (double)CELL_SIZE;
 	hit.side = get_direction(start, hit.pos);
 	if (hit.side == D_NORTH || hit.side == D_SOUTH)
 		hit.col_index = (int)hit.pos.x % CELL_SIZE;

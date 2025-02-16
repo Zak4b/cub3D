@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:10:42 by asene             #+#    #+#             */
-/*   Updated: 2025/02/15 21:57:08 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/16 09:52:05 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 double	segment_size(double distance)
 {
-	return ((CELL_SIZE / distance) * (double)W_WIDTH / (2 * TAN_HALF_FOV));
+	return ((double)W_WIDTH / (2 * TAN_HALF_FOV) / distance);
 }
 
 int	get_pixel_scale(t_img *img, int x, int y, int size)
