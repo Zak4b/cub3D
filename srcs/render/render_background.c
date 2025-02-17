@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_background.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 21:36:24 by asene             #+#    #+#             */
-/*   Updated: 2025/02/16 10:06:01 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/17 13:15:20 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ static void	draw_floor(t_vars *vars)
 	while (i < W_HEIGHT)
 	{
 		color = 0x736a3e;
-		color = color_shadowing(color,
-				(W_HEIGHT / 2 - i) / (double)CELL_SIZE + SHADOWING);
+		if (vars->shadow)
+			color = color_shadowing(color,
+					(W_HEIGHT / 2 - i) / (double)CELL_SIZE + SHADOWING);
 		draw_hline(vars->buffer, (t_point){0, i}, W_WIDTH, color);
 		i++;
 	}

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event.c                                            :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 01:56:06 by asene             #+#    #+#             */
-/*   Updated: 2025/02/14 02:03:30 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/17 13:26:38 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	move_player(t_vars *vars, t_dpoint mov)
 	if (vars->map->data[cell.y][cell.x] == '1')
 		dest.y = vars->player->pos.y;
 	vars->player->pos = dest;
+	fill_near(cell, 3, vars->map);
 }
 
 void	move(t_vars *vars)

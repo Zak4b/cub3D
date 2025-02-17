@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/02/16 21:18:57 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/17 13:14:20 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	init_game(t_vars *vars)
 	vars->textures[SOUTH] = load_img(vars->mlx, vars->map->style[SOUTH]);
 	vars->textures[EAST] = load_img(vars->mlx, vars->map->style[EAST]);
 	vars->textures[WEST] = load_img(vars->mlx, vars->map->style[WEST]);
+	vars->shadow = 1;
 	ft_bzero(vars->inputs, sizeof(vars->inputs));
 	mlx_hook(vars->mlx->window, 17, 0, mlx_loop_end, vars->mlx->instance);
 	mlx_hook(vars->mlx->window, 2, 1L << 0, key_down_hook, vars);
@@ -69,7 +70,13 @@ void	free_map(t_map *map)
 		free(map->style[i]);
 		i++;
 	}
-	free (map->style);
+	free(map->style);
+	while (map->discovered[i])
+	{
+		free(map->discovered[i]);
+		i++;
+	}
+	free(map->discovered);
 	free(map);
 }
 

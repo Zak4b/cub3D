@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/16 21:40:36 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/17 13:13:56 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_map
 	int		height;
 	char	**data;
 	char	**style;
+	char	**discovered;
 }	t_map;
 
 typedef struct s_point
@@ -68,6 +69,7 @@ typedef enum e_keycode
 	KEY_A = 97,
 	KEY_S = 115,
 	KEY_D = 100,
+	KEY_P = 112,
 	KEY_A_LEFT = 65361,
 	KEY_A_RIGHT = 65363,
 	KEY_SHIFT = 65505,
@@ -84,6 +86,7 @@ typedef enum e_input
 	ROTATE_R,
 	RUN,
 	ALT,
+	SHADOW_P
 }	t_input;
 
 typedef struct s_keymap
@@ -133,6 +136,7 @@ typedef struct s_vars
 	t_img		*buffer;
 	int			inputs[20];
 	t_img		*textures[4];
+	int			shadow;
 }	t_vars;
 
 int			key_down_hook(int k, t_vars *vars);
@@ -162,5 +166,6 @@ int			ft_puterror(char *str, t_error_type type);
 char		*line_dup(const char *src, int len);
 t_point		find_player(char **map);
 int			check_style(t_map *map, t_style type);
+void		fill_near(t_point cur, int count, t_map *tmap);
 
 #endif

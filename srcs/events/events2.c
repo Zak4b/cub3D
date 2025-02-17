@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:12:02 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/16 17:44:14 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/17 13:24:37 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,26 @@ void	print_on_minimap(t_vars *vars, int offx, int offy, int color)
 	}
 }
 
+void	fill_near(t_point cur, int count, t_map *tmap)
+{
+	if (count < 0 || tmap->discovered[cur.y][cur.x] == '3')
+		return ;
+	if (tmap->discovered[cur.y][cur.x] == '1')
+	{
+		tmap->discovered[cur.y][cur.x] = '3';
+		return ;
+	}
+	tmap->discovered[cur.y][cur.x] = '2';
+	if (cur.x - 1 >= 0)
+		fill_near((t_point){cur.x - 1, cur.y}, count - 1, tmap);
+	if (cur.x + 1 < tmap->width)
+		fill_near((t_point){cur.x + 1, cur.y}, count - 1, tmap);
+	if (cur.y - 1 >= 0)
+		fill_near((t_point){cur.x, cur.y - 1}, count - 1, tmap);
+	if (cur.y + 1 < tmap->height)
+		fill_near((t_point){cur.x, cur.y + 1}, count - 1, tmap);
+}
+
 void	print_border(t_vars *vars)
 {
 	t_point	point;
@@ -88,8 +108,12 @@ void	print_minimap(t_vars *vars)
 				print_on_minimap(vars, point.x++, point.y, 0xFF0000);
 			else if (test.x >= 0 && test.y >= 0
 				&& test.x < vars->map->width && test.y < vars->map->height
-				&& ft_strchr("0NSEW", vars->map->data[test.y][test.x]) != NULL)
+				&& ft_strchr("2", vars->map->discovered[test.y][test.x]) != NULL)
 				print_on_minimap(vars, point.x++, point.y, 0xFFFFFF);
+			else if (test.x >= 0 && test.y >= 0
+				&& test.x < vars->map->width && test.y < vars->map->height
+				&& ft_strchr("3", vars->map->discovered[test.y][test.x]) != NULL)
+				print_on_minimap(vars, point.x++, point.y, 0xCCCCCC);
 			else
 				print_on_minimap(vars, point.x++, point.y, 0x000000);
 		}

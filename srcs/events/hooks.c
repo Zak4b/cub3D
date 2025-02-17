@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:31:59 by asene             #+#    #+#             */
-/*   Updated: 2025/02/15 19:58:51 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/17 13:16:42 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	key_down_hook(int k, t_vars *vars)
 		mlx_mouse_show(vars->mlx->instance, vars->mlx->window);
 	if (k == KEY_ESC)
 		mlx_loop_end(vars->mlx->instance);
+	if (k == KEY_P)
+		vars->shadow = !vars->shadow;
 	else
 		set_input(vars, k, 1);
 	return (0);
