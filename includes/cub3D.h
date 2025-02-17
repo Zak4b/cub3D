@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/17 13:13:56 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/17 20:15:45 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define MMAP_RAY 8 
 # define FOV 75
 # define TAN_HALF_FOV tan((FOV * PI / 180) / 2)
-# define W_WIDTH 1080
-# define W_HEIGHT 540
+# define W_WIDTH 1920
+# define W_HEIGHT 1080
 # ifndef PI
 #  define PI 3.14159265359
 # endif

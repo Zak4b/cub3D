@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:24:13 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/16 21:42:14 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:51:49 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,5 @@ int	checker(char **map, t_map *tmap)
 	if (count > 0)
 		return (free_split(map),
 			ft_puterror("invalid map, cutted by void", ERROR));
-	return (free_split(map), 0);
+	return (free_split(map), fill_near(player, 3, tmap), 0);
 }

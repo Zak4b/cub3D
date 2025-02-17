@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/02/17 13:14:20 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:57:45 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	free_map(t_map *map)
 		i++;
 	}
 	free(map->style);
+	i = 0;
 	while (map->discovered[i])
 	{
 		free(map->discovered[i]);

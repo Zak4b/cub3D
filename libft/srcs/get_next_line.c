@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:24:40 by asene             #+#    #+#             */
-/*   Updated: 2025/02/16 21:14:01 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/16 21:48:39 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ static size_t	read_file_to_next_line(int fd, char **stash)
 	char	buffer[BUFFER_SIZE + 1];
 	char	*eol;
 
-	eol = ft_strchr(*stash, '\n');
+	if (!stash)
+		eol = ft_strchr(*stash, '\n');
+	else
+		eol = NULL;
 	while (eol == NULL)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);

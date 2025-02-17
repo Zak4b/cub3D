@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 21:35:29 by asene             #+#    #+#             */
-/*   Updated: 2025/02/17 13:15:39 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/17 20:15:17 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,14 @@ int	color_shadowing(int color, double distance)
 	unsigned char	green;
 	unsigned char	blue;
 
-	shadowing = 1 - (distance / SHADOWING);
+	if (distance < 1)
+		return (color);
+	if (distance < 1.5)
+		shadowing = 1 - (distance - 1) * 0.5 / SHADOWING;
+	else
+		shadowing = 1 - (distance - 1) / SHADOWING;
+	if (shadowing < 0)
+		shadowing = 0;
 	red = clamp_int((int)((color >> 16 & 255) * shadowing), 0, 255);
 	green = clamp_int((int)((color >> 8 & 255) * shadowing), 0, 255);
 	blue = clamp_int((int)((color & 255) * shadowing), 0, 255);
