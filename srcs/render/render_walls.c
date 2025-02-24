@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:10:42 by asene             #+#    #+#             */
-/*   Updated: 2025/02/17 13:15:35 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/24 09:48:39 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,27 @@ int	get_pixel_scale(t_img *img, int x, int y, int size)
 
 void	draw_wall_segment(t_vars *vars, int ray_index, t_hit hit, int size)
 {
+	int	i;
 	int	j;
 	int	color;
 
-	j = 0;
-	while (j < size)
+	if (size <= W_HEIGHT)
 	{
-		color = get_pixel_scale(vars->textures[hit.side], hit.col_index, j, size);
+		i = 0;
+		j = size;
+	}
+	else
+	{
+		i = (size - W_HEIGHT) / 2;
+		j = W_HEIGHT + i;
+	}
+	while (i < j)
+	{
+		color = get_pixel_scale(vars->textures[hit.side], hit.col_index, i, size);
 		if (vars->shadow)
 			color =  color_shadowing(color, hit.distance);
-		put_pixel(vars->buffer, ray_index, j + (W_HEIGHT - size) / 2, color);
-		j++;
+		put_pixel(vars->buffer, ray_index, i + (W_HEIGHT - size) / 2, color);
+		i++;
 	}
 }
 

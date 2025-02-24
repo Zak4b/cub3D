@@ -6,12 +6,14 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:24:19 by asene             #+#    #+#             */
-/*   Updated: 2025/02/16 09:51:23 by asene            ###   ########.fr       */
+/*   Updated: 2025/02/22 14:52:33 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 #include "raycasting.h"
+#define VERTICAL 1
+#define HORIZONTAL 2
 
 int	check_vertical_hit(t_map *map, t_cast_data *data)
 {
@@ -43,25 +45,7 @@ int	check_horizontal_hit(t_map *map, t_cast_data *data)
 	return (0);
 }
 
-t_direction	get_direction(t_dpoint start, t_dpoint hit)
-{
-	if (fabs(fmod(hit.x, CELL_SIZE)) < 0.00001)
-	{
-		if (hit.x - start.x > 0)
-			return (D_EAST);
-		else
-			return (D_WEST);
-	}
-	else
-	{
-		if (hit.y - start.y > 0)
-			return (D_SOUTH);
-		else
-			return (D_NORTH);
-	}
-}
-
-t_dpoint	find_hit(t_map *map, t_cast_data data)
+t_dpoint	find_hit(t_map *map, t_cast_data data, int *axis)
 {
 	while (1)
 	{
@@ -69,27 +53,52 @@ t_dpoint	find_hit(t_map *map, t_cast_data data)
 			< fabs(data.h_hit.x - data.start.x))
 		{
 			if (check_vertical_hit(map, &data))
+			{
+				*axis = VERTICAL;
 				return (data.v_hit);
+			}
 		}
 		else
 		{
 			if (check_horizontal_hit(map, &data))
+			{
+				*axis = HORIZONTAL;
 				return (data.h_hit);
+			}
 		}
 	}
 }
 
+void	fill_hit_struct(t_hit *hit, t_dpoint start, int axis)
+{
+	if (axis == VERTICAL)
+	{
+		hit->col_index = (int)hit->pos.y % CELL_SIZE;
+		if (hit->pos.x <= start.x)
+			hit->side = D_WEST;
+		else
+			hit->side = D_EAST;
+	}
+	else
+	{
+		hit->col_index = (int)hit->pos.x % CELL_SIZE;
+		if (hit->pos.y <= start.y)
+			hit->side = D_NORTH;
+		else
+			hit->side = D_SOUTH;
+	}
+	if (hit->side == D_SOUTH || hit->side == D_WEST)
+		hit->col_index = CELL_SIZE - 1 - hit->col_index;
+}
+
 t_hit	cast_ray(t_map *map, t_dpoint start, double angle)
 {
-	t_hit		hit;
+	t_hit	hit;
+	int		axis;
 
-	hit.pos = find_hit(map, calc_cast(start, angle));
+	hit.pos = find_hit(map, calc_cast(start, angle), &axis);
 	hit.distance = sqrt(pow(start.x - hit.pos.x, 2) + pow(start.y - hit.pos.y, 2));
 	hit.distance /= (double)CELL_SIZE;
-	hit.side = get_direction(start, hit.pos);
-	if (hit.side == D_NORTH || hit.side == D_SOUTH)
-		hit.col_index = (int)hit.pos.x % CELL_SIZE;
-	else
-		hit.col_index = (int)hit.pos.y % CELL_SIZE;
+	fill_hit_struct(&hit, start, axis);
 	return (hit);
 }
