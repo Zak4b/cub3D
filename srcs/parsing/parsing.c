@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:27:44 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/17 19:57:00 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:17:00 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	map_incorrect(t_list *lmap)
 			content = (char *) cursor->content;
 			while (content[i])
 			{
-				if (ft_strchr(" 01NSEW\n", content[i]) == NULL)
+				if (ft_strchr(" D01NSEW\n", content[i]) == NULL)
 					return (ft_puterror("invalid character in map", ERROR));
 				i++;
 			}

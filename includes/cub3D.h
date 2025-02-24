@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/17 20:15:45 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:48:13 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_map
 	char	**data;
 	char	**style;
 	char	**discovered;
+	int		floor;
+	int		ceiling;
 }	t_map;
 
 typedef struct s_point
@@ -167,5 +169,6 @@ char		*line_dup(const char *src, int len);
 t_point		find_player(char **map);
 int			check_style(t_map *map, t_style type);
 void		fill_near(t_point cur, int count, t_map *tmap);
+int	convert_rgb(t_map *map, int type);
 
 #endif

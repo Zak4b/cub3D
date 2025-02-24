@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 21:36:24 by asene             #+#    #+#             */
-/*   Updated: 2025/02/17 13:15:20 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:49:44 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	draw_ceiling(t_vars *vars)
 
 	i = 0;
 	while (i < W_HEIGHT / 2)
-		draw_hline(vars->buffer, (t_point){0, i++}, W_WIDTH, 0x82733f);
+		draw_hline(vars->buffer, (t_point){0, i++}, W_WIDTH, vars->map->ceiling);
 }
 
 static void	draw_floor(t_vars *vars)
@@ -29,7 +29,7 @@ static void	draw_floor(t_vars *vars)
 	i =  W_HEIGHT / 2;
 	while (i < W_HEIGHT)
 	{
-		color = 0x736a3e;
+		color = vars->map->floor;
 		if (vars->shadow)
 			color = color_shadowing(color,
 					(W_HEIGHT / 2 - i) / (double)CELL_SIZE + SHADOWING);

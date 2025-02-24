@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:24:13 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/17 19:51:49 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:57:30 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ int	add_style(t_map *map, char *line)
 int	check_styles(t_map *map)
 {
 	if (check_style(map, NORTH) || check_style(map, SOUTH)
-		|| check_style(map, EAST) || check_style(map, WEST)
-		|| check_style(map, CEILING) || check_style(map, FLOOR))
+		|| check_style(map, EAST) || check_style(map, WEST))
+		return (1);
+	map->ceiling = convert_rgb(map, CEILING);
+	map->floor = convert_rgb(map, FLOOR);
+	if (map->ceiling == -1 || map->floor == -1)
 		return (1);
 	return (0);
 }
