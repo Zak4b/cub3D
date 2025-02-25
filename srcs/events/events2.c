@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:12:02 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/25 11:08:42 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:22:30 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,13 @@ void	print_minimap(t_vars *vars)
 	t_point	point;
 	t_point	player;
 	t_point	test;
+	int		color;
 
 	player.x = (int) round(vars->player->pos.x) / CELL_SIZE;
 	player.y = (int) round(vars->player->pos.y) / CELL_SIZE;
 	print_border(vars);
 	point.y = -MMAP_RAY - 1;
+	color = 0x000000;
 	while (++point.y <= MMAP_RAY)
 	{
 		point.x = -MMAP_RAY;
@@ -109,22 +111,10 @@ void	print_minimap(t_vars *vars)
 		{
 			test.x = player.x + point.x;
 			test.y = player.y + point.y;
-			if (test.x == player.x && test.y == player.y)
-				print_on_minimap(vars, point.x++, point.y, 0xFF0000);
-			else if (test.x >= 0 && test.y >= 0
-				&& test.x < vars->map->width && test.y < vars->map->height
-				&& ft_strchr("2", vars->map->discovered[test.y][test.x]) != NULL)
-				print_on_minimap(vars, point.x++, point.y, 0xFFFFFF);
-			else if (test.x >= 0 && test.y >= 0
-				&& test.x < vars->map->width && test.y < vars->map->height
-				&& ft_strchr("3", vars->map->discovered[test.y][test.x]) != NULL)
-				print_on_minimap(vars, point.x++, point.y, 0xCCCCCC);
-			else if (test.x >= 0 && test.y >= 0
-				&& test.x < vars->map->width && test.y < vars->map->height
-				&& ft_strchr("4", vars->map->discovered[test.y][test.x]) != NULL)
-				print_on_minimap(vars, point.x++, point.y, 0xAAAAAA);
-			else
-				print_on_minimap(vars, point.x++, point.y, 0x000000);
+			if (test.x >= 0 && test.y >= 0
+				&& test.x < vars->map->width && test.y < vars->map->height)
+				color = get_color(vars->map->discovered, test, player);
+			print_on_minimap(vars, point.x++, point.y, color);
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/25 10:59:00 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:22:55 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,5 +175,6 @@ int			check_style(t_map *map, t_style type);
 void		fill_near(t_point cur, int count, t_map *tmap);
 int			convert_rgb(t_map *map, int type);
 int			search_door(t_vars *vars);
+int			get_color(char	**map, t_point point, t_point player);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:24:53 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/25 10:52:15 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:22:37 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,18 @@ int	search_door(t_vars *vars)
 	is_door(vars->map, x, y + CELL_SIZE * DOOR_HITBOX);
 	is_door(vars->map, x, y - CELL_SIZE * DOOR_HITBOX);
 	return (1);
+}
+
+int	get_color(char	**map, t_point point, t_point player)
+{
+	if (point.x == player.x && point.y == player.y)
+		return (0xFF0000);
+	if (map[point.y][point.x] == '2')
+		return (0xFFFFFF);
+	if (map[point.y][point.x] == '3')
+		return (0xCCCCCC);
+	if (map[point.y][point.x] == '4')
+		return (0xDDDDDD);
+	return (0x000000);
 }
 
