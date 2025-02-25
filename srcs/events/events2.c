@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:12:02 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/25 11:22:30 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/25 12:17:29 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void	print_minimap(t_vars *vars)
 	player.y = (int) round(vars->player->pos.y) / CELL_SIZE;
 	print_border(vars);
 	point.y = -MMAP_RAY - 1;
-	color = 0x000000;
 	while (++point.y <= MMAP_RAY)
 	{
 		point.x = -MMAP_RAY;
@@ -111,6 +110,7 @@ void	print_minimap(t_vars *vars)
 		{
 			test.x = player.x + point.x;
 			test.y = player.y + point.y;
+			color = 0x000000;
 			if (test.x >= 0 && test.y >= 0
 				&& test.x < vars->map->width && test.y < vars->map->height)
 				color = get_color(vars->map->discovered, test, player);

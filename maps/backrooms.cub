@@ -2,8 +2,8 @@ NO ./assets/backroom_wall.xpm
 SO ./assets/backroom_wall.xpm
 WE ./assets/backroom_wall.xpm
 EA ./assets/backroom_wall.xpm
-F 220,100,0
-C 225,30,0
+F 118, 101, 56
+C 30, 20, 20
 
 111111111111111111111111111111111
 100000000000000000110000000000001
