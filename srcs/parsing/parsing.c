@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:27:44 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/24 10:17:00 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/25 14:32:49 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,11 @@ int	init_map(t_map *map, int fd)
 	create_list_map(fd, &lmap, map);
 	map->style[6] = NULL;
 	if (map->width == 0)
-		return (ft_puterror("invalid map no floor / wall", ERROR));
+		return (ft_lstclear(&lmap, free), ft_puterror("invalid map no floor / wall", ERROR));
 	if (map->height <= 2 || map->width <= 2)
-		return (ft_puterror("map too small", ERROR));
+		return (ft_lstclear(&lmap, free), ft_puterror("map too small", ERROR));
 	if (map_incorrect(lmap))
-		return (1);
+		return (ft_lstclear(&lmap, free), 1);
 	map->data = create_map(lmap, map->height, map->width);
 	i = 0;
 	while (map->data[i])
@@ -113,7 +113,7 @@ int	init_map(t_map *map, int fd)
 	}
 	map->discovered = create_map(lmap, map->height, map->width);
 	if (checker(create_map(lmap, map->height, map->width), map))
-		return (1);
+		return (ft_lstclear(&lmap, free), 1);
 	ft_lstclear(&lmap, free);
 	return (0);
 }

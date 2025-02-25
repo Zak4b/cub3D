@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/02/24 10:57:35 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/25 14:35:41 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	main(int argc, char *argv[])
 		return (ft_fprintf(2, "USAGE"), 2);
 	vars.map = malloc(sizeof(t_map));
 	if (!read_map(argv[1], vars.map))
-		return (1);
+		return (free_map(vars.map), 1);
 	init_game(&vars);
 	mlx_loop(vars.mlx->instance);
 	free(vars.player);
