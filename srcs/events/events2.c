@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:12:02 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/17 13:24:37 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:08:42 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,16 @@ void	print_on_minimap(t_vars *vars, int offx, int offy, int color)
 
 void	fill_near(t_point cur, int count, t_map *tmap)
 {
-	if (count < 0 || tmap->discovered[cur.y][cur.x] == '3')
+	if (count < 0 || ft_strchr("34", tmap->discovered[cur.y][cur.x]) != NULL)
 		return ;
 	if (tmap->discovered[cur.y][cur.x] == '1')
 	{
 		tmap->discovered[cur.y][cur.x] = '3';
+		return ;
+	}
+	if (tmap->discovered[cur.y][cur.x] == 'D')
+	{
+		tmap->discovered[cur.y][cur.x] = '4';
 		return ;
 	}
 	tmap->discovered[cur.y][cur.x] = '2';
@@ -114,6 +119,10 @@ void	print_minimap(t_vars *vars)
 				&& test.x < vars->map->width && test.y < vars->map->height
 				&& ft_strchr("3", vars->map->discovered[test.y][test.x]) != NULL)
 				print_on_minimap(vars, point.x++, point.y, 0xCCCCCC);
+			else if (test.x >= 0 && test.y >= 0
+				&& test.x < vars->map->width && test.y < vars->map->height
+				&& ft_strchr("4", vars->map->discovered[test.y][test.x]) != NULL)
+				print_on_minimap(vars, point.x++, point.y, 0xAAAAAA);
 			else
 				print_on_minimap(vars, point.x++, point.y, 0x000000);
 		}

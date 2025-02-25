@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/24 10:48:13 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/25 10:59:00 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 # define TAN_HALF_FOV tan((FOV * PI / 180) / 2)
 # define W_WIDTH 1920
 # define W_HEIGHT 1080
+# define CAMERA_ROTATION 0.03f
+# define MOVE_HITBOX 0.2f
+# define DOOR_HITBOX 1
 # ifndef PI
 #  define PI 3.14159265359
 # endif
@@ -84,6 +87,7 @@ typedef enum e_input
 	MOVE_B,
 	MOVE_L,
 	MOVE_R,
+	OPEN_SPACE,
 	ROTATE_L,
 	ROTATE_R,
 	RUN,
@@ -169,6 +173,7 @@ char		*line_dup(const char *src, int len);
 t_point		find_player(char **map);
 int			check_style(t_map *map, t_style type);
 void		fill_near(t_point cur, int count, t_map *tmap);
-int	convert_rgb(t_map *map, int type);
+int			convert_rgb(t_map *map, int type);
+int			search_door(t_vars *vars);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:31:59 by asene             #+#    #+#             */
-/*   Updated: 2025/02/17 13:16:42 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/25 10:47:36 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	key_down_hook(int k, t_vars *vars)
 		mlx_loop_end(vars->mlx->instance);
 	if (k == KEY_P)
 		vars->shadow = !vars->shadow;
+	if (k == KEY_SPACE)
+		search_door(vars);
 	else
 		set_input(vars, k, 1);
 	return (0);

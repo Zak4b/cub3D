@@ -6,13 +6,11 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 01:56:06 by asene             #+#    #+#             */
-/*   Updated: 2025/02/24 09:51:49 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/25 10:58:16 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
-#define CAMERA_ROTATION 0.03f
-#define MOVE_HITBOX 0.2f
 
 static int	is_wall(t_map *map, double x, double y)
 {
@@ -22,7 +20,7 @@ static int	is_wall(t_map *map, double x, double y)
 	cell.y = y / CELL_SIZE;
 	if (cell.x < 0 || cell.x > map->width || cell.y < 0 || cell.y > map->height)
 		return (0);
-	return (map->data[cell.y][cell.x] == '1');
+	return (ft_strchr("1D",map->data[cell.y][cell.x]) != NULL);
 }
 
 static int	is_near_wall(t_vars *vars, double x, double y)

@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:24:13 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/24 10:57:30 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/02/25 10:39:28 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	check_block(char **map, t_point cur, int *count, t_map *tmap)
 {
 	if (map[cur.y][cur.x] == ' ' || map[cur.y][cur.x] == '2' || *count == -1)
 		return ;
-	if (ft_strchr("0NSEW", map[cur.y][cur.x])
+	if (ft_strchr("D0NSEW", map[cur.y][cur.x])
 		&& ((cur.x - 1 < 0 || cur.x + 1 >= tmap->width || cur.y - 1 < 0
 		|| cur.y + 1 >= tmap->height) || (map[cur.y][cur.x - 1] == ' '
 		|| map[cur.y][cur.x + 1] == ' ' || map[cur.y - 1][cur.x] == ' '
@@ -82,7 +82,7 @@ int	elem_count(char **map)
 		y = 0;
 		while (map[x][y])
 		{
-			if (map[x][y] == '0' || map[x][y] == '1')
+			if (map[x][y] == '0' || map[x][y] == '1' || map[x][y] == 'D')
 				counter[0]++;
 			if (ft_strchr("NSEW", map[x][y]))
 				counter[1]++;
