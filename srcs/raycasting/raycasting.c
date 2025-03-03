@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:24:19 by asene             #+#    #+#             */
-/*   Updated: 2025/02/22 14:52:33 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/03 11:48:23 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define VERTICAL 1
 #define HORIZONTAL 2
 
-int	check_vertical_hit(t_map *map, t_cast_data *data)
+int	check_vertical_hit(t_map *map, t_cast_data *data, t_point *collide_cell)
 {
 	t_point	cell;
 
@@ -24,13 +24,17 @@ int	check_vertical_hit(t_map *map, t_cast_data *data)
 	if (data->step.x < 0)
 		cell.x--;
 	if (check_collide(map, cell.x, cell.y))
+	{
+		if (collide_cell)
+			*collide_cell = cell;
 		return (1);
+	}
 	data->v_hit.x += data->step.x;
 	data->v_hit.y += data->step.x * data->tan_angle;
 	return (0);
 }
 
-int	check_horizontal_hit(t_map *map, t_cast_data *data)
+int	check_horizontal_hit(t_map *map, t_cast_data *data, t_point *collide_cell)
 {
 	t_point	cell;
 
@@ -39,31 +43,39 @@ int	check_horizontal_hit(t_map *map, t_cast_data *data)
 	if (data->step.y < 0)
 		cell.y--;
 	if (check_collide(map, cell.x, cell.y))
+	{
+		if (collide_cell)
+			*collide_cell = cell;
 		return (1);
+	}
 	data->h_hit.x += data->step.y / data->tan_angle;
 	data->h_hit.y += data->step.y;
 	return (0);
 }
 
-t_dpoint	find_hit(t_map *map, t_cast_data data, int *axis)
+void find_hit(t_map *map, t_cast_data data, int *axis, t_hit *hit)
 {
+	t_point	collide_cell;
+
 	while (1)
 	{
 		if (fabs(data.v_hit.x - data.start.x)
 			< fabs(data.h_hit.x - data.start.x))
 		{
-			if (check_vertical_hit(map, &data))
+			if (check_vertical_hit(map, &data, &collide_cell))
 			{
 				*axis = VERTICAL;
-				return (data.v_hit);
+				hit->collide_type = map->data[collide_cell.y][collide_cell.x];
+				return (hit->pos = data.v_hit, (void)0);
 			}
 		}
 		else
 		{
-			if (check_horizontal_hit(map, &data))
+			if (check_horizontal_hit(map, &data, &collide_cell))
 			{
 				*axis = HORIZONTAL;
-				return (data.h_hit);
+				hit->collide_type = map->data[collide_cell.y][collide_cell.x];
+				return (hit->pos = data.h_hit, (void)0);
 			}
 		}
 	}
@@ -96,7 +108,7 @@ t_hit	cast_ray(t_map *map, t_dpoint start, double angle)
 	t_hit	hit;
 	int		axis;
 
-	hit.pos = find_hit(map, calc_cast(start, angle), &axis);
+	find_hit(map, calc_cast(start, angle), &axis, &hit);
 	hit.distance = sqrt(pow(start.x - hit.pos.x, 2) + pow(start.y - hit.pos.y, 2));
 	hit.distance /= (double)CELL_SIZE;
 	fill_hit_struct(&hit, start, axis);

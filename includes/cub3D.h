@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/25 11:22:55 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:54:58 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ typedef struct s_hit
 	t_dpoint	pos;
 	double		distance;
 	t_direction	side;
+	char		collide_type;
 	int			col_index;
 }	t_hit;
 
@@ -142,6 +143,7 @@ typedef struct s_vars
 	t_img		*buffer;
 	int			inputs[20];
 	t_img		*textures[4];
+	t_img		*door_texture;
 	int			shadow;
 }	t_vars;
 

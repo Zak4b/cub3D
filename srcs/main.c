@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/02/25 14:35:41 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:58:00 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	init_game(t_vars *vars)
 	vars->textures[SOUTH] = load_img(vars->mlx, vars->map->style[SOUTH]);
 	vars->textures[EAST] = load_img(vars->mlx, vars->map->style[EAST]);
 	vars->textures[WEST] = load_img(vars->mlx, vars->map->style[WEST]);
+	vars->door_texture = load_img(vars->mlx, "./assets/brick_wall.xpm");
 	vars->shadow = 1;
 	ft_bzero(vars->inputs, sizeof(vars->inputs));
 	mlx_hook(vars->mlx->window, 17, 0, mlx_loop_end, vars->mlx->instance);
