@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:10:42 by asene             #+#    #+#             */
-/*   Updated: 2025/03/03 11:55:57 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/03 13:52:27 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	draw_walls(t_vars *vars)
 	{
 		camera_x = (2.0 * i / (W_WIDTH - 1)) - 1.0;
 		ray_angle = vars->player->angle + atan(camera_x * TAN_HALF_FOV);
-		hit = cast_ray(vars->map, vars->player->pos, ray_angle);
+		hit = cast_ray(vars->map, vars->player->pos, ray_angle, "D1");
 		size = segment_size(hit.distance * cos(ray_angle - vars->player->angle));
 		draw_wall_segment(vars, i, hit, size);
 		i++;

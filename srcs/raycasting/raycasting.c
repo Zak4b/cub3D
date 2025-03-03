@@ -6,16 +6,14 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:24:19 by asene             #+#    #+#             */
-/*   Updated: 2025/03/03 11:48:23 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/03 13:50:41 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 #include "raycasting.h"
-#define VERTICAL 1
-#define HORIZONTAL 2
 
-int	check_vertical_hit(t_map *map, t_cast_data *data, t_point *collide_cell)
+int	check_vertical_hit(t_map *map , char *collide_set, t_cast_data *data, t_point *collide_cell)
 {
 	t_point	cell;
 
@@ -23,7 +21,7 @@ int	check_vertical_hit(t_map *map, t_cast_data *data, t_point *collide_cell)
 	cell.y = floor(data->v_hit.y / CELL_SIZE);
 	if (data->step.x < 0)
 		cell.x--;
-	if (check_collide(map, cell.x, cell.y))
+	if (check_collide(map, collide_set, cell.x, cell.y))
 	{
 		if (collide_cell)
 			*collide_cell = cell;
@@ -34,7 +32,7 @@ int	check_vertical_hit(t_map *map, t_cast_data *data, t_point *collide_cell)
 	return (0);
 }
 
-int	check_horizontal_hit(t_map *map, t_cast_data *data, t_point *collide_cell)
+int	check_horizontal_hit(t_map *map , char *collide_set, t_cast_data *data, t_point *collide_cell)
 {
 	t_point	cell;
 
@@ -42,7 +40,7 @@ int	check_horizontal_hit(t_map *map, t_cast_data *data, t_point *collide_cell)
 	cell.y = floor(data->h_hit.y / CELL_SIZE);
 	if (data->step.y < 0)
 		cell.y--;
-	if (check_collide(map, cell.x, cell.y))
+	if (check_collide(map, collide_set, cell.x, cell.y))
 	{
 		if (collide_cell)
 			*collide_cell = cell;
@@ -53,7 +51,7 @@ int	check_horizontal_hit(t_map *map, t_cast_data *data, t_point *collide_cell)
 	return (0);
 }
 
-void find_hit(t_map *map, t_cast_data data, int *axis, t_hit *hit)
+void find_hit(t_map *map, char *collide_set, t_cast_data data, t_hit *hit)
 {
 	t_point	collide_cell;
 
@@ -62,28 +60,28 @@ void find_hit(t_map *map, t_cast_data data, int *axis, t_hit *hit)
 		if (fabs(data.v_hit.x - data.start.x)
 			< fabs(data.h_hit.x - data.start.x))
 		{
-			if (check_vertical_hit(map, &data, &collide_cell))
+			if (check_vertical_hit(map, collide_set, &data, &collide_cell))
 			{
-				*axis = VERTICAL;
-				hit->collide_type = map->data[collide_cell.y][collide_cell.x];
+				hit->axis = VERTICAL;
+				hit->collide_cell = collide_cell;
 				return (hit->pos = data.v_hit, (void)0);
 			}
 		}
 		else
 		{
-			if (check_horizontal_hit(map, &data, &collide_cell))
+			if (check_horizontal_hit(map, collide_set, &data, &collide_cell))
 			{
-				*axis = HORIZONTAL;
-				hit->collide_type = map->data[collide_cell.y][collide_cell.x];
+				hit->axis = HORIZONTAL;
+				hit->collide_cell = collide_cell;
 				return (hit->pos = data.h_hit, (void)0);
 			}
 		}
 	}
 }
 
-void	fill_hit_struct(t_hit *hit, t_dpoint start, int axis)
+void	fill_hit_struct(t_hit *hit, t_dpoint start)
 {
-	if (axis == VERTICAL)
+	if (hit->axis == VERTICAL)
 	{
 		hit->col_index = (int)hit->pos.y % CELL_SIZE;
 		if (hit->pos.x <= start.x)
@@ -103,14 +101,14 @@ void	fill_hit_struct(t_hit *hit, t_dpoint start, int axis)
 		hit->col_index = CELL_SIZE - 1 - hit->col_index;
 }
 
-t_hit	cast_ray(t_map *map, t_dpoint start, double angle)
+t_hit	cast_ray(t_map *map, t_dpoint start, double angle, char *collide_set)
 {
 	t_hit	hit;
-	int		axis;
 
-	find_hit(map, calc_cast(start, angle), &axis, &hit);
+	find_hit(map, collide_set, calc_cast(start, angle), &hit);
 	hit.distance = sqrt(pow(start.x - hit.pos.x, 2) + pow(start.y - hit.pos.y, 2));
 	hit.distance /= (double)CELL_SIZE;
-	fill_hit_struct(&hit, start, axis);
+	fill_hit_struct(&hit, start);
+	hit.collide_type = map->data[hit.collide_cell.y][hit.collide_cell.x];
 	return (hit);
 }

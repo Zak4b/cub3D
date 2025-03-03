@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:59:41 by asene             #+#    #+#             */
-/*   Updated: 2025/02/25 10:48:59 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/03 13:53:37 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ int	in_map(t_map *map, int x, int y)
 	return (x >= 0 && y >= 0 && x < map->width && y < map->height);
 }
 
-int	check_collide(t_map *map, int x, int y)
+int	check_collide(t_map *map , char *collide_set, int x, int y)
 {
-	return (! in_map(map, x, y) || map->data[y][x] == '1'
-	|| map->data[y][x] == 'D');
+	return (! in_map(map, x, y) || ft_strchr(collide_set, map->data[y][x]));
 }
 
 t_cast_data	calc_cast(t_dpoint start, double angle)

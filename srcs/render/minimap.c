@@ -1,35 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events2.c                                          :+:      :+:    :+:   */
+/*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 14:12:02 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/25 12:17:29 by rsebasti         ###   ########.fr       */
+/*   Created: 2025/03/03 13:31:09 by asene             #+#    #+#             */
+/*   Updated: 2025/03/03 13:31:49 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void	mouse_movement(t_vars *vars)
-{
-	int		x;
-	int		y;
-	int		delta_x;
-
-	if (vars->inputs[ALT] == 1)
-		return ;
-	mlx_mouse_get_pos(vars->mlx->instance, vars->mlx->window, &x, &y);
-	delta_x = x - W_WIDTH / 2;
-	if (delta_x != 0)
-	{
-		vars->player->angle += delta_x * 0.002;
-		x = W_WIDTH / 2;
-		y = W_HEIGHT / 2;
-		mlx_mouse_move(vars->mlx->instance, vars->mlx->window, x, y);
-	}
-}
 
 void	print_on_minimap(t_vars *vars, int offx, int offy, int color)
 {
@@ -117,4 +98,17 @@ void	print_minimap(t_vars *vars)
 			print_on_minimap(vars, point.x++, point.y, color);
 		}
 	}
+}
+
+int	get_color(char	**map, t_point point, t_point player)
+{
+	if (point.x == player.x && point.y == player.y)
+		return (0xFF0000);
+	if (map[point.y][point.x] == '2')
+		return (0xFFFFFF);
+	if (map[point.y][point.x] == '3')
+		return (0xCCCCCC);
+	if (map[point.y][point.x] == '4')
+		return (0xDDDDDD);
+	return (0x000000);
 }

@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/03/03 11:54:58 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/03 13:55:00 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,13 @@ typedef enum e_direction
 	D_WEST = 3
 }	t_direction;
 
+typedef enum e_axis
+{
+
+ 	VERTICAL,
+	HORIZONTAL,
+}	t_axis;
+
 typedef enum e_style
 {
 	NORTH = 0,
@@ -124,6 +131,8 @@ typedef struct s_hit
 	t_dpoint	pos;
 	double		distance;
 	t_direction	side;
+	t_axis		axis;
+	t_point		collide_cell;
 	char		collide_type;
 	int			col_index;
 }	t_hit;
@@ -151,7 +160,7 @@ int			key_down_hook(int k, t_vars *vars);
 int			key_up_hook(int k, t_vars *vars);
 int			game_loop(t_vars *vars);
 
-t_hit		cast_ray(t_map *map, t_dpoint start, double angle);
+t_hit		cast_ray(t_map *map, t_dpoint start, double angle, char *collide_set);
 
 void		move(t_vars *vars);
 

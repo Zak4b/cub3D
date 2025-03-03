@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.h                                       :+:      :+:    :+:   */
+/*   mouse_mouvement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/10 12:50:08 by asene             #+#    #+#             */
-/*   Updated: 2025/03/03 13:49:48 by asene            ###   ########.fr       */
+/*   Created: 2025/02/12 14:12:02 by rsebasti          #+#    #+#             */
+/*   Updated: 2025/03/03 13:31:39 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-typedef struct s_cast_data
+void	mouse_movement(t_vars *vars)
 {
-	t_dpoint	start;
-	double		angle;
-	double		tan_angle;
-	t_dpoint	step;
-	t_dpoint	v_hit;
-	t_dpoint	h_hit;
-}	t_cast_data;
+	int		x;
+	int		y;
+	int		delta_x;
 
-int			in_map(t_map *map, int x, int y);
-
-int			check_collide(t_map *map , char *collide_set, int x, int y);
-
-t_cast_data	calc_cast(t_dpoint start, double angle);
+	if (vars->inputs[ALT] == 1)
+		return ;
+	mlx_mouse_get_pos(vars->mlx->instance, vars->mlx->window, &x, &y);
+	delta_x = x - W_WIDTH / 2;
+	if (delta_x != 0)
+	{
+		vars->player->angle += delta_x * 0.002;
+		x = W_WIDTH / 2;
+		y = W_HEIGHT / 2;
+		mlx_mouse_move(vars->mlx->instance, vars->mlx->window, x, y);
+	}
+}

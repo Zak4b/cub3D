@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.h                                       :+:      :+:    :+:   */
+/*   doors.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/10 12:50:08 by asene             #+#    #+#             */
-/*   Updated: 2025/03/03 13:49:48 by asene            ###   ########.fr       */
+/*   Created: 2025/02/25 10:24:53 by rsebasti          #+#    #+#             */
+/*   Updated: 2025/03/03 13:52:11 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-typedef struct s_cast_data
+int	search_door(t_vars *vars)
 {
-	t_dpoint	start;
-	double		angle;
-	double		tan_angle;
-	t_dpoint	step;
-	t_dpoint	v_hit;
-	t_dpoint	h_hit;
-}	t_cast_data;
+	t_hit	hit;
 
-int			in_map(t_map *map, int x, int y);
-
-int			check_collide(t_map *map , char *collide_set, int x, int y);
-
-t_cast_data	calc_cast(t_dpoint start, double angle);
+	hit = cast_ray(vars->map, vars->player->pos, vars->player->angle, "D1O");
+	if (hit.distance <= 1)
+	{
+		if (hit.collide_type == 'D')
+		 	vars->map->data[hit.collide_cell.y][hit.collide_cell.x] = 'O';
+		else if (hit.collide_type == 'O')
+		 	vars->map->data[hit.collide_cell.y][hit.collide_cell.x] = 'D';
+	}
+	return (1);
+}
