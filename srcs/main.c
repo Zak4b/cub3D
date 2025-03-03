@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/02/25 14:35:41 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/03 13:52:14 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,6 @@ void	init_game(t_vars *vars)
 	mlx_mouse_move(vars->mlx->instance, vars->mlx->window, W_WIDTH / 2, W_HEIGHT / 2);
 }
 
-int	read_map(char *path, t_map *map)
-{
-	int	index;
-	int	fd;
-
-	index = ft_strlen(path) - 4;
-	if (index < 0 || ft_strcmp(path + index, ".cub"))
-		return (0);
-	fd = open(path, O_RDONLY);
-	return (!init_map(map, fd));
-}
-
 void	free_map(t_map *map)
 {
 	int	i;
@@ -81,6 +69,20 @@ void	free_map(t_map *map)
 	free(map);
 }
 
+int	read_map(char *path, t_map *map)
+{
+	int	index;
+	int	fd;
+
+	index = ft_strlen(path) - 4;
+	if (index < 0 || ft_strcmp(path + index, ".cub"))
+		return (free(map), 0);
+	fd = open(path, O_RDONLY);
+	if (init_map(map, fd))
+		free_map(map);
+	return (1);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_vars	vars;
@@ -89,7 +91,7 @@ int	main(int argc, char *argv[])
 		return (ft_fprintf(2, "USAGE"), 2);
 	vars.map = malloc(sizeof(t_map));
 	if (!read_map(argv[1], vars.map))
-		return (free_map(vars.map), 1);
+		return (1);
 	init_game(&vars);
 	mlx_loop(vars.mlx->instance);
 	free(vars.player);
