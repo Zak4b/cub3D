@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/03/03 13:52:14 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/03 14:07:20 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	init_game(t_vars *vars)
 	mlx_hook(vars->mlx->window, 3, 1L << 1, key_up_hook, vars);
 	mlx_loop_hook(vars->mlx->instance, game_loop, vars);
 	mlx_do_key_autorepeatoff(vars->mlx->instance);
-	mlx_mouse_hide(vars->mlx->instance, vars->mlx->window);
 	mlx_mouse_move(vars->mlx->instance, vars->mlx->window, W_WIDTH / 2, W_HEIGHT / 2);
 }
 
@@ -46,26 +45,26 @@ void	free_map(t_map *map)
 	int	i;
 
 	i = 0;
-	while (i < map->height)
+	if (map->data != NULL)
 	{
-		free(map->data[i]);
-		i++;
+		while (i < map->height)
+			free(map->data[i++]);
+		free(map->data);
 	}
-	free(map->data);
 	i = 0;
-	while (map->style[i])
+	if (map->style != NULL)
 	{
-		free(map->style[i]);
-		i++;
+		while (map->style[i])
+			free(map->style[i++]);
+		free(map->style);
 	}
-	free(map->style);
 	i = 0;
-	while (map->discovered[i])
+	if (map->discovered != NULL)
 	{
-		free(map->discovered[i]);
-		i++;
+		while (map->discovered[i])
+			free(map->discovered[i++]);
+		free(map->discovered);
 	}
-	free(map->discovered);
 	free(map);
 }
 
@@ -74,12 +73,15 @@ int	read_map(char *path, t_map *map)
 	int	index;
 	int	fd;
 
+	map->style = NULL;
+	map->discovered = NULL;
+	map->data = NULL;
 	index = ft_strlen(path) - 4;
 	if (index < 0 || ft_strcmp(path + index, ".cub"))
 		return (free(map), 0);
 	fd = open(path, O_RDONLY);
 	if (init_map(map, fd))
-		free_map(map);
+		return(free_map(map), 0);
 	return (1);
 }
 
