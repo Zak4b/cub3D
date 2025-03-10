@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/03/03 14:07:20 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:15:59 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	init_game(t_vars *vars)
 	vars->textures[SOUTH] = load_img(vars->mlx, vars->map->style[SOUTH]);
 	vars->textures[EAST] = load_img(vars->mlx, vars->map->style[EAST]);
 	vars->textures[WEST] = load_img(vars->mlx, vars->map->style[WEST]);
+	vars->torch = load_sprites(vars->mlx, "assets/torch/torch", 6);
 	vars->shadow = 1;
 	ft_bzero(vars->inputs, sizeof(vars->inputs));
 	mlx_hook(vars->mlx->window, 17, 0, mlx_loop_end, vars->mlx->instance);

@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/02/25 11:22:55 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:27:24 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ typedef struct s_vars
 	t_img		*buffer;
 	int			inputs[20];
 	t_img		*textures[4];
+	t_img		**torch;
 	int			shadow;
 }	t_vars;
 
@@ -176,5 +177,6 @@ void		fill_near(t_point cur, int count, t_map *tmap);
 int			convert_rgb(t_map *map, int type);
 int			search_door(t_vars *vars);
 int			get_color(char	**map, t_point point, t_point player);
+void	oui(t_img *dest, t_img *img, int x0, int y0);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:31:59 by asene             #+#    #+#             */
-/*   Updated: 2025/02/25 10:47:36 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:27:35 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,15 @@ int	key_up_hook(int k, t_vars *vars)
 
 int	game_loop(t_vars *vars)
 {
+	static	int i = 0;
 	move(vars);
 	mouse_movement(vars);
 	draw_background(vars);
 	draw_walls(vars);
 	print_minimap(vars);
 	mlx_put_image_to_window(vars->mlx->instance, vars->mlx->window, vars->buffer->img, 0, 0);
+	oui(vars->buffer, vars->torch[(i / 5) % 6], W_WIDTH / 3, W_HEIGHT - vars->torch[0]->height);
+	i++;
 	mlx_do_sync(vars->mlx->instance);
 	return (1);
 }
