@@ -6,11 +6,12 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/03/10 10:50:48 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/10 15:17:34 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
+#include "parsing.h"
 
 void	init_game(t_vars *vars)
 {
@@ -43,58 +44,27 @@ void	init_game(t_vars *vars)
 
 void	free_map(t_map *map)
 {
-	int	i;
-
-	i = 0;
-	if (map->data != NULL)
-	{
-		while (i < map->height)
-			free(map->data[i++]);
-		free(map->data);
-	}
-	i = 0;
-	if (map->style != NULL)
-	{
-		while (map->style[i])
-			free(map->style[i++]);
-		free(map->style);
-	}
-	i = 0;
-	if (map->discovered != NULL)
-	{
-		while (map->discovered[i])
-			free(map->discovered[i++]);
-		free(map->discovered);
-	}
+	free_split(map->data);
+	free_split(map->discovered);
 	free(map);
 }
 
-int	read_map(char *path, t_map *map)
-{
-	int	index;
-	int	fd;
-
-	map->style = NULL;
-	map->discovered = NULL;
-	map->data = NULL;
-	index = ft_strlen(path) - 4;
-	if (index < 0 || ft_strcmp(path + index, ".cub"))
-		return (free(map), 0);
-	fd = open(path, O_RDONLY);
-	if (init_map(map, fd))
-		return(free_map(map), 0);
-	return (1);
-}
 
 int	main(int argc, char *argv[])
 {
+	int		fd;
 	t_vars	vars;
 
 	if (argc != 2)
 		return (ft_fprintf(2, "USAGE"), 2);
-	vars.map = malloc(sizeof(t_map));
-	if (!read_map(argv[1], vars.map))
-		return (1);
+	fd = open_file(argv[1]);
+	if (fd == -1)
+		return (EXIT_FAILURE);
+	vars.map = read_file(fd);
+	if (!vars.map)
+		return (EXIT_FAILURE);
+	if (map_is_valid(vars.map))
+		return (EXIT_FAILURE);
 	init_game(&vars);
 	mlx_loop(vars.mlx->instance);
 	free(vars.player);

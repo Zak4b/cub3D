@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/03/03 13:55:00 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/10 15:48:43 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,6 @@ typedef enum e_error_type
 	WARNING,
 }	t_error_type;
 
-typedef struct s_map
-{
-	int		width;
-	int		height;
-	char	**data;
-	char	**style;
-	char	**discovered;
-	int		floor;
-	int		ceiling;
-}	t_map;
-
 typedef struct s_point
 {
 	int	x;
@@ -65,6 +54,18 @@ typedef struct s_dpoint
 	double	x;
 	double	y;
 }	t_dpoint;
+
+typedef struct s_map
+{
+	int		width;
+	int		height;
+	char	**data;
+	char	*style[6];
+	char	**discovered;
+	int		floor;
+	int		ceiling;
+	t_point	start_pos;
+}	t_map;
 
 typedef enum e_keycode
 {
@@ -170,9 +171,7 @@ void		draw_background(t_vars *vars);
 void		draw_walls(t_vars *vars);
 int			color_shadowing(int color, double distance);
 
-int			init_map(t_map *map, int fd);
 int			add_style(t_map *map, char *line);
-int			checker(char **map, t_map *tmap);
 int			invalid_style(char *style);
 void		mouse_movement(t_vars *vars);
 void		print_minimap(t_vars *vars);
@@ -187,5 +186,6 @@ void		fill_near(t_point cur, int count, t_map *tmap);
 int			convert_rgb(t_map *map, int type);
 int			search_door(t_vars *vars);
 int			get_color(char	**map, t_point point, t_point player);
+int			map_is_valid(t_map *map);
 
 #endif
