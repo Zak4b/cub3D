@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/03/10 15:17:34 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/11 13:12:17 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ int	main(int argc, char *argv[])
 	t_vars	vars;
 
 	if (argc != 2)
-		return (ft_fprintf(2, "USAGE"), 2);
+		return (ft_fprintf(2, "USAGE: %s <map.cub>\n", argv[0]), 2);
 	fd = open_file(argv[1]);
 	if (fd == -1)
-		return (EXIT_FAILURE);
+		return (ft_puterror("no such file", ERROR));
 	vars.map = read_file(fd);
 	if (!vars.map)
-		return (EXIT_FAILURE);
+		return (ft_puterror("incomplete map", ERROR));
 	if (map_is_valid(vars.map))
 		return (EXIT_FAILURE);
 	init_game(&vars);
