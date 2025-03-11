@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:39:25 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/15 16:56:36 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/11 13:09:52 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*line_dup(const char *src, int len)
 	if (dup == NULL)
 		return (NULL);
 	i = 0;
-	while (src[i])
+	while (src[i] && i < len)
 	{
 		if (src[i] == '\n')
 			dup[i] = ' ';

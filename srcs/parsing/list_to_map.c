@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:39:28 by asene             #+#    #+#             */
-/*   Updated: 2025/03/10 15:08:12 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/11 13:06:10 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	fill_data(t_map *map, t_list *lst)
 	while (lst)
 	{
 		map->data[i] = line_dup((char *) lst->content, map->width);
-		map->discovered[i] = ft_strdup(map->data[i]);
+		map->discovered[i] = line_dup((char *) lst->content, map->width);
 		i++;
 		lst = lst->next;
 	}
