@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:09 by asene             #+#    #+#             */
-/*   Updated: 2025/03/10 15:38:05 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/11 12:47:18 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	check_styles(t_map *map)
 	if (check_style(map, NORTH) || check_style(map, SOUTH)
 		|| check_style(map, EAST) || check_style(map, WEST))
 		return (1);
+	if (map->style[CEILING] == NULL || map->style[FLOOR] == NULL)
+		return (0);
 	map->ceiling = convert_rgb(map, CEILING);
 	map->floor = convert_rgb(map, FLOOR);
 	if (map->ceiling == -1 || map->floor == -1)
