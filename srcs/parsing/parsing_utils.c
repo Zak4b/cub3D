@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:00:31 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/02/24 10:39:34 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/11 12:50:39 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,13 @@ int	invalid_style(char *style)
 
 	if (style)
 	{
-		return (0); // delete later
 		fd = open(style, O_RDONLY);
 		if (fd == -1)
 			return (1);
 		close(fd);
 		return (0);
 	}
-	else
-		return (1);
+	return (1);
 }
 
 int	check_style(t_map *map, t_style type)
@@ -38,7 +36,7 @@ int	check_style(t_map *map, t_style type)
 	if (map->style[type] == NULL)
 		error_msg = "not specified";
 	else if (invalid_style(map->style[type]))
-		error_msg = "invalid";
+		error_msg = "is invalid";
 	if (error_msg)
 	{
 		if (type == NORTH)
