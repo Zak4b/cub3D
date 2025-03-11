@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/03/10 15:27:24 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/11 13:07:43 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef enum e_keycode
 	KEY_W = 119,
 	KEY_A = 97,
 	KEY_S = 115,
+	KEY_T = 116,
 	KEY_D = 100,
 	KEY_P = 112,
 	KEY_A_LEFT = 65361,
@@ -92,6 +93,8 @@ typedef enum e_input
 	ROTATE_R,
 	RUN,
 	ALT,
+	TORCH_T,
+	TORCH_STATE,
 	SHADOW_P
 }	t_input;
 
@@ -143,6 +146,8 @@ typedef struct s_vars
 	int			inputs[20];
 	t_img		*textures[4];
 	t_img		**torch;
+	t_img		**torch_end;
+	t_img		**torch_start;
 	int			shadow;
 }	t_vars;
 
@@ -177,6 +182,5 @@ void		fill_near(t_point cur, int count, t_map *tmap);
 int			convert_rgb(t_map *map, int type);
 int			search_door(t_vars *vars);
 int			get_color(char	**map, t_point point, t_point player);
-void	oui(t_img *dest, t_img *img, int x0, int y0);
 
 #endif

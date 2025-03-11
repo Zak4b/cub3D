@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:31:59 by asene             #+#    #+#             */
-/*   Updated: 2025/03/10 15:27:35 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/11 13:23:15 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ int	key_down_hook(int k, t_vars *vars)
 		mlx_loop_end(vars->mlx->instance);
 	if (k == KEY_P)
 		vars->shadow = !vars->shadow;
+	if (k == KEY_T)
+	{
+		vars->inputs[TORCH_T] = !vars->inputs[TORCH_T];
+		vars->inputs[TORCH_STATE] = 0;	
+	}
 	if (k == KEY_SPACE)
 		search_door(vars);
 	else
@@ -53,17 +58,33 @@ int	key_up_hook(int k, t_vars *vars)
 	return (0);
 }
 
+void	torch(t_vars *vars, int nb, t_img **kind, int i)
+{
+	put_image_resized(vars->buffer, kind[(i) % nb]
+	,W_WIDTH / 3, W_HEIGHT - vars->torch[0]->height * TORCH_SIZE);
+}
+
 int	game_loop(t_vars *vars)
 {
-	static	int i = 0;
 	move(vars);
 	mouse_movement(vars);
 	draw_background(vars);
 	draw_walls(vars);
 	print_minimap(vars);
+	if (!vars->inputs[TORCH_T])
+	{
+		if (vars->inputs[TORCH_STATE] < 9)
+			torch(vars, 3, vars->torch_start, vars->inputs[TORCH_STATE] / 3);
+		else
+			torch(vars, 6, vars->torch, vars->inputs[TORCH_STATE] / 5);
+	}
+	else
+	{
+		if (vars->inputs[TORCH_STATE]++ < 18)
+			torch(vars, 6, vars->torch_end, vars->inputs[TORCH_STATE] / 3);
+	}
+	vars->inputs[TORCH_STATE]++;
 	mlx_put_image_to_window(vars->mlx->instance, vars->mlx->window, vars->buffer->img, 0, 0);
-	oui(vars->buffer, vars->torch[(i / 5) % 6], W_WIDTH / 3, W_HEIGHT - vars->torch[0]->height);
-	i++;
 	mlx_do_sync(vars->mlx->instance);
 	return (1);
 }
