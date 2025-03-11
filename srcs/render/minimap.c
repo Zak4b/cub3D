@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:31:09 by asene             #+#    #+#             */
-/*   Updated: 2025/03/03 13:31:49 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/11 13:29:42 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void	print_minimap(t_vars *vars)
 	t_point	test;
 	int		color;
 
-	player.x = (int) round(vars->player->pos.x) / CELL_SIZE;
-	player.y = (int) round(vars->player->pos.y) / CELL_SIZE;
+	player.x = (int) round(vars->player.pos.x) / CELL_SIZE;
+	player.y = (int) round(vars->player.pos.y) / CELL_SIZE;
 	print_border(vars);
 	point.y = -MMAP_RAY - 1;
 	while (++point.y <= MMAP_RAY)

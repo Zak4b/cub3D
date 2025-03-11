@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:12:02 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/03/03 13:31:39 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/11 13:29:25 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	mouse_movement(t_vars *vars)
 	delta_x = x - W_WIDTH / 2;
 	if (delta_x != 0)
 	{
-		vars->player->angle += delta_x * 0.002;
+		vars->player.angle += delta_x * 0.002;
 		x = W_WIDTH / 2;
 		y = W_HEIGHT / 2;
 		mlx_mouse_move(vars->mlx->instance, vars->mlx->window, x, y);

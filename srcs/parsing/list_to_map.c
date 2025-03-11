@@ -6,11 +6,27 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:39:28 by asene             #+#    #+#             */
-/*   Updated: 2025/03/11 13:06:10 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/11 13:32:46 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	set_player(t_map *map)
+{
+	char	player_char;
+
+	map->start_pos = find_player(map->data);
+	player_char = map->start_dir = map->data[map->start_pos.y][map->start_pos.x];
+	if (player_char == 'N')
+		map->start_dir = 3 * PI / 2;
+	if (player_char == 'E')
+		map->start_dir = 0;
+	if (player_char == 'S')
+		map->start_dir = PI / 2;
+	if (player_char == 'W')
+		map->start_dir = PI;
+}
 
 static void	fill_data(t_map *map, t_list *lst)
 {
@@ -38,7 +54,7 @@ static void	fill_data(t_map *map, t_list *lst)
 		i++;
 		lst = lst->next;
 	}
-	map->start_pos = find_player(map->data);
+	set_player(map);
 }
 
 t_map	*list_to_map(t_list *lst)
