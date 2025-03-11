@@ -1,7 +1,7 @@
 NO OUI
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+SO ./assets/brick_wall.xpm
+WE ./assets/brick_wall.xpm
+EA ./assets/brick_wall.xpm
 F NON
 C 225,30,0
 
