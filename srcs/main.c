@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/03/11 13:28:37 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/13 15:26:15 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,17 @@ void	init_game(t_vars *vars)
 
 void	free_map(t_map *map)
 {
+	int	i;
+
 	free_split(map->data);
 	free_split(map->discovered);
+	i = 0;
+	while (i < 6)
+	{
+		if (map->style[i])
+			free(map->style[i]);
+		i++;
+	}
 	free(map);
 }
 
@@ -64,7 +73,7 @@ int	main(int argc, char *argv[])
 	if (!vars.map)
 		return (ft_puterror("incomplete map", ERROR));
 	if (map_is_valid(vars.map))
-		return (EXIT_FAILURE);
+		return (free_map(vars.map), EXIT_FAILURE);
 	init_game(&vars);
 	mlx_loop(vars.mlx->instance);
 	free_map(vars.map);
