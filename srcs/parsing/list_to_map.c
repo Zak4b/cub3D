@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:39:28 by asene             #+#    #+#             */
-/*   Updated: 2025/03/13 15:34:48 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/13 15:48:13 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_map	*list_to_map(t_list *lst)
 	}
 	else
 	{
-		free(map);
+		free_map(map);
 		map = NULL;
 	}
 	return (map);

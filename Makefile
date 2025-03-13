@@ -15,7 +15,7 @@ LIB = -L./$(MLX_FOLDER) -lmlx -lXext -lX11 -lm -lz -L./libft/ -lft
 SRCDIR = srcs
 OBJDIR = obj
 
-SOURCES = ./events/doors.c ./events/hooks.c ./events/mouse_mouvement.c ./events/move.c ./lines.c ./main.c ./mlx_utils/img_utils2.c ./mlx_utils/img_utils.c ./mlx_utils/mlx_utils.c ./parsing/add_style.c ./parsing/check_map_data.c ./parsing/list_to_map.c ./parsing/map_is_valid.c ./parsing/open_file.c ./parsing/parsing_utils.c ./parsing/read_file.c ./raycasting/raycasting.c ./raycasting/raycasting_utils.c ./render/color.c ./render/minimap.c ./render/render_background.c ./render/render_walls.c ./utils/clamp.c ./utils/ft_puterror.c ./utils/ft_strchrs.c ./utils/line_dup.c 
+SOURCES = ./events/doors.c ./events/hooks.c ./events/mouse_mouvement.c ./events/move.c ./lines.c ./main.c ./mlx_utils/img_utils2.c ./mlx_utils/img_utils.c ./mlx_utils/mlx_utils.c ./parsing/add_style.c ./parsing/check_map_data.c ./parsing/free_map.c ./parsing/list_to_map.c ./parsing/map_is_valid.c ./parsing/open_file.c ./parsing/parsing_utils.c ./parsing/read_file.c ./raycasting/raycasting.c ./raycasting/raycasting_utils.c ./render/color.c ./render/minimap.c ./render/render_background.c ./render/render_walls.c ./utils/clamp.c ./utils/ft_puterror.c ./utils/ft_strchrs.c ./utils/line_dup.c 
 	
 OBJS = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
 

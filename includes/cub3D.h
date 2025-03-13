@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/03/11 13:26:17 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/13 15:47:54 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,8 @@ typedef struct s_vars
 	t_img		*door_texture;
 	int			shadow;
 }	t_vars;
+
+void	free_map(t_map *map);
 
 int			key_down_hook(int k, t_vars *vars);
 int			key_up_hook(int k, t_vars *vars);
