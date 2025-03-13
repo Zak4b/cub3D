@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:00:31 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/03/11 12:50:39 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/13 18:44:04 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	convert_rgb(t_map *map, int type)
 
 	splited = ft_split(map->style[type], ',');
 	if (!splited[1] || !splited[2])
-		return (-1);
+		return (free_split(splited), -1);
 	color = (ft_atoi(splited[0]) << 16) | (ft_atoi(splited[1]) << 8);
 	color = color | ft_atoi(splited[2]);
 	free_split(splited);
