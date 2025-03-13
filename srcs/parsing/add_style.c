@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing2.c                                         :+:      :+:    :+:   */
+/*   add_style.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:24:13 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/03/10 15:03:33 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/13 19:29:58 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,30 @@
 
 int	add_style(t_map *map, char *line)
 {
-	if (ft_strnstr(line, "NO", INT_MAX))
-		map->style[NORTH] = ft_substr(line + 3, 0, ft_strlen(line + 3) - 1);
-	else if (ft_strnstr(line, "SO", INT_MAX))
-		map->style[SOUTH] = ft_substr(line + 3, 0, ft_strlen(line + 3) - 1);
-	else if (ft_strnstr(line, "WE", INT_MAX))
-		map->style[WEST] = ft_substr(line + 3, 0, ft_strlen(line + 3) - 1);
-	else if (ft_strnstr(line, "EA", INT_MAX))
-		map->style[EAST] = ft_substr(line + 3, 0, ft_strlen(line + 3) - 1);
-	else if (ft_strchr(line, 'F'))
-		map->style[FLOOR] = ft_substr(line + 2, 0, ft_strlen(line + 2) - 1);
-	else if (ft_strchr(line, 'C'))
-		map->style[CEILING] = ft_substr(line + 2, 0, ft_strlen(line + 2) - 1);
-	else
+    const char		*keys[] = {"NO", "SO", "WE", "EA", "F", "C"};
+	const t_style	types[] = {NORTH, SOUTH, WEST, EAST, FLOOR, CEILING};
+	int				i;
+	char			**dest;
+
+	i = 0;
+	dest = NULL;
+    while (i < (int) (sizeof(keys) / sizeof(keys[0])))
+	{
+        if (ft_strncmp(line, keys[i], ft_strlen(keys[i])) == 0)
+		{
+            dest = &map->style[types[i]];
+            line += ft_strlen(keys[i]);
+            break;
+        }
+		i++;
+    }
+	if (!dest)
 		return (1);
+	while (*line && ft_isspace(*line))
+		line++;
+	if (line[ft_strlen(line) - 1] == '\n')
+		line[ft_strlen(line) - 1] = '\0';
+	*dest = ft_strdup(line);
 	return (0);
 }
 
