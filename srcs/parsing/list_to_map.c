@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:39:28 by asene             #+#    #+#             */
-/*   Updated: 2025/03/11 13:32:46 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/13 15:34:48 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	set_player(t_map *map)
 	char	player_char;
 
 	map->start_pos = find_player(map->data);
+	if (map->start_pos.x < 0)
+		return ;
 	player_char = map->start_dir = map->data[map->start_pos.y][map->start_pos.x];
 	if (player_char == 'N')
 		map->start_dir = 3 * PI / 2;
