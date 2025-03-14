@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:39:28 by asene             #+#    #+#             */
-/*   Updated: 2025/03/14 11:07:03 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/14 11:41:01 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	is_empty_line(char *line)
 {
 	while (*line && ft_isspace(*line))
 		line++;
-	return (!*line || *line == '\n');
+	return (!*line);
 }
 
 static void	set_player(t_map *map)
@@ -75,22 +75,24 @@ t_map	*list_to_map(t_list *lst)
 	in_map = 0;
 	while (lst && !in_map)
 	{
-		if (in_map == 0 && add_style(map, lst->content)
-			&& !is_empty_line(lst->content))
-			in_map = 1;
+		if (in_map == 0 && add_style(map, lst->content))
+		{
+			if (!is_empty_line(lst->content))
+			{
+				in_map = 1;
+				break ;
+			}
+		}
 		lst = lst->next;
 	}
-	if (in_map)
-	{
-		map->height = ft_lstsize(lst);
-		map->data = ft_calloc(map->height + 1, sizeof(char *));
-		map->discovered = ft_calloc(map->height + 1, sizeof(char *));
-		fill_data(map, lst);
-	}
-	else
+	if (!in_map)
 	{
 		free_map(map);
-		map = NULL;
+		return (NULL);
 	}
+	map->height = ft_lstsize(lst);
+	map->data = ft_calloc(map->height + 1, sizeof(char *));
+	map->discovered = ft_calloc(map->height + 1, sizeof(char *));
+	fill_data(map, lst);
 	return (map);
 }

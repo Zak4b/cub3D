@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 10:55:50 by asene             #+#    #+#             */
-/*   Updated: 2025/03/14 11:05:36 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/14 11:42:00 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	open_file(char *path)
 
 	index = ft_strlen(path) - ft_strlen(FILE_EXT);
 	if (index < 0 || ft_strcmp(path + index, FILE_EXT))
-		return (0);
+		return (-1);
 	fd = open(path, O_RDONLY);
 	return (fd);
 }
