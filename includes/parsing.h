@@ -6,14 +6,14 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:51:45 by asene             #+#    #+#             */
-/*   Updated: 2025/03/10 15:01:10 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/14 11:19:51 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
-
 #ifndef PARSING_H
 # define PARSING_H
+
+# include "cub3D.h"
 
 int		open_file(char *path);
 t_map	*read_file(int fd);

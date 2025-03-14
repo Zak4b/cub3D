@@ -6,12 +6,11 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:30:03 by asene             #+#    #+#             */
-/*   Updated: 2025/03/10 15:44:23 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/14 11:08:28 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
 
 void	check_block(char **map, t_point cur, int *count, t_map *tmap)
 {
@@ -67,8 +66,8 @@ int	elem_count(char **map)
 
 char	**dup_array(char **array, int size)
 {
-	char **new;
-	int	i;
+	char	**new;
+	int		i;
 
 	i = 0;
 	new = ft_calloc(size + 1, sizeof(char *));

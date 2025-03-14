@@ -6,14 +6,15 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:24:19 by asene             #+#    #+#             */
-/*   Updated: 2025/03/03 13:50:41 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/14 11:12:53 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 #include "raycasting.h"
 
-int	check_vertical_hit(t_map *map , char *collide_set, t_cast_data *data, t_point *collide_cell)
+int	check_vertical_hit(t_map *map, char *collide_set, t_cast_data *data,
+	t_point *collide_cell)
 {
 	t_point	cell;
 
@@ -32,7 +33,8 @@ int	check_vertical_hit(t_map *map , char *collide_set, t_cast_data *data, t_poin
 	return (0);
 }
 
-int	check_horizontal_hit(t_map *map , char *collide_set, t_cast_data *data, t_point *collide_cell)
+int	check_horizontal_hit(t_map *map, char *collide_set, t_cast_data *data,
+	t_point *collide_cell)
 {
 	t_point	cell;
 
@@ -51,7 +53,7 @@ int	check_horizontal_hit(t_map *map , char *collide_set, t_cast_data *data, t_po
 	return (0);
 }
 
-void find_hit(t_map *map, char *collide_set, t_cast_data data, t_hit *hit)
+void	find_hit(t_map *map, char *collide_set, t_cast_data data, t_hit *hit)
 {
 	t_point	collide_cell;
 
@@ -106,8 +108,8 @@ t_hit	cast_ray(t_map *map, t_dpoint start, double angle, char *collide_set)
 	t_hit	hit;
 
 	find_hit(map, collide_set, calc_cast(start, angle), &hit);
-	hit.distance = sqrt(pow(start.x - hit.pos.x, 2) + pow(start.y - hit.pos.y, 2));
-	hit.distance /= (double)CELL_SIZE;
+	hit.distance = sqrt(pow(start.x - hit.pos.x, 2)
+			+ pow(start.y - hit.pos.y, 2)) / (double)CELL_SIZE;
 	fill_hit_struct(&hit, start);
 	hit.collide_type = map->data[hit.collide_cell.y][hit.collide_cell.x];
 	return (hit);

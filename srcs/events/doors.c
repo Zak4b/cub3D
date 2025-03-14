@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:24:53 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/03/11 13:29:08 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/14 11:04:22 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	search_door(t_vars *vars)
 	if (hit.distance <= 1)
 	{
 		if (hit.collide_type == 'D')
-		 	vars->map->data[hit.collide_cell.y][hit.collide_cell.x] = 'O';
+			vars->map->data[hit.collide_cell.y][hit.collide_cell.x] = 'O';
 		else if (hit.collide_type == 'O')
-		 	vars->map->data[hit.collide_cell.y][hit.collide_cell.x] = 'D';
+			vars->map->data[hit.collide_cell.y][hit.collide_cell.x] = 'D';
 	}
 	return (1);
 }

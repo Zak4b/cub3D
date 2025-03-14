@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_background.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 21:36:24 by asene             #+#    #+#             */
-/*   Updated: 2025/02/25 12:10:37 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/14 11:20:28 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ static void	draw_ceiling(t_vars *vars)
 
 	i = 0;
 	while (i < W_HEIGHT / 2)
-		draw_hline(vars->buffer, (t_point){0, i++}, W_WIDTH, vars->map->ceiling);
+	{
+		draw_hline(vars->buffer, (t_point){0, i}, W_WIDTH, vars->map->ceiling);
+		i++;
+	}
 }
 
 static void	draw_floor(t_vars *vars)
@@ -26,7 +29,7 @@ static void	draw_floor(t_vars *vars)
 	int	i;
 	int	color;
 
-	i =  W_HEIGHT / 2;
+	i = W_HEIGHT / 2;
 	while (i < W_HEIGHT)
 	{
 		color = vars->map->floor;

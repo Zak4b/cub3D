@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:31:59 by asene             #+#    #+#             */
-/*   Updated: 2025/02/25 10:47:36 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/14 11:03:15 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int	game_loop(t_vars *vars)
 	draw_background(vars);
 	draw_walls(vars);
 	print_minimap(vars);
-	mlx_put_image_to_window(vars->mlx->instance, vars->mlx->window, vars->buffer->img, 0, 0);
+	mlx_put_image_to_window(vars->mlx->instance,
+		vars->mlx->window, vars->buffer->img, 0, 0);
 	mlx_do_sync(vars->mlx->instance);
 	return (1);
 }

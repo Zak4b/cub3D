@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:39:28 by asene             #+#    #+#             */
-/*   Updated: 2025/03/14 10:59:15 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/14 11:07:03 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int	is_empty_line(char *line)
 {
-	 while (*line && ft_isspace(*line))
-	 	line++;
-	 return (!*line || *line == '\n');
+	while (*line && ft_isspace(*line))
+		line++;
+	return (!*line || *line == '\n');
 }
 
 static void	set_player(t_map *map)
@@ -26,7 +26,7 @@ static void	set_player(t_map *map)
 	map->start_pos = find_player(map->data);
 	if (map->start_pos.x < 0)
 		return ;
-	player_char = map->start_dir = map->data[map->start_pos.y][map->start_pos.x];
+	player_char = map->data[map->start_pos.y][map->start_pos.x];
 	if (player_char == 'N')
 		map->start_dir = 3 * PI / 2;
 	if (player_char == 'E')
@@ -75,7 +75,8 @@ t_map	*list_to_map(t_list *lst)
 	in_map = 0;
 	while (lst && !in_map)
 	{
-		if (in_map == 0 && add_style(map, lst->content) && !is_empty_line(lst->content))
+		if (in_map == 0 && add_style(map, lst->content)
+			&& !is_empty_line(lst->content))
 			in_map = 1;
 		lst = lst->next;
 	}

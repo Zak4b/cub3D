@@ -6,12 +6,21 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/03/13 15:47:00 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/14 11:02:56 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 #include "parsing.h"
+
+void	load_textures(t_vars *vars)
+{
+	vars->textures[NORTH] = load_img(vars->mlx, vars->map->style[NORTH]);
+	vars->textures[SOUTH] = load_img(vars->mlx, vars->map->style[SOUTH]);
+	vars->textures[EAST] = load_img(vars->mlx, vars->map->style[EAST]);
+	vars->textures[WEST] = load_img(vars->mlx, vars->map->style[WEST]);
+	vars->door_texture = load_img(vars->mlx, "./assets/brick_wall.xpm");
+}
 
 void	init_game(t_vars *vars)
 {
@@ -27,11 +36,7 @@ void	init_game(t_vars *vars)
 	vars->player.pos = (t_dpoint){CELL_SIZE * (player_cell.x + .5),
 		CELL_SIZE * (player_cell.y + .5)};
 	vars->player.angle = vars->map->start_dir;
-	vars->textures[NORTH] = load_img(vars->mlx, vars->map->style[NORTH]);
-	vars->textures[SOUTH] = load_img(vars->mlx, vars->map->style[SOUTH]);
-	vars->textures[EAST] = load_img(vars->mlx, vars->map->style[EAST]);
-	vars->textures[WEST] = load_img(vars->mlx, vars->map->style[WEST]);
-	vars->door_texture = load_img(vars->mlx, "./assets/brick_wall.xpm");
+	load_textures(vars);
 	vars->shadow = 1;
 	ft_bzero(vars->inputs, sizeof(vars->inputs));
 	mlx_hook(vars->mlx->window, 17, 0, mlx_loop_end, vars->mlx->instance);
@@ -39,7 +44,8 @@ void	init_game(t_vars *vars)
 	mlx_hook(vars->mlx->window, 3, 1L << 1, key_up_hook, vars);
 	mlx_loop_hook(vars->mlx->instance, game_loop, vars);
 	mlx_do_key_autorepeatoff(vars->mlx->instance);
-	mlx_mouse_move(vars->mlx->instance, vars->mlx->window, W_WIDTH / 2, W_HEIGHT / 2);
+	mlx_mouse_move(vars->mlx->instance, vars->mlx->window,
+		W_WIDTH / 2, W_HEIGHT / 2);
 }
 
 int	main(int argc, char *argv[])

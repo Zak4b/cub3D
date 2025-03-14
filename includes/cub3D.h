@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/03/13 15:47:54 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/14 11:18:32 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # define MCELL_SIZE 15
 # define MMAP_RAY 8 
 # define FOV 75
-# define TAN_HALF_FOV tan((FOV * PI / 180) / 2)
 # define W_WIDTH 1920
 # define W_HEIGHT 1080
 # define CAMERA_ROTATION 0.03f
@@ -113,8 +112,7 @@ typedef enum e_direction
 
 typedef enum e_axis
 {
-
- 	VERTICAL,
+	VERTICAL,
 	HORIZONTAL,
 }	t_axis;
 
@@ -139,7 +137,6 @@ typedef struct s_hit
 	int			col_index;
 }	t_hit;
 
-
 typedef struct s_player
 {
 	t_dpoint	pos;
@@ -158,13 +155,14 @@ typedef struct s_vars
 	int			shadow;
 }	t_vars;
 
-void	free_map(t_map *map);
+void		free_map(t_map *map);
 
 int			key_down_hook(int k, t_vars *vars);
 int			key_up_hook(int k, t_vars *vars);
 int			game_loop(t_vars *vars);
 
-t_hit		cast_ray(t_map *map, t_dpoint start, double angle, char *collide_set);
+t_hit		cast_ray(t_map *map, t_dpoint start,
+				double angle, char *collide_set);
 
 void		move(t_vars *vars);
 

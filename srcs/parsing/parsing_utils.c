@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:00:31 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/03/14 10:50:13 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/14 11:05:15 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_style_string(t_style type)
 	else if (type == SOUTH)
 		type_string = "SO";
 	else if (type == EAST)
-		type_string = "EA";	
+		type_string = "EA";
 	else if (type == WEST)
 		type_string = "WE";
 	else if (type == CEILING)
@@ -63,7 +63,7 @@ int	check_style(t_map *map, t_style type)
 			error_msg = "is invalid";
 		else if (type != CEILING && type != FLOOR
 			&& invalid_style(map->style[type]))
-				error_msg = "is invalid";
+			error_msg = "is invalid";
 	}
 	if (error_msg)
 	{
@@ -82,7 +82,7 @@ int	convert_rgb(t_map *map, int type)
 	int		color;
 
 	if (map->style[type] == NULL)
-		return (-1);	
+		return (-1);
 	splited = ft_split(map->style[type], ',');
 	if (!splited[1] || !splited[2])
 		return (free_split(splited), -1);

@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 01:56:06 by asene             #+#    #+#             */
-/*   Updated: 2025/03/11 13:29:42 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/14 11:04:38 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	is_wall(t_map *map, double x, double y)
 	cell.y = y / CELL_SIZE;
 	if (cell.x < 0 || cell.x > map->width || cell.y < 0 || cell.y > map->height)
 		return (0);
-	return (ft_strchr("1D",map->data[cell.y][cell.x]) != NULL);
+	return (ft_strchr("1D", map->data[cell.y][cell.x]) != NULL);
 }
 
 static int	is_near_wall(t_vars *vars, double x, double y)
