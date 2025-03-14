@@ -6,11 +6,18 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:39:28 by asene             #+#    #+#             */
-/*   Updated: 2025/03/13 15:48:13 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/14 10:59:15 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static int	is_empty_line(char *line)
+{
+	 while (*line && ft_isspace(*line))
+	 	line++;
+	 return (!*line || *line == '\n');
+}
 
 static void	set_player(t_map *map)
 {
@@ -68,7 +75,7 @@ t_map	*list_to_map(t_list *lst)
 	in_map = 0;
 	while (lst && !in_map)
 	{
-		if (in_map == 0 && add_style(map, lst->content))
+		if (in_map == 0 && add_style(map, lst->content) && !is_empty_line(lst->content))
 			in_map = 1;
 		lst = lst->next;
 	}

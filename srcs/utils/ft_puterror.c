@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 16:54:29 by asene             #+#    #+#             */
-/*   Updated: 2025/02/15 16:59:07 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/14 10:42:13 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_puterror(char *str, t_error_type type)
 {
 	char	*prefix;
 
-	if (type == 1)
+	if (type == ERROR)
 		prefix = "\033[1;31mERROR: ";
 	else
 		prefix = "\033[1;33mWarning: ";
