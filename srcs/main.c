@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/03/14 11:02:56 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/17 12:00:47 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ void	load_textures(t_vars *vars)
 	vars->textures[SOUTH] = load_img(vars->mlx, vars->map->style[SOUTH]);
 	vars->textures[EAST] = load_img(vars->mlx, vars->map->style[EAST]);
 	vars->textures[WEST] = load_img(vars->mlx, vars->map->style[WEST]);
+	vars->torch = load_sprites(vars->mlx, "assets/torch/torch", 6);
+	vars->torch_end = load_sprites(vars->mlx, "assets/torch/end", 6);
+	vars->torch_start = load_sprites(vars->mlx, "assets/torch/start", 3);
 	vars->door_texture = load_img(vars->mlx, "./assets/brick_wall.xpm");
 }
 
@@ -68,5 +71,6 @@ int	main(int argc, char *argv[])
 	free_map(vars.map);
 	mlx_do_key_autorepeaton(vars.mlx->instance);
 	t_mlx_kill(vars.mlx);
+	free(vars.torch);
 	exit(EXIT_SUCCESS);
 }

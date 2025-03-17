@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/03/14 11:18:32 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/17 11:56:03 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef enum e_keycode
 	KEY_W = 119,
 	KEY_A = 97,
 	KEY_S = 115,
+	KEY_T = 116,
 	KEY_D = 100,
 	KEY_P = 112,
 	KEY_A_LEFT = 65361,
@@ -93,6 +94,8 @@ typedef enum e_input
 	ROTATE_R,
 	RUN,
 	ALT,
+	TORCH_T,
+	TORCH_STATE,
 	SHADOW_P
 }	t_input;
 
@@ -152,6 +155,9 @@ typedef struct s_vars
 	int			inputs[20];
 	t_img		*textures[4];
 	t_img		*door_texture;
+	t_img		**torch;
+	t_img		**torch_end;
+	t_img		**torch_start;
 	int			shadow;
 }	t_vars;
 

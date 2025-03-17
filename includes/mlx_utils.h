@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 18:27:51 by asene             #+#    #+#             */
-/*   Updated: 2025/02/14 18:46:21 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/11 12:02:07 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef MLX_UTILS_H
+# define MLX_UTILS_H
+
 #include <libft.h>
 #include <mlx.h>
+
+# define TORCH_SIZE 6
 
 typedef struct s_img
 {
@@ -43,3 +48,7 @@ t_img	**load_sprites(t_mlx *mlx, char *path, unsigned int count);
 void	put_pixel(t_img *img, int x, int y, int color);
 void	put_image(t_img *dest, t_img *img, int x0, int y0);
 int		get_pixel(t_img *img, int x, int y);
+void	put_resized_pixel(t_img *dest, int offx, int offy, int color);
+void	put_image_resized(t_img *dest, t_img *img, int x0, int y0);
+
+#endif
