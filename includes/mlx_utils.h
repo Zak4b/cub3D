@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 18:27:51 by asene             #+#    #+#             */
-/*   Updated: 2025/03/17 14:11:05 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:28:13 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_mlx
 	void	*instance;
 	void	*window;
 	t_list	*img_list;
+	t_list	*sprite_list;
 }	t_mlx;
 
 t_mlx	*t_mlx_init(unsigned int width, unsigned int height, char *title);

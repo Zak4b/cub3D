@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/03/17 14:29:19 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:01:17 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,5 @@ int	main(int argc, char *argv[])
 	free_map(vars.map);
 	mlx_do_key_autorepeaton(vars.mlx->instance);
 	t_mlx_kill(vars.mlx);
-	free(vars.torch);
 	exit(EXIT_SUCCESS);
 }

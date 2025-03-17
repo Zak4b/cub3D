@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   img_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:35:22 by asene             #+#    #+#             */
-/*   Updated: 2025/03/10 15:13:54 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:44:14 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ t_img	*load_img(t_mlx *mlx, char *path)
 				&(img->line_length), &(img->endian));
 		ft_lstadd_front(&mlx->img_list, ft_lstnew(img));
 	}
+	else
+	{
+		free(img);
+		img = NULL;
+	}
 	return (img);
 }
 
@@ -82,5 +87,6 @@ t_img	**load_sprites(t_mlx *mlx, char *path, unsigned int count)
 		i++;
 	}
 	imgs[i] = NULL;
+	ft_lstadd_front(&mlx->sprite_list, ft_lstnew(imgs));
 	return (imgs);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/03/17 14:09:34 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:20:09 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define FOV 75
 # define W_WIDTH 1920
 # define W_HEIGHT 1080
-# define CAMERA_ROTATION 0.03f
+# define CAMERA_ROTATION 0.05f
 # define MOVE_HITBOX 0.2f
 # define DOOR_HITBOX 1
 # ifndef PI

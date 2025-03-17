@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 18:10:27 by asene             #+#    #+#             */
-/*   Updated: 2025/02/15 16:59:21 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/17 14:30:43 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_mlx	*t_mlx_init(unsigned int width, unsigned int height, char *title)
 	mlx->instance = mlx_init();
 	mlx->window = mlx_new_window(mlx->instance, width, height, title);
 	mlx->img_list = NULL;
+	mlx->sprite_list = NULL;
 	return (mlx);
 }
 
@@ -34,6 +35,7 @@ void	t_mlx_kill(t_mlx *mlx)
 		cursor = cursor->next;
 	}
 	ft_lstclear(&mlx->img_list, NULL);
+	ft_lstclear(&mlx->sprite_list, free);
 	if (mlx->window)
 		mlx_destroy_window(mlx->instance, mlx->window);
 	mlx_destroy_display(mlx->instance);
