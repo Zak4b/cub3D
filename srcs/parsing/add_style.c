@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:24:13 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/03/14 11:10:41 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/17 15:09:03 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ int	add_style(t_map *map, char *line)
 	if (!dest)
 		return (1);
 	if (*dest)
-		free(*dest);
+	{
+		ft_puterror("double key", ERROR);
+		return (1);
+	}	
 	while (*line && ft_isspace(*line))
 		line++;
 	if (line[ft_strlen(line) - 1] == '\n')
