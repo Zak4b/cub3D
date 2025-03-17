@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   img_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:35:22 by asene             #+#    #+#             */
-/*   Updated: 2025/03/11 12:09:39 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:23:55 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,10 @@ void	put_image_resized(t_img *dest, t_img *img, int x0, int y0)
 		{
 			color = get_pixel(img, x, y);
 			if ((color >> 24 & 0xFF) == 0)
-				put_resized_pixel(dest, x * TORCH_SIZE + x0, y * TORCH_SIZE + y0, color);
+				put_resized_pixel(dest, x * TORCH_SIZE + x0,
+					y * TORCH_SIZE + y0, color);
 			x++;
 		}
 		y++;
 	}
 }
-
-
-

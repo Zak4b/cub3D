@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:39:28 by asene             #+#    #+#             */
-/*   Updated: 2025/03/14 11:41:01 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/17 14:24:52 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,7 @@ t_map	*list_to_map(t_list *lst)
 		lst = lst->next;
 	}
 	if (!in_map)
-	{
-		free_map(map);
-		return (NULL);
-	}
+		return (free_map(map), NULL);
 	map->height = ft_lstsize(lst);
 	map->data = ft_calloc(map->height + 1, sizeof(char *));
 	map->discovered = ft_calloc(map->height + 1, sizeof(char *));
