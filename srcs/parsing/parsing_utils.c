@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:00:31 by rsebasti          #+#    #+#             */
-/*   Updated: 2025/03/14 11:05:15 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/17 14:58:20 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,21 @@ int	convert_rgb(t_map *map, int type)
 {
 	char	**splited;
 	int		color;
+	int		i;
+	int		temp;
 
 	if (map->style[type] == NULL)
 		return (-1);
 	splited = ft_split(map->style[type], ',');
-	if (!splited[1] || !splited[2])
+	i = 0;
+	while (splited[i])
+	{
+		temp = atoi(splited[i]);
+		if (temp < 0 || temp > 255)
+			return (free_split(splited), -1);
+		i++;
+	}
+	if (i != 3)
 		return (free_split(splited), -1);
 	color = (ft_atoi(splited[0]) << 16) | (ft_atoi(splited[1]) << 8);
 	color = color | ft_atoi(splited[2]);

@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:07 by asene             #+#    #+#             */
-/*   Updated: 2025/03/17 12:00:47 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:29:19 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	load_textures(t_vars *vars)
 	vars->torch = load_sprites(vars->mlx, "assets/torch/torch", 6);
 	vars->torch_end = load_sprites(vars->mlx, "assets/torch/end", 6);
 	vars->torch_start = load_sprites(vars->mlx, "assets/torch/start", 3);
-	vars->door_texture = load_img(vars->mlx, "./assets/brick_wall.xpm");
+	vars->door_texture = load_img(vars->mlx, "./assets/door.xpm");
 }
 
 void	init_game(t_vars *vars)
