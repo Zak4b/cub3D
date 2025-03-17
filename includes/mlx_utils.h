@@ -6,15 +6,15 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 18:27:51 by asene             #+#    #+#             */
-/*   Updated: 2025/03/11 12:02:07 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:11:05 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MLX_UTILS_H
 # define MLX_UTILS_H
 
-#include <libft.h>
-#include <mlx.h>
+# include <libft.h>
+# include <mlx.h>
 
 # define TORCH_SIZE 6
 

@@ -6,7 +6,7 @@
 /*   By: rsebasti <rsebasti@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:47:53 by asene             #+#    #+#             */
-/*   Updated: 2025/03/17 11:56:03 by rsebasti         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:09:34 by rsebasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,5 +194,6 @@ int			convert_rgb(t_map *map, int type);
 int			search_door(t_vars *vars);
 int			get_color(char	**map, t_point point, t_point player);
 int			map_is_valid(t_map *map);
+void		torch(t_vars *vars);
 
 #endif
