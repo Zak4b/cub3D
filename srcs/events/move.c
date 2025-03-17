@@ -6,7 +6,7 @@
 /*   By: asene <asene@student.42perpignan.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 01:56:06 by asene             #+#    #+#             */
-/*   Updated: 2025/03/14 11:04:38 by asene            ###   ########.fr       */
+/*   Updated: 2025/03/17 14:11:36 by asene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	move_player(t_vars *vars, t_dpoint mov)
 	t_dpoint	dest;
 	t_point		player;
 
-	dest = (t_dpoint){vars->player.pos.x + mov.x, vars->player.pos.y + mov.y};
+	dest.x = vars->player.pos.x + mov.x * (CELL_SIZE / 10);
+	dest.y = vars->player.pos.y + mov.y * (CELL_SIZE / 10);
 	if (! is_near_wall(vars, dest.x, vars->player.pos.y))
 		vars->player.pos.x = dest.x;
 	if (! is_near_wall(vars, vars->player.pos.x, dest.y))
